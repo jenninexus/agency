@@ -13,7 +13,7 @@
 		"background.useFront": false,
 		"background.useDefault": false,
 		"background.customImages": [
-			"https://raw.githubusercontent.com/YOUR_USERNAME/Agency/main/agents/images/GraphViz.jpg"
+			"https://raw.githubusercontent.com/jenninexus/Agency/main/agents/images/GraphViz.jpg"
 		],
 		"background.style": {
 			"content": "''",
