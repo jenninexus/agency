@@ -180,6 +180,67 @@ Professional 3D render, elegant design studio, a sophisticated designer at a ble
 
 ---
 
+## 4.5 Active Agent Image Prompts
+
+These prompts are for the 5 agents included in the framework. Use them with any AI image generator (Midjourney, DALL-E, Stable Diffusion, etc.).
+
+### Vidette - Video & Media Manager
+
+<details>
+<summary><strong>Image Prompt (copy-paste ready)</strong></summary>
+
+```
+Professional 3D render, high-energy creative studio at golden hour sunset, a sharp-eyed young woman at a triple ultrawide curved monitor setup, platinum blonde hair with vibrant neon rainbow highlights (hot pink, electric purple, cyan blue) and a side-shaved undercut, wearing a slouchy knit beanie, black crop top with holographic "RSS > API" text, cargo pants with glow trim, LED platform sneakers, RGB LED strips illuminating the desk, mechanical keyboard with rainbow keycaps, floating holographic 6-column video grid showing thumbnail cards with play button overlays, aspect ratio guides (16:9, 9:16) visible, golden RSS feed ribbons streaming through the air, "NO WHITE" warning sign on the wall, play button earrings, multiple piercings, confident relaxed pose, racing-style gaming chair, hyper-detailed, 8K resolution
+```
+
+</details>
+
+### Bloggie - Content & Consistency Manager
+
+<details>
+<summary><strong>Image Prompt (copy-paste ready)</strong></summary>
+
+```
+Professional 3D render, cozy modern home office on a warm afternoon, a thoughtful young woman at a warm wooden mid-century modern desk with brass accents, auburn hair with caramel and honey blonde balayage styled in a messy half-up bun with loose face-framing pieces, large round tortoiseshell reading glasses, wearing a chunky cable-knit cream cardigan over a black tank top, vintage-wash mom jeans, barefoot with a casual vibe, 32-inch 4K monitor showing a beautiful blog post layout, leather-bound notebook with fountain pen beside a ceramic mug warmer with Earl Grey tea, floating holographic blog cards with "Topics:" tag badges, social share icons orbiting her head (X, Facebook, LinkedIn), three recommended post cards in a row, glass-card labels floating nearby, design books stacked on shelves, warm amber desk lamp, gold pen charm necklace, calm focused expression, 8K resolution, hyper-detailed
+```
+
+</details>
+
+### GraphViz - Theme & Visual Design Manager
+
+<details>
+<summary><strong>Image Prompt (copy-paste ready)</strong></summary>
+
+```
+Professional 3D render, minimalist design studio at blue hour twilight, a poised woman at a pristine white standing desk, silver hair with lavender and soft pink ombre gradient flowing to her waist, perfectly straight, wearing a black geometric crop top, high-waisted wide-leg trousers, multiple thin silver bangles, geometric color wheel tattoo visible on forearm, dual large color-calibrated monitors showing CSS variable code and color palettes, floating holographic light/dark theme toggle, glass panels demonstrating glassmorphism effects, Pantone swatch books and X-Rite colorimeter on desk, WCAG "AAA" contrast checker showing green ratings, "NO #FFFFFF" warning badge glowing red, shadow depth layers visualized as floating panels, CSS variable runes etched in silver light, silver toe rings, delicate silver chain anklet, calm authoritative posture, 8K resolution, hyper-detailed
+```
+
+</details>
+
+### GamerGirl - Product & Portfolio Manager
+
+<details>
+<summary><strong>Image Prompt (copy-paste ready)</strong></summary>
+
+```
+Professional 3D render, high-tech gaming studio with RGB ambient lighting, an energetic young woman at a triple monitor battle station, electric blue hair with hot pink tips in a high ponytail, gaming headset with RGB lights around her neck, wearing an esports-style team jersey with holographic sponsor logos, fingerless gaming gloves, LED sneakers, wristbands with controller charm accessories, monitors showing polished game landing pages with hero sections and CTA buttons, floating holographic Steam store cards, itch.io badges, and platform icons, convention lanyards draped on monitor, controller charm earrings, competitive fierce expression with a confident smirk, LED light strips in purple and pink around the desk, mechanical keyboard with custom keycaps, 8K resolution, hyper-detailed
+```
+
+</details>
+
+### DivineDesign - Site-Wide Design & Architecture
+
+<details>
+<summary><strong>Image Prompt (copy-paste ready)</strong></summary>
+
+```
+Professional 3D render, elegant design studio blending analog and digital, a sophisticated woman at a blend of drafting table and digital workstation, deep burgundy red hair with rose gold highlights in an elegant French twist, wearing a structured blazer over a silk blouse, tailored pants, delicate gold chain bracelet, minimalist stud earrings, transparent screen showing Figma-style wireframes overlaid on physical sketches, floating holographic UI components (cards, buttons, navigation) arranged on an 8px grid system, F-pattern and Z-pattern scan path overlays visible, design books and architectural references nearby, golden ratio spiral visible in a floating overlay, immaculate desk organization suggesting precision, serene thoughtful expression, soft professional warm lighting, 8K resolution, hyper-detailed
+```
+
+</details>
+
+---
+
 ## 5. Creating Your Own Agents
 
 ### 5.1. Character Design Checklist

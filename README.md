@@ -219,11 +219,47 @@ jobs:
       - run: ./scripts/audit-video-pages.sh
 ```
 
-### Claude Code / Cursor
+### Claude Code Integration
+
+The Agency framework works seamlessly with Claude Code (Anthropic's CLI) and similar AI coding assistants.
+
+**CLAUDE.md Integration:**
+Add agent references to your project's `CLAUDE.md` for automatic context:
+
+```markdown
+## Agent Team
+- 5 AI agents with weekly audit schedules
+- Agent profiles: `agents/*.md`
+- Master config: `.config/mcp_agents.json`
+- Audit scripts: `scripts/audit-*.ps1`
+- Audit results: `audits/AUDIT_*.md`
+```
+
+**Claude Code Skills (Slash Commands):**
+Create custom skills in `.claude/commands/` for agent operations:
+
+```
+.claude/commands/
+├── agent-supervisor.md   # Full audit + health dashboard
+├── agent-audit.md        # Quick-run specific agent audit
+└── agent-status.md       # Status check without running audits
+```
+
+**Direct Agent Invocation:**
 ```
 Read @GraphViz.md and audit src/styles/ for theme compliance
 Run the Wednesday audit checklist from @GraphViz.md
+@Vidette.md audit the video pages for duplicate script loads
 ```
+
+**Environment Variables:**
+Copy `.env.example` to `.env` and configure paths for your project:
+```bash
+cp .env.example .env
+# Edit .env with your project paths
+```
+
+The audit scripts use these paths automatically via `_audit-common.ps1`.
 
 ---
 

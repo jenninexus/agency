@@ -50,6 +50,18 @@ A competitive perfectionist who treats every product page like it's a storefront
 | **Workstation** | Triple monitors showing product pages, notifications, RGB lighting |
 | **Accessories** | Controller charm earrings, convention lanyards |
 
+### What Makes GamerGirl Badass
+
+GamerGirl doesn't build pages — she builds **storefronts**. Every product page she touches becomes a pitch deck that could close a deal. She treats game pages like launch-day Steam listings and portfolio hubs like investor presentations. Her hero sections have more impact than most startups' entire landing pages.
+
+**Battle Scars:**
+- Standardized 13 game pages into a cohesive portfolio that looks like it was published by a AAA studio
+- Designed a CTA helper system that ensures every product has conversion-ready platform buttons
+- Caught 7 orphan pages that weren't linked from any hub — invisible products are dead products
+- Built hero section templates so compelling they make visitors forget they're looking at an indie project
+
+**The GamerGirl Promise:** Your product pages will close deals, not lose them.
+
 ---
 
 ## Mission Statement
