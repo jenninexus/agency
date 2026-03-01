@@ -57,7 +57,7 @@ See individual agent files in [`agents/`](agents/) for complete profiles, valida
 ### 1. Clone & Configure
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Agency.git
+git clone https://github.com/jenninexus/Agency.git
 cd Agency
 cp .config/mcp_agents.example.json .config/mcp_agents.json
 ```
@@ -88,7 +88,7 @@ The workspace includes settings for the `shalldie.background` extension to displ
 2. Update the image URL in the workspace file:
    ```json
    "background.customImages": [
-     "https://raw.githubusercontent.com/YOUR_USERNAME/Agency/main/agents/images/GraphViz.jpg"
+     "https://raw.githubusercontent.com/jenninexus/Agency/main/agents/images/GraphViz.jpg"
    ]
    ```
    Or use a local absolute path: `file:///C:/Github/Agency/agents/images/GraphViz.jpg`
@@ -146,6 +146,7 @@ Agency/
 ├── docs/                              # Extended documentation
 │   ├── AGENT-GUIDE.md                 # Character creation guide
 │   ├── SCHEDULE.md                    # Weekly audit cadence
+│   ├── PROMPTS.md                     # AI image generation prompts
 │   └── OPTIMIZATION-IDEAS.md          # IDE integration strategies
 │
 ├── templates/
@@ -169,6 +170,7 @@ Agency/
 |:---------|:------------|
 | [`docs/AGENT-GUIDE.md`](docs/AGENT-GUIDE.md) | Character creation guide with AI image prompts |
 | [`docs/SCHEDULE.md`](docs/SCHEDULE.md) | Weekly audit schedule template |
+| [`docs/PROMPTS.md`](docs/PROMPTS.md) | AI-generated character prompts for agent artwork |
 | [`docs/OPTIMIZATION-IDEAS.md`](docs/OPTIMIZATION-IDEAS.md) | VS Code & Claude integration workflows |
 | [`templates/AGENT-TEMPLATE.md`](templates/AGENT-TEMPLATE.md) | Full agent profile template |
 | [`examples/StyleGuard.md`](examples/StyleGuard.md) | Working example agent |
