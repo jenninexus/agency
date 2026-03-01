@@ -1,91 +1,403 @@
-# Weekly Audit Schedule
+# JenniNexus Agent Weekly Schedule
 
-**Version:** 2.0
-**Last Updated:** January 2026
-**Source of Truth:** `.config/mcp_agents.json`
+**Version:** 1.0
+**Last Updated:** January 22, 2026
+**Status:** Active
 
-> **Note:** Customize this schedule in `.config/mcp_agents.json` to match your project's agents and priorities.
-
----
-
-## Weekly Audit & Review Cadence
-
-The AI Agent Agency operates on a weekly schedule to ensure continuous quality control and cross-team synchronization. Each agent has a designated day to perform a full audit of their domain.
-
-| Day | Agent | Focus Area |
-|:----|:------|:-----------|
-| **Monday** | Vidette | Video grids, playlists, aspect ratios, thumbnails |
-| **Tuesday** | Bloggie | PHP headers, tags, share buttons, blog structure |
-| **Wednesday** | GraphViz | Color compliance, theme consistency, WCAG |
-| **Thursday** | GamerGirl | Game pages, platform CTAs, heroes (+ cross-team review) |
-| **Friday AM** | DivineDesign | Layout review, template consistency, UX audit |
-| **Friday PM** | All | Implementation day - fix all flagged issues |
+> **SINGLE SOURCE OF TRUTH:** `storage/agency/.config/mcp_agents.json`
+> This document provides human-readable details. The canonical schedule data is in the JSON config.
 
 ---
 
-## The Audit & Implementation Cycle
+## Weekly Audit Schedule
 
-1. **Morning Audit (Mon-Fri):** The designated agent for the day runs their automated audit script. The script generates a report in the `audits/` directory, flagging any `FAIL`, `WARN`, or `INFO` items.
-
-2. **Cross-Team Review (Thursday):** A special review is held to discuss any issues that have cross-agent implications, particularly overlapping domains.
-
-3. **Implementation Day (Friday PM):** The afternoon is dedicated to fixing all issues flagged during the week's audits. The goal is to enter the weekend with a fully compliant system.
-
-This cyclical process ensures that the project maintains a high standard of quality and that any regressions are caught and fixed within days.
-
----
-
-## Agent Coordination Matrix
-
-| Agent | Coordinates With |
-|:------|:-----------------|
-| Vidette | GraphViz, GamerGirl, Bloggie |
-| Bloggie | GraphViz, Vidette, DivineDesign |
-| GraphViz | Vidette, Bloggie, GamerGirl, DivineDesign |
-| GamerGirl | Vidette, GraphViz, Bloggie |
-| DivineDesign | GraphViz, Vidette, Bloggie, GamerGirl |
+| Day | Agent | Audit Script | Output | Focus Areas |
+|-----|-------|--------------|--------|-------------|
+| **Monday** | Vidette | `audit-video-pages.ps1` | `storage/agency/audits/AUDIT_video-pages.md` | Video grids, playlists, aspect ratios, youtube-grid.js loads |
+| **Tuesday** | Bloggie | `audit-blog-posts.ps1` | `storage/agency/audits/AUDIT_blog-posts.md` | PHP headers, tags, share buttons, YAML entries |
+| **Wednesday** | GraphViz | (manual review) | (visual inspection) | Theme consistency, no white backgrounds, glass effects |
+| **Thursday** | GamerGirl | `audit-game-pages.ps1` | `storage/agency/audits/AUDIT_game-pages.md` | Game pages, hub pages (gamedev/gaming), CTAs, hero sections |
+| **Thursday** | All | Review audit results | - | Cross-check findings after GamerGirl audit |
+| **Friday** | All | Implementation | - | Fix audit failures before weekend |
 
 ---
 
-## Customizing Your Schedule
+## Detailed Daily Protocol
 
-Edit `.config/mcp_agents.json` to:
-- Assign different agents to different days
-- Add new agents as your team grows
-- Change focus areas for each audit day
-- Update audit script paths
+### Monday - Vidette (Video Display)
+
+**Script:**
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/audits/audit-video-pages.ps1
+```
+
+**Checks:**
+- [ ] No duplicate youtube-grid.js loads
+- [ ] All script tags have `$assetSuffix`
+- [ ] Container IDs match JS render calls
+- [ ] Playlist constants used (not hardcoded IDs)
+- [ ] Column presets used (not inline objects)
+- [ ] Aspect ratios correct (16:9 default)
+- [ ] Hover effects working
+
+**Files Audited:**
+- `gamedev.php`, `gaming.php`, `diy.php`, `ai.php`, `youtube.php`
+- `music.php`, `live.php`, `patreon.php`
+- All `game/*.php` pages
 
 ---
 
-## VS Code Tasks
+### Tuesday - Bloggie (Blog Posts)
 
-The workspace includes pre-configured tasks for each audit day. Access them via:
-- **Ctrl+Shift+P** > "Tasks: Run Task"
-- Or use the Terminal menu > "Run Task"
+**Script:**
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/audits/audit-blog-posts.ps1
+```
 
-Available tasks:
-- `Monday: Vidette Audit`
-- `Tuesday: Bloggie Audit`
-- `Wednesday: GraphViz Audit`
-- `Thursday: GamerGirl Audit`
-- `Friday: DivineDesign Audit`
+**Checks:**
+- [ ] PHP header variables present (`$activePage`, `$pageTitle`, `$pageUrl`, `$pageImage`)
+- [ ] RES_ROOT defined defensively
+- [ ] Required includes in order (head, header, share-buttons, footer)
+- [ ] Tag anchor pattern correct (`../tags.php?filters=`)
+- [ ] Share buttons via include (not inline)
+- [ ] Recommended posts section (3 posts)
+- [ ] YAML entry exists in blog-posts.yaml
+
+**Files Audited:**
+- All `blog/*.php` files (excluding template)
 
 ---
 
-## Quick Reference
+### Wednesday - GraphViz (Theme & Visual Design)
+
+**Manual Review Protocol:**
+
+**1. CSS Variable Audit**
+```powershell
+# Search for hardcoded white backgrounds
+Select-String -Path "src/assets/css/*.css" -Pattern "#[Ff]{6}|background:\s*white" | Select-Object Path, LineNumber, Line
+```
+
+**2. Theme Toggle Test**
+- [ ] Visit each major page
+- [ ] Toggle between light/dark mode
+- [ ] Verify no flash of wrong theme
+- [ ] Check glass effects in both modes
+- [ ] Verify text contrast is readable
+
+**3. Color Consistency Check**
+- [ ] Hero sections use correct theme gradients
+- [ ] Cards use glass effects (not solid colors)
+- [ ] Buttons have proper hover states
+- [ ] Social buttons use brand colors
+
+**Files Reviewed:**
+- `theme-variables.css` - Single source of truth
+- `all-themes.css` - Theme utilities
+- All `*-theme.css` files (7 page-specific themes)
+- `theme-toggle.js` - Toggle functionality
+
+---
+
+### Thursday - GamerGirl (Game Pages) + Cross-Team Review
+
+**Script:**
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/audits/audit-game-pages.ps1
+```
+
+**Checks:**
+- [ ] Hero section with title and tagline
+- [ ] Platform CTA buttons (Steam, itch.io, GameJolt)
+- [ ] Tag badges use anchor pattern (`/tags.php?filters=`)
+- [ ] Video sections use `video-grid-init.php`
+- [ ] Column presets used (not inline objects)
+- [ ] Images load with proper fallbacks
+- [ ] No white backgrounds
+
+**Files Audited:**
+- `gamedev.php`, `gaming.php` (hub pages)
+- All `game/*.php` pages (13 individual game pages)
+
+**Cross-Team Review Protocol:**
+1. GamerGirl runs audit first (game-specific)
+2. Each agent reviews their audit output
+3. Identify cross-domain issues (e.g., video card colors affect GraphViz)
+4. Prioritize fixes by severity:
+   - **CRITICAL:** Broken functionality, accessibility failures
+   - **HIGH:** Visual inconsistencies, missing features
+   - **MEDIUM:** Minor styling issues, optimization opportunities
+   - **LOW:** Documentation updates, code cleanup
+
+**Meeting Agenda:**
+- GamerGirl: Game page & hub status
+- Vidette: Video system status
+- Bloggie: Blog compliance status
+- GraphViz: Theme consistency status
+- All: Cross-cutting concerns
+
+---
+
+### Friday - Implementation Day
+
+**Protocol:**
+1. Fix CRITICAL and HIGH issues first
+2. Run affected audit scripts after fixes
+3. Update agent changelogs
+4. Update day file with completed tasks
+5. Prepare for weekend (no deployments)
+
+**Pre-Weekend Checklist:**
+- [ ] All CRITICAL issues resolved
+- [ ] Audit scripts pass
+- [ ] Build completes without errors
+- [ ] Dev server tested locally
+
+---
+
+## Startup Script Integration
+
+The weekly schedule is integrated into `scripts/startup-session.ps1`:
 
 ```powershell
-# Run a specific agent's audit
-powershell -ExecutionPolicy Bypass -File scripts/audit-video-pages.ps1    # Vidette
-powershell -ExecutionPolicy Bypass -File scripts/audit-blog-posts.ps1     # Bloggie
-powershell -ExecutionPolicy Bypass -File scripts/audit-styles.ps1         # GraphViz
-powershell -ExecutionPolicy Bypass -File scripts/audit-game-pages.ps1     # GamerGirl
-powershell -ExecutionPolicy Bypass -File scripts/audit-layouts.ps1        # DivineDesign
+# Step 6: Day-specific audits
+$dayOfWeek = (Get-Date).DayOfWeek
 
-# Or for bash/zsh
-./scripts/audit-styles.sh
+switch ($dayOfWeek) {
+    'Monday' {
+        Write-Host "  [VIDETTE] Monday video audit day"
+        Write-Host "  Run: .\scripts\audits\audit-video-pages.ps1"
+    }
+    'Tuesday' {
+        Write-Host "  [BLOGGIE] Tuesday blog audit day"
+        Write-Host "  Run: .\scripts\audits\audit-blog-posts.ps1"
+    }
+    'Wednesday' {
+        Write-Host "  [GRAPHVIZ] Wednesday theme audit day"
+        Write-Host "  Manual review of theme consistency"
+    }
+    'Thursday' {
+        Write-Host "  [GAMERGIRL] Thursday game pages audit day"
+        Write-Host "  Run: .\scripts\audits\audit-game-pages.ps1"
+        Write-Host "  [ALL] Cross-team review after audit"
+    }
+}
 ```
 
 ---
 
-*Consistency comes from repetition. The schedule exists for a reason.*
+## Audit Output Locations
+
+| Agent | Output File | Format |
+|-------|-------------|--------|
+| Vidette | `storage/agency/audits/AUDIT_video-pages.md` | Markdown with per-page breakdown |
+| Bloggie | `storage/agency/audits/AUDIT_blog-posts.md` | Markdown with pass/warn/fail status |
+| GraphViz | (manual notes) | Add to day file or AUDIT_theme.md |
+| GamerGirl | `storage/agency/audits/AUDIT_game-pages.md` | Markdown with game page checklist |
+
+---
+
+## Audit Result Handoff Protocol
+
+This section defines how agents read, share, and act on each other's audit results.
+
+### Audit Result Timeline
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         WEEKLY AUDIT FLOW                                    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│   MONDAY (Vidette)                                                           │
+│   └─ Runs audit-video-pages.ps1                                              │
+│      └─ Writes: storage/agency/audits/AUDIT_video-pages.md                          │
+│         └─ Includes game pages with video: gaming.php, game/*.php            │
+│                                                                              │
+│   TUESDAY (Bloggie)                                                          │
+│   └─ READS: AUDIT_video-pages.md (for blog posts with videos)                │
+│   └─ Runs audit-blog-posts.ps1                                               │
+│      └─ Writes: storage/agency/audits/AUDIT_blog-posts.md                           │
+│         └─ Tags video issues for Vidette                                     │
+│                                                                              │
+│   WEDNESDAY (GraphViz)                                                       │
+│   └─ READS: AUDIT_video-pages.md + AUDIT_blog-posts.md                       │
+│   └─ Manual theme review                                                     │
+│      └─ Writes: Day file notes or AUDIT_theme.md                             │
+│         └─ Tags styling issues for relevant agents                           │
+│                                                                              │
+│   THURSDAY (GamerGirl + ALL)                                                 │
+│   └─ READS: ALL previous audit outputs                                       │
+│   └─ Runs audit-game-pages.ps1                                               │
+│      └─ Writes: storage/agency/audits/AUDIT_game-pages.md                           │
+│         └─ Includes "Cross-Agent Findings" section                           │
+│   └─ ALL agents review and discuss findings                                  │
+│                                                                              │
+│   FRIDAY (Implementation)                                                    │
+│   └─ READS: ALL audit outputs                                                │
+│   └─ Fix issues by priority (CRITICAL → HIGH → MEDIUM)                       │
+│   └─ Re-run affected audits after fixes                                      │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Cross-Agent Findings Format
+
+Every audit report MUST include a "Cross-Agent Findings" section at the end:
+
+```markdown
+## Cross-Agent Findings
+
+### For Vidette (Video Display)
+- [gaming.php:245] RSS feed using wrong aspect ratio
+- [tankoff.php:180] Video cards missing hover-lift class
+
+### For GraphViz (Theme)
+- [blueballs.php:67] Hero section using hardcoded #3b82f6 instead of CSS var
+- [botborgs.php:34] Glass panel has white background in light mode
+
+### For Bloggie (Blog Posts)
+- [gaming.php:450] Blog post cards not using glass-card class
+
+### For GamerGirl (Game Pages)
+- (From Vidette's Monday audit)
+- [game/catgame.php] Missing video-grid-init.php include
+```
+
+### Agent Reading Responsibilities
+
+| Agent | Must Read Before Audit | Look For |
+|-------|------------------------|----------|
+| **Vidette** (Mon) | Previous week's AUDIT_game-pages.md | Game page video issues |
+| **Bloggie** (Tue) | AUDIT_video-pages.md | Blog posts with video issues |
+| **GraphViz** (Wed) | Both Monday & Tuesday audits | Styling inconsistencies |
+| **GamerGirl** (Thu) | All three prior audits | Game page issues from all domains |
+
+### Shared Pages (Multiple Agents Care)
+
+These pages are audited by multiple agents:
+
+| Page | Vidette | Bloggie | GraphViz | GamerGirl |
+|------|---------|---------|----------|-----------|
+| `gamedev.php` | ✅ Video grids | - | ✅ Theme | ✅ Hub page |
+| `gaming.php` | ✅ Video grids, RSS | - | ✅ Theme | ✅ Hub page |
+| `game/*.php` (13 pages) | ✅ Video sections | - | ✅ Theme | ✅ All checks |
+| `blog/*.php` with videos | ✅ Video embeds | ✅ Blog structure | ✅ Theme | - |
+
+### Thursday Cross-Team Review Agenda
+
+1. **Read audit outputs** (5 min each)
+   - `storage/agency/audits/AUDIT_video-pages.md` - Vidette's Monday findings
+   - `storage/agency/audits/AUDIT_blog-posts.md` - Bloggie's Tuesday findings
+   - Day file notes - GraphViz's Wednesday notes
+   - `storage/agency/audits/AUDIT_game-pages.md` - GamerGirl's Thursday findings
+
+2. **Identify cross-cutting issues** (10 min)
+   - Issues that affect multiple agents
+   - Shared pages with conflicting findings
+   - Dependency chains (fix A before B)
+
+3. **Assign Friday fixes** (5 min)
+   - CRITICAL: Broken functionality → Fix immediately
+   - HIGH: Visual bugs → Fix Friday
+   - MEDIUM: Inconsistencies → Fix next week
+   - LOW: Cleanup → Backlog
+
+4. **Update day file** with assignments
+
+---
+
+## Emergency Protocol
+
+If a critical issue is found outside the scheduled audit day:
+
+1. **Document immediately** in the day file (`storage/[M-D].md`)
+2. **Tag the responsible agent** in the issue description
+3. **Fix before next scheduled audit** if possible
+4. **Update the agent's changelog** with the fix
+
+---
+
+## Schedule Exceptions
+
+| Exception | Action |
+|-----------|--------|
+| Holiday Monday | Move Vidette audit to Tuesday morning |
+| Deployment Day | Run ALL audits before deployment |
+| Major Release | Full audit cycle regardless of day |
+| Emergency Fix | Document and audit affected area immediately |
+
+---
+
+## Agent Collaboration Protocol
+
+When working on tasks that cross agent boundaries, follow this protocol:
+
+### Quick Reference: Who to Consult
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    CROSS-REFERENCE QUICK GUIDE                              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   Task                          Primary Agent    Must Consult               │
+│   ──────────────────────────    ─────────────    ─────────────              │
+│   Add video page                Vidette          GraphViz (colors)          │
+│   Add blog post                 Bloggie          GraphViz (glass styling)   │
+│   Add blog with videos          Bloggie          GraphViz + Vidette         │
+│   Change color palette          GraphViz         Vidette + Bloggie          │
+│   Add new glass effect          GraphViz         Update theme-demo.php      │
+│   Add hover animation           GraphViz         Vidette (video cards)      │
+│   Tag system changes            TAG-SYSTEM.md    Bloggie + Vidette          │
+│   Add game page                 GamerGirl        Vidette + GraphViz         │
+│   Add game hub section          GamerGirl        Vidette (video grids)      │
+│   Gaming blog post              Bloggie          GamerGirl (cross-link)     │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Collaboration Workflow
+
+1. **Before starting work:** Check which agent owns the domain
+2. **Read the agent file:** Follow their documented standards
+3. **Consult related agents:** If task crosses boundaries
+4. **Test visual changes:** Load `theme-demo.php` (GraphViz's showcase)
+5. **Update changelogs:** In relevant agent files
+
+### Cross-Agent Scenarios
+
+| Scenario | Lead | Support | Verification |
+|----------|------|---------|--------------|
+| New game page | GamerGirl | Vidette, GraphViz | Hero section, videos, theme compliance |
+| Game hub section | GamerGirl | Vidette | Video grid renders with presets |
+| Blog with video embed | Bloggie | Vidette | Column preset used |
+| Gaming blog post | Bloggie | GamerGirl | Cross-links to game pages |
+| Theme color update | GraphViz | All | Full site visual audit |
+| New tag category | TAG-SYSTEM.md | Bloggie, Vidette, GamerGirl | Filtering works |
+
+### Weekly Cross-Check (Thursday)
+
+On Thursday review day, verify cross-agent consistency:
+
+- [ ] Video cards use GraphViz's CSS variables
+- [ ] Blog glass-card matches theme-demo.php examples
+- [ ] All hover effects consistent across domains
+- [ ] No white backgrounds anywhere (GraphViz's rule)
+- [ ] Tag badges styled consistently (blog + video pages)
+
+---
+
+## Contact
+
+**Schedule maintained by:** JenniNexus AI Agent Team
+**Questions?** Check individual agent files:
+- [Vidette.md](Vidette.md) - Video system
+- [Bloggie.md](Bloggie.md) - Blog system
+- [GraphViz.md](GraphViz.md) - Theme system
+- [GamerGirl.md](GamerGirl.md) - Game pages & hubs
+- [README.md](README.md) - Full relationship graph
+
+---
+
+*"Consistency is credibility. Audits are how we maintain it."*
+*"Separation of concerns + Unity of vision."*
+

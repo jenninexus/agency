@@ -1,9 +1,15 @@
 # AI Agent Agency - .gitignore
 # =============================
+# Framework for AI agent teams that audit and maintain codebases.
+# Local project customizations coexist with the public framework.
 
-# Audit reports (generated locally)
+# Audit reports (generated locally per project)
 audits/*.md
+audits/*.log
 !audits/.gitkeep
+
+# Dated audit archives (local only)
+audits/*-20[0-9][0-9]-*.md
 
 # Claude Code context (user-specific session data)
 .claude/
@@ -29,19 +35,27 @@ node_modules/
 *.log
 logs/
 
-# Environment files
+# Environment files (contain local paths)
 .env
 .env.local
 .env.*.local
 
+# Agent images (large binary files, deploy separately)
+agents/images/*.jpg
+agents/images/*.png
+agents/images/*.webp
+!agents/images/.gitkeep
+
 # -------------------------------------------
-# TRACKED FILES (not ignored)
+# TRACKED FILES (pushed to GitHub)
 # -------------------------------------------
-# The following are tracked as framework examples:
-# - agents/*.md (example agent profiles)
-# - .config/mcp_agents.json (example configuration)
-# - .config/mcp_agents.example.json (template)
-# - ai-agent-agency.code-workspace (penthouse studio theme)
-# - docs/ (documentation)
+# - agents/*.md (agent profiles — useful as real-world examples)
+# - agents/templates/ (blank agent template)
+# - .config/mcp_agents.json (production configuration example)
+# - .config/mcp_agents.example.json (clean template for new projects)
+# - ai-agent-agency.code-workspace (penthouse studio VS Code theme)
+# - docs/ (documentation, guides, optimization ideas)
 # - templates/ (agent templates)
-# - examples/ (working examples)
+# - examples/ (working example agents)
+# - scripts/ (audit utilities and templates)
+# - README.md (public-facing introduction)
