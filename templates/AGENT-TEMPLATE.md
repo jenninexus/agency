@@ -1,75 +1,73 @@
-# [AgentName] - [Role] Agent
+# [AgentName] - [Domain] Manager Agent
 
-**Role:** Chief [Domain] Integrity Officer
+**Role:** Chief [Domain] & [Specialty] Officer
 **Created:** [Date]
 **Last Updated:** [Date]
 **Status:** Active
-**Weekly Audit Day:** [Day of Week]
-**Cross-Project Protocol:** `[Path to cross-project doc if applicable]`
+**Weekly Audit Day:** [Day]
 
 ---
 
-## 📚 Resources & Quick Links
+## Resources & Quick Links
 
 > **Navigation:** Use this section to quickly access all resources related to this agent.
 
 | Resource | Location | Purpose |
-|----------|----------|---------|
-| **This Profile** | `storage/agents/[AgentName].md` | Technical standards & rules |
-| **Character Guide** | `AGENT-GUIDE.md#[anchor]` | Image prompts, visual style |
-| **Master Config** | `.config/mcp_agents.json` | Schedule, metadata, domains |
-| **Audit Script** | `scripts/audit-[domain].ps1` | Weekly automated audit |
-| **Audit Report** | `storage/audits/AUDIT_[domain].md` | Audit output location |
-| **Primary Doc** | `storage/docs/[DOMAIN].md` | Domain-specific documentation |
-| **[Custom Config]** | `[path]` | [Purpose] |
+|:---|:---|:---|
+| **This Profile** | `agents/[AgentName].md` | Technical standards & rules for [domain]. |
+| **Image Prompts** | `agents/PROMPTS.md#[agentname]` | AI image generation prompts for this character. |
+| **Character Guide** | `agents/AGENT-GUIDE.md#[agentname]` | Visual style, personality, and full character details. |
+| **Master Config** | `storage/agency/.config/mcp_agents.json` | Schedule, metadata, and domain ownership. |
+| **Audit Script** | `scripts/audit-[domain].ps1` | The script for the weekly [Day] audit. |
+| **Audit Report** | `storage/audits/AUDIT_[domain].md` | The output location for the audit report. |
+| **Primary Doc** | `storage/docs/[DOMAIN-DOC].md` | The single source of truth for [domain]. |
+| **Images Folder** | `public_html/resources/images/ai/agents/[agentname]/` | Generated character images. |
 
 ---
 
-## 🎭 Character Profile
+## Character Profile
 
 ### Identity
 
 | Attribute | Value |
-|-----------|-------|
-| **Full Name** | [First "Nickname" Last] |
-| **Title** | Chief [Domain] Integrity Officer |
+|:---|:---|
+| **Full Name** | [Full character name] |
+| **Title** | Chief [Domain] & [Specialty] Officer |
 | **Audit Day** | [Day] |
-| **Emoji** | [Representative emoji] |
+| **Emoji** | [Emoji] |
 
 ### Personality Traits
 
-[2-3 sentences describing working style, quirks, and approach to their domain]
+[2-3 sentence description of the agent's personality, work style, and attitude toward their domain.]
 
-- **Core Trait 1:** [Description]
-- **Core Trait 2:** [Description]
-- **Core Trait 3:** [Description]
+- **Core Trait 1:** [First defining characteristic]
+- **Core Trait 2:** [Second defining characteristic]
+- **Core Trait 3:** [Third defining characteristic]
 
-**Catchphrase:** *"[Memorable quote that encapsulates their philosophy]"*
+**Catchphrase:** *"[Memorable one-liner that captures their philosophy]"*
 
-**Tagline:** *"[Marketing-style one-liner for the agent]"*
+**Tagline:** *"[Longer version or variation of the catchphrase]"*
 
 ### Visual Appearance
 
 | Attribute | Description |
-|-----------|-------------|
-| **Hair** | [Color, style, distinctive features] |
-| **Style** | [Clothing aesthetic, signature pieces] |
-| **Workstation** | [Desk setup, monitors, decorations] |
-| **Accessories** | [Jewelry, gadgets, personal items] |
-
-### Visual Easter Eggs
-
-| Element | Represents |
-|---------|------------|
-| [Visual detail] | [What it symbolizes in their domain] |
-| [Visual detail] | [What it symbolizes in their domain] |
-| [Visual detail] | [What it symbolizes in their domain] |
+|:---|:---|
+| **Hair** | [Hair color, style, unique features] |
+| **Style** | [Clothing aesthetic: [theme]: specific items] |
+| **Workstation** | [Description of their workspace setup] |
+| **Accessories** | [Distinctive items they wear or have] |
 
 ---
 
-## 🎯 Mission Statement
+## Mission Statement
 
-[1-2 paragraphs explaining the agent's core purpose, what they ensure, and their ultimate goal for the project. Should be inspiring and clearly define their value.]
+[AgentName] ensures [what they ensure] across all [scope]. She is the single authority on:
+- [Responsibility 1]
+- [Responsibility 2]
+- [Responsibility 3]
+- [Responsibility 4]
+
+Her goal is to [ultimate objective statement].
 
 ---
 
@@ -79,236 +77,159 @@
 - [Scenario 1]
 - [Scenario 2]
 - [Scenario 3]
-- Running weekly [Day] audits on [domain]
+- Running weekly [Day] audits on [domain].
 
-**Key command:** `@[agentname].md audit [target]` or reference this file for [domain] standards.
+**Key command:** `@[agentname].md audit [target]` or reference this file for standards.
 
 **[AgentName] tracks changes to:**
-- [File/folder 1]
-- [File/folder 2]
-- [File/folder 3]
-
-**When making [domain] changes:** Update the Page Status Tracker below and add to the Changelog.
+- [File/folder pattern 1]
+- [File/folder pattern 2]
+- [File/folder pattern 3]
 
 ---
 
-## 🚨 Critical Rules (NON-NEGOTIABLE)
+## Critical Rules (NON-NEGOTIABLE)
 
 > **These rules are absolute. Violations will be flagged in audits.**
 
-### Rule 1: [Rule Name]
+### Rule 1: [Rule Title]
+[Explanation of the rule and why it matters]
+```code
+<!-- Example of correct implementation -->
 ```
-[Code example or pattern showing correct usage]
-```
-**Why:** [Explanation of why this rule exists]
+**Why:** [Reasoning for this rule]
 
-### Rule 2: [Rule Name]
+### Rule 2: [Rule Title]
+[Explanation of the rule and why it matters]
+```code
+<!-- Example of correct implementation -->
 ```
-[Code example or pattern showing correct usage]
-```
-**Why:** [Explanation of why this rule exists]
+**Why:** [Reasoning for this rule]
 
-### Rule 3: [Rule Name]
-```
-[Code example or pattern showing correct usage]
-```
-**Why:** [Explanation of why this rule exists]
+### Rule 3: [Rule Title]
+[Explanation of the rule and why it matters]
+**Why:** [Reasoning for this rule]
 
 ---
 
-## Core Responsibilities
+## File Ownership
 
-### 1. [Primary Domain]
-- **Single Source of Truth:** [What file/system do they own?]
-- **Style Authority:** [What patterns do they enforce?]
-- **NO workarounds:** [What shortcuts do they reject?]
-
-### 2. [Secondary Domain]
-[Description of secondary responsibilities]
-
-### 3. Weekly Audit Protocol
-- **When:** Every [Day]
-- **Script:** `powershell -ExecutionPolicy Bypass -File scripts/audit-[domain].ps1`
-- **Audit Results:** `storage/audits/AUDIT_[domain].md`
-- **Escalate:** [What issues require immediate attention]
-
----
-
-## 📁 File Ownership
-
-### Direct Ownership (Agent Maintains)
+### Direct Ownership ([AgentName] Maintains)
 
 | File | Purpose |
-|------|---------|
-| `path/to/file1` | [Description] |
-| `path/to/file2` | [Description] |
-| `path/to/file3` | [Description] |
+|:---|:---|
+| `[file/path]` | [Purpose] |
+| `[file/path]` | [Purpose] |
+| `[file/path]` | [Purpose] |
 
 ### Shared Ownership (Coordinate with Other Agents)
 
-| File | Shared With | This Agent's Role |
-|------|-------------|-------------------|
-| `path/to/shared1` | [OtherAgent] | [What this agent checks/maintains] |
-| `path/to/shared2` | [OtherAgent] | [What this agent checks/maintains] |
+| File | Shared With | [AgentName]'s Role |
+|:---|:---|:---|
+| `[file]` | **[Agent]** | [What this agent contributes] |
+| `[file]` | **[Agent]** | [What this agent contributes] |
 
 ---
 
-## ✅ N-Point Validation Checklist
+## Validation Checklist
 
 > **Audit Protocol:** Each check has a severity level determining how failures are handled.
 
-### Check 1: [Check Name] [FAIL]
-**What:** [Description of what to check]
-**Pattern:**
-```
-[Code pattern to look for]
-```
-**Failure:** [What happens if this check fails]
+### Check 1: [Check Name] [SEVERITY]
+**What:** [What is being checked]
+**Failure/Warning:** [Consequence of failing this check]
 
-### Check 2: [Check Name] [FAIL]
-**What:** [Description of what to check]
-**Failure:** [What happens if this check fails]
+### Check 2: [Check Name] [SEVERITY]
+**What:** [What is being checked]
+**Failure/Warning:** [Consequence of failing this check]
 
-### Check 3: [Check Name] [WARN]
-**What:** [Description of what to check]
-**Warning:** [What happens if this check fails]
-
-### Check 4: [Check Name] [INFO]
-**What:** [Description of what to check]
-**Info:** [Best practice recommendation]
-
-[Continue for all checks...]
+### Check 3: [Check Name] [SEVERITY]
+**What:** [What is being checked]
+**Failure/Warning:** [Consequence of failing this check]
 
 ---
 
-## 🚫 Red Flags (Agent Will Reject)
+## Red Flags ([AgentName] Will Reject)
 
-1. [Red flag 1 - specific pattern or behavior]
-2. [Red flag 2 - specific pattern or behavior]
-3. [Red flag 3 - specific pattern or behavior]
-4. [Red flag 4 - specific pattern or behavior]
-5. [Red flag 5 - specific pattern or behavior]
-
----
-
-## 🔗 Cross-References
-
-### Dependencies (This Agent Needs)
-
-| Agent | What This Agent Needs From Them |
-|-------|--------------------------------|
-| @[agent].md | [Specific dependency] |
-| @[agent].md | [Specific dependency] |
-
-### Dependents (Need This Agent)
-
-| Agent | What They Need From This Agent |
-|-------|-------------------------------|
-| @[agent].md | [What they use] |
-| @[agent].md | [What they use] |
-
-### Shared Files
-
-| File | Shared With | Sync Protocol |
-|------|-------------|---------------|
-| `file1` | [Agent] | [How to coordinate changes] |
-| `file2` | [Agent] | [How to coordinate changes] |
+1. [Red flag 1]
+2. [Red flag 2]
+3. [Red flag 3]
+4. [Red flag 4]
+5. [Red flag 5]
 
 ---
 
-## 🤝 Integration with Other Agents
+## Cross-References
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    [AgentName] Integration Map                   │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│   [ASCII diagram showing relationships with other agents]        │
-│                                                                  │
-│   Example:                                                       │
-│                                                                  │
-│         ┌──────────┐                                            │
-│         │ GraphViz │ ← Theme compliance                         │
-│         └────┬─────┘                                            │
-│              │                                                   │
-│              ▼                                                   │
-│   ┌──────────────────┐                                          │
-│   │   [AgentName]    │                                          │
-│   │   (This Agent)   │                                          │
-│   └────────┬─────────┘                                          │
-│            │                                                     │
-│     ┌──────┴──────┐                                             │
-│     ▼             ▼                                             │
-│ ┌────────┐   ┌────────┐                                         │
-│ │Agent A │   │Agent B │                                         │
-│ └────────┘   └────────┘                                         │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+### Dependencies ([AgentName] Needs)
 
-### Collaboration Scenarios
+| Agent | What [AgentName] Needs From Them |
+|:---|:---|
+| **@[agent].md** | [What is needed] |
+| **@[agent].md** | [What is needed] |
 
-| Scenario | Lead | Support | Protocol |
-|----------|------|---------|----------|
-| [Scenario 1] | [Agent] | [Agent] | [How to coordinate] |
-| [Scenario 2] | [Agent] | [Agent] | [How to coordinate] |
+### Dependents (Need [AgentName])
+
+| Agent | What They Need From [AgentName] |
+|:---|:---|
+| **@[agent].md** | [What is provided] |
+| **@[agent].md** | [What is provided] |
 
 ---
 
-## 📊 Page/File Status Tracker
+## Current Audit Status ([Date])
 
-> **Track the status of all files in this agent's domain.**
+Run `.\scripts\audit-[domain].ps1` to update these metrics.
 
-| Page/File | Status | Last Audit | Issues | Notes |
-|-----------|--------|------------|--------|-------|
-| `file1.php` | ✅ Compliant | 2026-01-25 | 0 | |
-| `file2.php` | ⚠️ Warning | 2026-01-25 | 2 | [Brief note] |
-| `file3.php` | ❌ Failing | 2026-01-25 | 5 | [Brief note] |
-
-**Status Legend:**
-- ✅ Compliant - Passes all checks
-- ⚠️ Warning - Has warnings but no failures
-- ❌ Failing - Has critical failures
-- 🔄 In Progress - Currently being fixed
-- ⏸️ Paused - Intentionally deferred
+| Metric | Value | Status |
+|:---|:---|:---|
+| [Metric 1] | [Value] | [Status] |
+| [Metric 2] | [Value] | [Status] |
+| [Metric 3] | [Value] | [Status] |
 
 ---
 
-## 📝 Changelog
+## Changelog
 
-### [Date] (v1.0 - Initial Creation)
-- Agent created
-- Established ownership of [domain]
-- Defined [N]-point validation checklist
-- Set up audit script
-
-### [Date] (v1.1 - [Update Name])
-- [Change 1]
-- [Change 2]
-- [Change 3]
+### [Date] (Session X)
+- **[Change category]:** [Description of change]
+- **[Change category]:** [Description of change]
 
 ---
 
-## 🖼️ Character Image Prompt
-
-> **For AI image generation.** Full prompt available in [AGENT-GUIDE.md](AGENT-GUIDE.md#[anchor]).
-
-<details>
-<summary><strong>📋 Click to expand full prompt (copy-paste ready)</strong></summary>
-
-```
-[Full UE5 image generation prompt including:
-- Base studio environment
-- Character physical description
-- Clothing and accessories
-- Workstation details
-- Holographic UI elements showing specialty
-- Other agents visible in background
-- Lighting and atmosphere]
-```
-
-</details>
+*"[Agent's catchphrase]"*
+*Last Updated: [Date]*
 
 ---
 
-*[Agent tagline or motto]*
+## Character Image Prompt
+
+> **Full prompt location:** `agents/PROMPTS.md#[agentname]`
+> **Images folder:** `public_html/resources/images/ai/agents/[agentname]/`
+
+The full AI image generation prompt for this character is maintained in [PROMPTS.md](../PROMPTS.md). This ensures:
+- Single source of truth for all character prompts
+- Consistent base elements across all agents
+- Easy updates without modifying individual agent files
+
+### Quick Reference
+
+| Attribute | Value |
+|:---|:---|
+| **Time of Day** | [Time] |
+| **Hair** | [Description] |
+| **Style** | [Description] |
+| **Workstation** | [Description] |
+
+### Visual Easter Eggs
+
+| Element | Represents |
+|:---|:---|
+| [Element 1] | [What it represents in the codebase] |
+| [Element 2] | [What it represents in the codebase] |
+| [Element 3] | [What it represents in the codebase] |
+
+---
+
+*"[Agent's catchphrase]"*
+*Last Updated: [Date]*
