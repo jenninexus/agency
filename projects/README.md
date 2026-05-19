@@ -36,7 +36,7 @@ projects/
 │
 ├── martiangames/                ← gitignored — local only
 │   ├── MissionControl.md        ← public-safe project pointer (tracked)
-│   ├── GlassViz.md
+│   ├── GraphViz.md
 │   ├── OrbitalPipe.md
 │   ├── missioncontrol-landscape.webp
 │   ├── missioncontrol-square.webp
@@ -76,7 +76,7 @@ projects/
 | Vixel | `agents/Vixel.md` | `storage/agency/projects/jenninexus/Vixel.md` | `agency.php` via `agent_img()` |
 | Cypher (neophi) | — | — | `agency.php` via `agency_img('neophi', ...)` |
 | MissionControl (mg) | — | — | `agency.php` via `agency_img('mg', ...)` |
-| GlassViz (mg) | — | — | `agency.php` via `agency_img('mg', ...)` |
+| GraphViz (mg) | — | — | `agency.php` via `agency_img('mg', ...)` |
 | OrbitalPipe (mg) | — | — | `agency.php` via `agency_img('mg', ...)` |
 
 **Live agency page:** `public_html/page/agency.php` — displays all 11 agents
@@ -118,7 +118,7 @@ git commit -m "chore: bump agency submodule"
 | Agent | Origin Template | Project Override | Live Display |
 |-------|----------------|------------------|--------------|
 | MissionControl | `agents/DivineDesign.md` | `mg/storage/agency/agents/MissionControl.md` | `atlas.php` + JN `agency.php` |
-| GlassViz | `agents/GraphViz.md` | `mg/storage/agency/agents/GlassViz.md` | JN `agency.php` |
+| GraphViz | `agents/GraphViz.md` | `mg/storage/agency/agents/GlassViz.md` | JN `agency.php` |
 | OrbitalPipe | `agents/GraphViz.md` | `mg/storage/agency/agents/OrbitalPipe.md` | JN `agency.php` |
 
 **Live agency display:** MG agents appear on JN `agency.php` as cross-project entries via `agency_img('mg', ...)`
