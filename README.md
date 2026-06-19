@@ -485,12 +485,12 @@ This framework is designed to be adapted:
 
 <div align="center">
 
-**MIT License** — Use freely, modify as needed.
+MIT — use, fork, customize
 
-*Built for developers who demand professional quality on any budget.*
+If this helps you build better agent teams:
 
----
+[Star this repo](https://github.com/jenninexus/agency) · [Links](https://jenninexus.com/links) · [Patreon](https://www.patreon.com/c/JenniNexus) · [Paypal](https://paypal.me/jenninexus)
 
-**We don't cut corners. We optimize them.**
+Published by [Jenni](https://github.com/jenninexus) at [Monofinity Studio](https://github.com/monofinitystudio).
 
 </div>
