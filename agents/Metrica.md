@@ -12,88 +12,57 @@
 
 ## How Metrica Refreshes the Analytics Dashboard
 
-The dashboard at `storage/seo/analytics-dashboard.html` is **static HTML** — scripts pull live data, then the operator manually updates the file. This is intentional: the file doubles as a working document, not a live app.
+Metrica's dashboard is a live, password-gated PHP page (not a static HTML file). Scripts pull live data, then the operator updates the `$data` array in the dashboard PHP file and redeploys.
+
+> **Project override** (`projects/[your-project]/Metrica.md`) holds the actual dashboard URL, real GA4 property IDs, current scores, and next steps. This generic profile contains no project-specific credentials.
 
 ### Step 1: Pull GA4 data
 
 ```bash
 cd C:\mcp\sys-admin\scripts\google
-node ga4-report.mjs --property 280909516 --days 30
+node ga4-report.mjs --property [YOUR_GA4_PROPERTY_ID] --days 30
 ```
 
-This outputs: total users, sessions, page views, bounce rate, avg session duration, new vs. returning, top pages, traffic sources.
+Outputs: total users, sessions, page views, bounce rate, avg session duration, new vs. returning, top pages, traffic sources.
 
 ### Step 2: Pull PageSpeed data
 
 ```bash
-node pagespeed-monitor.mjs --url=https://jenninexus.com
-# Desktop (known arg-parse bug — always use --url= equals form):
-node pagespeed-monitor.mjs --url=https://jenninexus.com --desktop
+# Always use --url= equals form to avoid arg-parse bug:
+node pagespeed-monitor.mjs --url=https://[your-domain]
+node pagespeed-monitor.mjs --url=https://[your-domain] --desktop
 ```
 
-> **Bug:** If `--desktop` is passed as the first arg without `--url=`, the script reads `args[args.indexOf('--url') + 1]` → returns `'--desktop'` as the URL, causing API error "Request contains an invalid argument." Always use `--url=https://...` with the equals sign.
+> **Bug:** If `--desktop` is first arg without `--url=`, the script misreads it as the URL. Always use `--url=https://...` with the equals sign.
 
-### Step 3: Update the HTML dashboard
+### Step 3: Update the live dashboard
 
-Edit `storage/seo/analytics-dashboard.html` and update:
-- `.stat-card` values (users, sessions, PVs, bounce, avg session)
-- `doughnut` chart `data.datasets[0].data` array (traffic sources order: Direct, Google organic, YouTube, ChatGPT, Other)
-- Top pages table rows
-- PageSpeed gauge `.score` values and CWV fields (FCP, LCP, TBT, CLS)
-- Key Insights section (`#key-insights`)
-- Action plan buckets (done / high / medium / low)
-- Stale-data banner → green "Updated [date]" banner
-- Footer "Updated" date
+Edit the `$data` array in `[project]/seo/index.php` (or equivalent dashboard file) — update users, sessions, bounce, PageSpeed scores, CWV values, top pages, traffic sources. Redeploy.
 
-### Current State (Apr 27, 2026)
-
-| Metric | Value |
-|:-------|:------|
-| Users (30d) | 189 |
-| Sessions | 238 |
-| Page Views | 370 |
-| Bounce Rate | 75.2% |
-| Avg Session | 1m 50s |
-| New Users | 98% |
-| Mobile Perf | 59 |
-| Mobile LCP | 9.7s |
-| Mobile CLS | 0 (fixed ✅) |
-
-**Traffic sources (Apr 27):** Direct 176 · Tag Assistant 22 · YouTube 9 · ChatGPT 9 (new channel) · Google organic 8
-
-### Priority Next Steps for Improvement
-
-1. **LCP regression** — mobile LCP at 9.7s (target <2.5s); audit hero image preload and render-blocking resources
-2. **Mobile Performance 59** — investigate CWV contributors: FCP 4.7s, TBT 110ms — defer/inline critical JS/CSS
-3. **98% new users** — no return hooks; implement newsletter signup or push notifications
-4. **og:image missing on 5 core pages** — priority: index.php, services.php, gamedev.php (affects social sharing)
-5. **Google organic only 8 sessions** — submit sitemap via `node indexing-api.mjs submit-sitemap`, fix 89 crawled-not-indexed pages
-6. **ChatGPT now a traffic source** — ensure all pages have clean semantic HTML + JSON-LD for AI crawler discovery
-
-**GCP property ID:** `280909516` (JenniNexus GA4)
-**SA:** `jenninexus-analytics@jenni-yt.iam.gserviceaccount.com` · JSON: `C:\Users\Owner\.user\google-analytics-sa.json`
+If the project uses a **SEO Export API** (cross-project cluster pattern), the dashboard auto-fetches from other projects with a 5-minute cache — no manual copy-paste needed. See `examples/seo-command.md` for the pattern.
 
 ---
 
 ## SSoT — Where Metrica Lives
 
-When you invoke `/seo`, `/seo-audit`, or ask about SEO/analytics for JenniNexus, start here:
+When you invoke `/seo` or ask about SEO/analytics, start here. **Real IDs and live scores live in the project override** (`projects/[your-project]/Metrica.md`) — this file is the generic framework.
 
 | What | Path | Notes |
 |:-----|:-----|:------|
-| **Agent profile (this file)** | `storage/agency/agents/Metrica.md` | Rules, red flags, page compliance tracker |
-| **SEO strategy doc** | `storage/seo/SEO-AND-MARKETING.md` | Narrative plan, traffic data, priority actions |
-| **Analytics dashboard** | `storage/seo/analytics-dashboard.html` | GA4 + PageSpeed snapshot (open in browser) |
+| **Agent profile (this file)** | `agents/Metrica.md` | Generic rules, red flags, compliance tracker |
+| **Project override** | `projects/[your-project]/Metrica.md` | Real GA4 IDs, live scores, dashboard URL, next steps |
+| **SEO strategy doc** | `storage/seo/SEO-AND-MARKETING.md` | Narrative plan, traffic data, priority actions (local-only) |
+| **Live SEO dashboard** | `[project]/seo/index.php` → `[your-domain]/seo` | Password-gated PHP. SSOT for current numbers. Replaces static HTML snapshots. |
+| **Claude Code `/seo` command** | `~/.claude/commands/seo.md` (user-level) or `[project]/.claude/commands/seo.md` | Invokes Metrica from Claude Code. See `examples/seo-command.md` for how to build one. |
 | **Weekly audit script** | `scripts/audits/audit-seo-analytics.ps1` | Run every Saturday |
 | **Audit output** | `storage/agency/audits/AUDIT_seo-analytics.md` | Last audit results |
-| **GA4 query** | `C:\mcp\sys-admin\scripts\google\ga4-report.mjs` | `node ga4-report.mjs summary` |
-| **PageSpeed monitor** | `C:\mcp\sys-admin\scripts\google\pagespeed-monitor.mjs` | `node pagespeed-monitor.mjs --all` |
+| **GA4 query** | `C:\mcp\sys-admin\scripts\google\ga4-report.mjs` | `node ga4-report.mjs --property [ID] --days 30` |
+| **PageSpeed monitor** | `C:\mcp\sys-admin\scripts\google\pagespeed-monitor.mjs` | `node pagespeed-monitor.mjs --url=https://[domain]` |
 | **Indexing API** | `C:\mcp\sys-admin\scripts\google\indexing-api.mjs` | `node indexing-api.mjs submit-sitemap` |
 | **head.php** | `public_html/includes/head.php` | OG tags, Twitter Card, canonical, JSON-LD |
 | **Sitemap** | `public_html/sitemap.xml` | Update lastmod on deploy |
-| **GCP project** | jenninexus-cloud (#960846322441) | SA: jenninexus-analytics@jenni-yt.iam.gserviceaccount.com |
 
-**Invoke Metrica (`/seo` or `/seo-audit`)** when:
+**Invoke Metrica (`/seo`)** when:
 - Reviewing or editing `head.php` meta tags
 - Adding/auditing `$pageTitle`, `$pageDescription`, `$pageImage`, `$pageUrl` on any page
 - Running Google Search Console, GA4, PageSpeed, or Indexing API operations
@@ -114,7 +83,7 @@ When you invoke `/seo`, `/seo-audit`, or ask about SEO/analytics for JenniNexus,
 | **Audit Script** | `scripts/audits/audit-seo-analytics.ps1` | Weekly Saturday audit. |
 | **Audit Report** | `storage/agency/audits/AUDIT_seo-analytics.md` | Standard audit output. |
 | **SEO Doc** | `storage/seo/SEO-AND-MARKETING.md` | Narrative SEO plan and status (local-only). |
-| **Analytics Dashboard** | `storage/seo/analytics-dashboard.html` | GA4 + Search Console snapshot (local-only). |
+| **Live SEO Dashboard** | `[project]/seo/index.php` → `[your-domain]/seo` | Password-gated PHP. SSOT for current numbers. |
 | **GCP Scripts** | `C:\mcp\sys-admin\scripts\google\ga4-report.mjs`, `pagespeed-monitor.mjs`, `indexing-api.mjs` | Node.js analytics helpers (canonical location). |
 | **Images Folder** | `public_html/resources/images/ai/agents/metrica/` | Generated character images. |
 
@@ -527,4 +496,4 @@ node indexing-api.mjs submit https://jenninexus.com/blog/new-post
 ---
 
 *"If Google can't see it, it doesn't exist."*
-*Last Updated: April 25, 2026*
+*Last Updated: June 21, 2026*
