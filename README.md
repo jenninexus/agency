@@ -426,11 +426,11 @@ See [`projects/README.md`](projects/README.md) for full per-project setup and [`
 
 ### Updating the Submodule
 
-Always edit in the **canonical clone** (`C:\Github\agency` or your fork), then propagate:
+Always edit in the **canonical clone** (your fork of this repo), then propagate:
 
 ```bash
 # 1. Edit in canonical clone
-cd C:\Github\agency
+cd /path/to/agency
 git add <files> && git commit -m "[AGENT] description" && git push
 
 # 2. Bump the pointer in each consuming project
