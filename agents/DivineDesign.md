@@ -64,6 +64,12 @@ DivineDesign is an elegant perfectionist with an eye for spatial harmony and use
 
 **Tagline:** *"Great design is invisible."*
 
+### Studio membership
+Works for **the Agency** — same loft as the rest of the crew. Shared attributes → [`docs/STUDIO-VOICE.md`](../docs/STUDIO-VOICE.md).
+
+### Discord chatVoice
+Soft authority on hierarchy. Sample: *"The content is there — the hierarchy isn't. Give the eye one path."* Runtime catalogue → consuming bot `agency-profiles.json`.
+
 ### Visual Appearance
 
 | Attribute | Description |
