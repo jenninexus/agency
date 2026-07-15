@@ -9,8 +9,10 @@
 > - **Technical standards** → Individual agent `.md` files (`agents/*.md`)
 > - **Image prompts** → `agents/characters.yaml` (SSOT for AI image generation)
 > - **Character details** → This file (AGENT-GUIDE.md) — personality, visual style
+> - **Shared loft voice** → [`STUDIO-VOICE.md`](./STUDIO-VOICE.md) — what every agent shares + register map
 > - **Agent config** → local `mcp.json` (copy from `mcp.example.json`)
 > - **MCP server entry** → local `.vscode/mcp.json` (copy from `.vscode/mcp.example.json`)
+> - **Discord chat posters** → consuming bot `agency-profiles.json` (not this repo)
 
 ---
 

@@ -26,7 +26,35 @@ Never commit these from your personal machine or a consuming project:
 - `agents/characters.yaml`
 - `generations/`
 - `audits/*.md`
-- `agents.html`
+- `agency.html`
+- `resources/README.local.md` — machine paths to more agent images / videos / Favs
+
+## Agent media layers
+
+| Layer | Location | Tracked? |
+|-------|----------|----------|
+| Framework masters (1×1 + 16×9 webp, loft banner) | `resources/images/` | yes |
+| Path map for humans/agents | `resources/README.md` + `README.local.example.md` | yes |
+| Your machine paths | `resources/README.local.md` | **no** |
+| Private generations / !Favs | consuming project e.g. `www/jenninexus/storage/agency/generations/` | **no** (project gitignore) |
+| Hosted Discord/site assets | `jenninexus.com/resources/images/agency/agents/` | deploy from www |
+
+SEGO example private Favs root:
+
+```text
+C:\Users\Owner\Projects\www\jenninexus\storage\agency\generations\!Favs
+```
+
+Canonical public masters:
+
+```text
+C:\Github\agency\resources\images\agents\*-1x1.webp
+C:\Github\agency\resources\images\agents\*-16x9.webp
+C:\Github\agency\resources\images\banner.jpg
+```
+
+Discord Visual Profiles (:8777) read hosted URLs from `jenni-bot/resources/agency-profiles.json` (`avatarUrl` + `bannerUrl` per agent).
+
 
 ## Project Override Rule
 
@@ -75,3 +103,29 @@ mcp.json                  ignored, local/private populated registry
 ```
 
 Do not put personal MCP server names, absolute local paths, SSH hosts, API keys, or project-private agent schedules in tracked public files.
+
+## Discord / chat voice
+
+Agency agents may also appear as Discord posters (JN bot catalogue). That register is separate:
+
+| Layer | Location | Tracked? |
+|-------|----------|----------|
+| Shared loft attributes | `docs/STUDIO-VOICE.md` | yes (this repo) |
+| Discord catalogue + chatVoice | `jenni-bot/resources/agency-profiles.json` | jenni-bot repo |
+| Theme / desk accents (Discord embed colors) | `www-theme-kit/profiles/agency.json` | www-theme-kit |
+| Pin + chat copy | `jenni-bot/content/agency-loft-pin.md` · `agency-chat.md` | jenni-bot |
+| Channel IDs / webhook URLs | `socials/storage/docs/DISCORD.md` + `.env` | **no** (gitignored) |
+| Draft / previewer | `socials/content/jenninexus/discord/drafts/` · `:8777` | socials |
+
+Do not put Discord webhook URLs, bot tokens, or channel IDs in this public repo.
+
+## Sibling repos (work interchangeably)
+
+| Repo | Role | Public docs | Private / local |
+|------|------|-------------|-----------------|
+| `C:\Github\agency` | Framework agents + media masters | `docs/`, `agents/`, `resources/images/` | `projects/`, `mcp.json`, `ROADMAP.md` (this file is local) |
+| `C:\Github\jenni-bot` | Discord bot runtime | `docs/JENNIBOT.md`, public README | `.env`, `dev-log-sego.yaml` |
+| `C:\Github\socials` | Webhooks, drafts, previewer, MCP | `docs/DISCORD.md` (generic) | `storage/docs/*`, `.env`, `mcp-socials.yaml` |
+| www `…/storage/agency` | Submodule checkout of agency | bump only | never develop here — see Submodule Rule |
+
+When editing loft pin / chat: change **jenni-bot** + **socials** drafts; when editing character lore: change **agency** `agents/*.md` then sync `chatVoice` samples.

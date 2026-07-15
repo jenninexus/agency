@@ -1,6 +1,6 @@
 # Agency Studio Voice — Shared Attributes
 
-**Version:** 1.0 · **Updated:** 2026-07-14  
+**Version:** 1.1 · **Updated:** 2026-07-15  
 **Audience:** Public framework (safe to commit)
 
 > **Register rule (network-wide):** Agency agents are **site-audit + Discord studio characters**.  
@@ -63,6 +63,14 @@ Portrait art → `resources/images/agents/` + `docs/ART-STYLE.md`
 | **Discord runtime** | bot repo `resources/agency-profiles.json` | Webhook username, avatar CDN, emoji, reply samples |
 
 Do **not** deepen public agents with private studio lore. Deepen the override + Discord catalogue instead.
+
+### Discord formatting (consuming bots)
+
+When posting Agency messages via **webhook**, APP `<:name:id>` shows as `:name:`. Use **guild**
+server emojis (JN: `jenni-bot/resources/guild-agency-emojis.json`) or unicode + hosted portraits.
+APP emojis are fine only when the **bot user** posts. Pin copy / chat enable live in
+`jenni-bot/content/agency-loft-pin.md` + `agency-chat.md` — not in this public repo.
+Webhook URLs stay in socials `.env` / `storage/docs/DISCORD.md` (gitignored).
 
 ---
 
