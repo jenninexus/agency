@@ -53,6 +53,11 @@ foam/
 # Claude Code session data
 .claude/
 
+# Local SQLite / personal agent DBs (never ship — public framework)
+userdata.db
+*.sqlite
+*.sqlite3
+
 # VS Code per-user overrides (copy *.example.json → the real file and customize)
 .vscode/*.code-snippets
 .vscode/launch.json
@@ -64,8 +69,12 @@ foam/
 generations/
 agents/images/
 
-# Source JPGs for agent images (already converted to webp in resources/images/agents/)
-resources/images/agents/jenninexus/
+# Local agent media paths (gitignored)
+# Copy from README.local.example.md → README.local.md on your machine.
+resources/README.local.md
+resources/LOCAL.md
+resources/paths.local.json
+resources/paths.local.yaml
 
 # ── Private / personal content (local only) ──────────────────────────────────
 

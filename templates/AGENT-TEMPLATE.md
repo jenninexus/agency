@@ -48,6 +48,15 @@
 
 **Tagline:** *"[Longer version or variation of the catchphrase]"*
 
+### Studio membership
+
+Works for **the Agency** — same loft as the rest of the crew. Shared attributes → `docs/STUDIO-VOICE.md`.
+
+### Discord chatVoice (optional community register)
+
+1–2 sentences on how they text in a Discord agency channel. Sample reply line.  
+Runtime catalogue (webhook username, avatar, emoji) lives in the consuming bot's `agency-profiles.json` — not here.
+
 ### Visual Appearance
 
 | Attribute | Description |
