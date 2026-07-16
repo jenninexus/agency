@@ -55,6 +55,8 @@ C:\Github\agency\resources\images\banner.jpg
 
 Discord Visual Profiles (:8777) read hosted URLs from `jenni-bot/resources/agency-profiles.json` (`avatarUrl` + `bannerUrl` per agent).
 
+**Character cards / profile viewer UX:** see [CHARACTER-DISPLAY.md](CHARACTER-DISPLAY.md) + `www-theme-kit/profiles/agency.json#character_display`. Local `agency.html` should match MG `/atlas` nav (arrows, swipe, wrap).
+
 
 ## Project Override Rule
 
