@@ -32,7 +32,7 @@ All agents work at the same luxury cyberpunk penthouse studio — high-rise towe
 
 > **Friday PM:** Implementation day — all agents collaborate to fix flagged issues.
 
-> **Vixel** is the cross-project agent: he manages `jerry-vr.com` full-time but works at the same virtual studio as the others. His character profile and image generation live here in the JenniNexus agency. His implementation SSOT lives in `C:\Users\Owner\Projects\www\jerry-vr\storage\agency\agents\Vixel.md`.
+> **Vixel** is the cross-project agent: he manages a VR/game client site full-time but works at the same virtual studio as the others. His character profile and image generation live in the agency origin. His implementation SSOT lives in `projects/[vr-project]/Vixel.md` (or that project's `storage/agency/` override).
 
 ---
 

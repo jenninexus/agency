@@ -9,19 +9,19 @@ The agency framework defines *agent profiles* (in `agents/*.md`). Claude Code *c
 ## What goes where
 
 ```
-C:\Github\agency\
+agency/                         ← this repo (public)
   agents/
-    Metrica.md          ← generic character, rules, red flags (THIS REPO — public)
+    Metrica.md                  ← generic character, rules, red flags
 
 your-project/
   storage/agency/
     projects/your-project/
-      Metrica.md        ← project override: real GA4 IDs, live scores, next steps
-                          (gitignored in submodule — never pushed to agency repo)
+      Metrica.md                ← project override: real GA4 IDs, live scores, next steps
+                                  (gitignored in submodule — never pushed to agency repo)
   .claude/
     commands/
-      seo.md            ← Claude Code /seo command (project-scoped)
-                          OR put in ~/.claude/commands/seo.md for user-level
+      seo.md                    ← Claude Code /seo command (project-scoped)
+                                  OR put in ~/.claude/commands/seo.md for user-level
 ```
 
 **Hard rule:** Never put project-specific GA4 property IDs, real dashboard passwords, or private file paths in `agents/Metrica.md`. Those belong in the project override. The `agents/` directory is what other teams see.
@@ -75,7 +75,7 @@ For a multi-site setup (like JenniNexus + MartianGames + Synagen), the user-leve
 - The SEO Export API (cross-dashboard live sync)
 - Metrica's project override for the primary project
 
-See the live implementation: `C:\Users\Owner\.claude\commands\seo.md` (JenniNexus cluster — JN + MG + Synagen tabs, SEO Export API, Metrica pointer).
+See a live implementation in your user-level Claude commands (`~/.claude/commands/seo.md`) — typically a multi-project cluster with Export API tabs and a Metrica pointer. Keep real property IDs out of the public agency repo.
 
 ---
 
