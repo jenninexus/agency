@@ -749,11 +749,17 @@ All interactive elements must have theme-aware hover states.
 
 ### Buttons
 ```css
+/* Prefer Bootstrap component tokens — not filter:brightness alone */
+.btn-primary {
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-hover-bg: color-mix(in srgb, var(--bs-primary) 82%, var(--secondary));
+}
 .btn:hover {
-  filter: brightness(1.1);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
 }
 ```
+Project overrides document the exact SCSS SSOT path and corner-radius contract.
 
 ### Links
 ```css
@@ -795,6 +801,17 @@ The audit script performs these checks automatically:
 5. **Social Button Brand Colors**
    - Checks for `btn-youtube`, `btn-discord`, etc. usage
    - Warns when `btn-outline-secondary` is used on social links
+
+6. **Bootstrap Button Tokens (5b)** — project override may rename the SSOT file
+   - Semantic `.btn-primary` / `.btn-secondary` must set `--bs-btn-*` (never raw `background-color` alone)
+   - Ban Bootstrap default blue `#0d6efd` in project CSS
+
+7. **CTA Shape Contract (5d)** — project-specific radius
+   - Each brand owns its radius (e.g. capsules vs 8px). Audit that tokens + SCSS SSOT agree
+   - Warn when a CTA group mixes incompatible corner radii
+
+8. **Theme Files Colors-Only (5c)**
+   - `*-theme.css` must not become layout dumps
 
 6. **SVG/Icon Theme Compatibility**
    - Detects hardcoded white/black fills in SVGs
