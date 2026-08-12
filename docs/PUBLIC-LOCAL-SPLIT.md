@@ -125,9 +125,12 @@ Do not put Discord webhook URLs, bot tokens, or channel IDs in this public repo.
 
 | Repo | Role | Public docs | Private / local |
 |------|------|-------------|-----------------|
-| `C:\Github\agency` | Framework agents + media masters | `docs/`, `agents/`, `resources/images/` | `projects/`, `mcp.json`, `ROADMAP.md` (this file is local) |
-| `C:\Github\jenni-bot` | Discord bot runtime | `docs/JENNIBOT.md`, public README | `.env`, `dev-log-sego.yaml` |
-| `C:\Github\socials` | Webhooks, drafts, previewer, MCP | `docs/DISCORD.md` (generic) | `storage/docs/*`, `.env`, `mcp-socials.yaml` |
+| `C:\Github\agency` | Framework agents + media masters | `docs/`, `agents/`, `resources/images/` | `projects/`, `mcp.json`, local `ROADMAP.md` |
+| `C:\Github\pdf-designer` | Résumé / PDF toolkit | `docs/PRODUCT.md` · `PUBLIC-LOCAL-SPLIT.md` · `GETTING-STARTED.md` · `examples/` | `storage/` vaults · bare commands · `storage/docs/*` bodies |
+| `C:\Github\socials` | Drafts, webhooks, `:8777` previewer | generic `docs/` · `PUBLIC-LOCAL-SPLIT.md` | `storage/docs/*` IDs · `.env` · brand YAMLs |
+| `C:\Github\dashboard` | Dashboard seed kit | `docs/` · fictional sample data | `my-dashboard/` · `.env` |
+| `C:\Github\jenni-bot` | Discord bot runtime | `docs/`, public README | `.env`, `dev-log-sego.yaml` |
+| `C:\Github\www-theme-kit` | Brand token kit (**not a public product**) | — | Whole kit is network private infra |
 | www `…/storage/agency` | Submodule checkout of agency | bump only | never develop here — see Submodule Rule |
 
 When editing loft pin / chat: change **jenni-bot** + **socials** drafts; when editing character lore: change **agency** `agents/*.md` then sync `chatVoice` samples.
