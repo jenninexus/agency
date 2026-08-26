@@ -92,7 +92,9 @@ Hot pink and electric blue RGB strips layer in her corner — the most visually 
 - [ ] Video sections using playlist constants (not hardcoded IDs)
 - [ ] Hero sections use correct template pattern (no inline styles)
 - [ ] Related posts wired up on all game pages
-- [ ] No duplicate CSS class attributes
+- [ ] Game landing pages do not mount a React video island (vanilla grid only)
+- [ ] Hub/category video sections sit on a glass panel, not a bare moving-gradient section
+- [ ] Portfolio “featured titles” sections are not restyled as video grids unless asked
 
 ---
 
