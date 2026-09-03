@@ -24,6 +24,12 @@ The **AI Agent Agency** is a framework for organizing AI-assisted development ar
 
 Think of it as staffing a virtual game studio where every agent has a desk in your penthouse suite, and they *never* approve white backgrounds.
 
+**Voice Seed is optional.** Agency is the loft-character prose SSOT. Clone
+[Voice Seed](https://github.com/jenninexus/voice-seed) beside this repo only if
+you want a register map so résumé voice, Patreon voice, and loft `chatVoice`
+stay in separate rooms. Do not add it as a git submodule. Full walk:
+[`docs/GETTING-STARTED.md`](docs/GETTING-STARTED.md).
+
 ### Why Agent Personas?
 
 | Traditional AI Use | Agent Agency Approach |
@@ -126,6 +132,9 @@ See individual agent files in [`agents/`](agents/) for complete profiles, valida
 ---
 
 ## Quick Start
+
+Longer clone walk (template → specialty → `projects/` → optional Voice Seed → portraits):
+[`docs/GETTING-STARTED.md`](docs/GETTING-STARTED.md).
 
 ### 1. Clone & Configure
 
@@ -255,7 +264,9 @@ agency/
 │       └── .gitkeep
 │
 ├── docs/                              # Framework documentation
+│   ├── GETTING-STARTED.md             # Clone walk + optional Voice Seed
 │   ├── ART-STYLE.md                   # Shared aesthetic + per-agent visual identity
+│   ├── STUDIO-VOICE.md                # Shared loft voice
 │   ├── AGENT-GUIDE.md                 # Character creation & design guide
 │   ├── SCHEDULE.md                    # Weekly audit cadence template
 │   ├── WORKFLOW.md                    # Edit + MCP + submodule sync guide
@@ -283,20 +294,22 @@ agency/
 
 | Document | Description |
 |:---------|:------------|
-| [`docs/ART-STYLE.md`](docs/ART-STYLE.md) | Shared studio aesthetic, per-agent colors, portrait generation conventions |
+| [`docs/GETTING-STARTED.md`](docs/GETTING-STARTED.md) | Clone walk: template → specialty → `projects/` → optional Voice Seed |
 | [`docs/AGENT-GUIDE.md`](docs/AGENT-GUIDE.md) | Character creation guide with visual design system |
 | [`docs/SCHEDULE.md`](docs/SCHEDULE.md) | Weekly audit schedule and cross-agent coordination |
 | [`docs/OPTIMIZATION-IDEAS.md`](docs/OPTIMIZATION-IDEAS.md) | VS Code, Claude Code & workflow integration strategies |
 | [`templates/AGENT-TEMPLATE.md`](templates/AGENT-TEMPLATE.md) | Full agent profile template (200+ lines) |
 | [`examples/StyleGuard.md`](examples/StyleGuard.md) | Full working example agent with checklists and red flags |
 | [`examples/AgentRoster.md`](examples/AgentRoster.md) | Example team roster doc (showcase 7-desk loft) |
+| [`docs/ART-STYLE.md`](docs/ART-STYLE.md) | Shared studio aesthetic, per-agent colors, portrait generation conventions |
+| [`docs/STUDIO-VOICE.md`](docs/STUDIO-VOICE.md) | Shared loft voice; optional Voice Seed map pointer |
 | [`docs/PUBLIC-LOCAL-SPLIT.md`](docs/PUBLIC-LOCAL-SPLIT.md) | Two-layer pattern: public framework agents vs project-specific overrides in `projects/` |
 
 ### Portrait Generation
 
 Agent portraits are generated via AI image APIs (xAI Grok Imagine, DALL-E, Midjourney). Place 80×80 square portraits at `resources/images/agents/<name>.jpg` to populate the showcase cards above.
 
-See [`docs/ART-STYLE.md`](docs/ART-STYLE.md) for the shared aesthetic, per-agent accent colors, and prompt conventions. Full prompts live in `agents/characters.yaml` (local only — gitignored).
+See [`docs/ART-STYLE.md`](docs/ART-STYLE.md) for the shared aesthetic, per-agent accent colors, and prompt conventions. Copy [`agents/characters.yaml.example`](agents/characters.yaml.example) to `agents/characters.yaml` (gitignored) and generate with Grok Imagine / DALL-E / Midjourney. This repo does not ship a portrait generator script.
 
 ---
 

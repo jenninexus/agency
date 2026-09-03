@@ -137,9 +137,10 @@ tracked docs.
 | `dashboard` | Dashboard seed kit | `docs/` · fictional sample data | `my-dashboard/` · `.env` |
 | `jenni-bot` | Discord bot runtime (JN loft consumer) | public README + STYLE-SPEC | `.env`, webhook URLs, `agency-profiles.json` faces |
 | `www-theme-kit` | Brand token kit | **not a public product** | Whole kit is network private infra |
-| `voice-seed` | Writing-register **map** (`agencyAudit` / `agencyDiscordChat`) | **private today** — planned semi-public | Never paste vault / Patreon prose here |
+| `voice-seed` | Writing-register **map** (`agencyAudit` / `agencyDiscordChat`) | optional clone [`jenninexus/voice-seed`](https://github.com/jenninexus/voice-seed) | Never paste vault / Patreon prose here; never a submodule |
 | `theme-designer` | Teaching seed for palettes / `--dash-*` tokens | public Phase 1 — optional | Not a character generator; not www-theme-kit |
-| `product-design` | Campaign / store board (`/jen:products`) | **no GitHub remote** | Cards in `docs/AGENCY.md` · registry |
+| `bot-seed` | Discord **Gateway** starter (greeter / slash / optional loft JSON) | **no GitHub yet** — optional later clone | Not jenni-bot / martian-bot; not Socials webhooks |
+| `product-design` | Campaign / store board (`/jen:products`) | **no GitHub remote** | Cards in `docs/AGENCY.md` · family map `docs/SEED-FAMILY.md` · registry |
 | www `{site}/storage/agency` | Submodule checkout of agency | bump only | never develop here — see Submodule Rule |
 
 **Martian Games** runs its own 3-agent roster (MissionControl / GlassViz / OrbitalPipe)
@@ -148,8 +149,9 @@ pointers may live in gitignored `projects/martiangames/`.
 
 When editing loft pin / chat: change **jenni-bot** + **socials** drafts. When editing
 character lore: change **agency** `agents/*.md`, then sync `chatVoice` samples in the
-bot catalogue. When routing *which writing register* applies: **voice-seed**
-`registry.json` (studio-internal until that repo is public).
+bot catalogue. When routing *which writing register* applies: optional
+[Voice Seed](https://github.com/jenninexus/voice-seed) `registry.json`.
+Agency remains the prose SSOT for loft characters.
 
 ## Clone vs this studio
 
@@ -160,15 +162,17 @@ A stranger who clones `jenninexus/agency` should be able to:
 3. Copy `agents/characters.yaml.example` → `characters.yaml` and stylize portraits with Grok Imagine / DALL-E / Midjourney per `docs/ART-STYLE.md`
 4. Keep secrets and live site paths in `projects/<their-project>/`
 
-They should **not** need voice-seed, theme-designer, jenni-bot, or www-theme-kit
+They should **not** need voice-seed, theme-designer, bot-seed, jenni-bot, or www-theme-kit
 installed. Those are optional later pairings:
 
 | Pairing | When | How |
 |---------|------|-----|
-| voice-seed | after that repo is public | pointer in STUDIO-VOICE — agency remains the prose SSOT for loft characters |
+| voice-seed | optional | pointer in STUDIO-VOICE + [`GETTING-STARTED.md`](GETTING-STARTED.md) — agency remains the prose SSOT for loft characters |
 | theme-designer | after it has a desk-accent example | copy-on-update into ART-STYLE tokens — never `@import` |
+| bot-seed | after Voice Seed is public **and** that GitHub exists | optional Gateway clone; do not submodule; lore stays here |
 | Discord loft | never required | consuming bot; do not fold jenni-bot into this SKU |
 | JN / MG audit scripts | never | stay in the site repos; this repo ships `audit-template.ps1` only |
 
-Product campaign notes (store, tip, Gumroad art pack) live in local
-`product-design/docs/AGENCY.md`, not in this public tree.
+Product campaign notes (store, tip, Gumroad art pack, visibility sequence) live in
+the local product-design hub (`docs/AGENCY.md` · `docs/SEED-FAMILY.md`), not in this
+public tree. Do not copy hub sequence plans into `Plans/` here.

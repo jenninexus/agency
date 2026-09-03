@@ -105,7 +105,10 @@ agents:
       [full 3:4 portrait prompt]
 ```
 
-Copy `agents/characters.yaml.example` (if provided) or model your own from the structure above.
+Copy [`../agents/characters.yaml.example`](../agents/characters.yaml.example) to
+`agents/characters.yaml` (gitignored), fill the prompts, and generate with
+Grok Imagine / DALL-E / Midjourney. This public repo does not include a
+portrait generator script.
 
 ---
 
