@@ -34,6 +34,10 @@ stay in separate rooms. Do not add it as a git submodule.
 a teaching `--brand-accent` to copy into ART-STYLE / CSS. Never `@import` it
 (or www-theme-kit). Full walk: [`docs/GETTING-STARTED.md`](docs/GETTING-STARTED.md).
 
+**Bot Seed is optional.** Agency is lore. Clone
+[Bot Seed](https://github.com/jenninexus/bot-seed) only if you want a Discord
+Gateway greeter / loft *runtime*. Do not add it as a git submodule.
+
 ### Why Agent Personas?
 
 | Traditional AI Use | Agent Agency Approach |
