@@ -97,8 +97,9 @@ Then copy `voice-seed/templates/agent-chatVoice.seed.md` into `agents/YourAgent.
 - Do not install a live Discord bot, www-theme-kit, or sys-admin to use Agency.
 
 Bot greeter / embed chrome / loft runtime samples use relative `{bot}/` paths
-in Voice Seed. A future bot-seed clone will use the same files. That GitHub
-remote does not have to exist for Agency to work.
+in Voice Seed. Optional Gateway clone:
+[bot-seed](https://github.com/jenninexus/bot-seed) — same files, not a submodule.
+Agency works without it.
 
 ---
 
@@ -113,8 +114,9 @@ git clone https://github.com/jenninexus/theme-designer.git
 
 Copy `--brand-accent` from `theme-designer/tokens/brand-tokens.css` (or
 `docs/DISCORD-EMBED.md`) into your ART-STYLE / CSS variables. Do **not**
-`@import` theme-designer or www-theme-kit. Do not add a Discord bot GitHub
-URL from this walk — that seed is a separate product and may not exist yet.
+`@import` theme-designer or www-theme-kit. Optional Discord runtime is
+[Bot Seed](https://github.com/jenninexus/bot-seed) — a separate product, never
+a submodule of Agency.
 
 ---
 
