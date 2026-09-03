@@ -16,15 +16,14 @@
 
 | Resource | Location | Purpose |
 |:---|:---|:---|
-| **This Profile** | `storage/agency/agents/GraphViz.md` | Technical standards & rules for theme/visual design. |
-| **Image Prompts** | `storage/agency/docs/PROMPTS.md#graphviz---theme--visual-design-manager` | AI image generation prompts for this character. |
-| **Character Guide** | `storage/agency/docs/AGENT-GUIDE.md#graphviz---theme--visual-design-manager` | Visual style, personality, and full character details. |
-| **Master Config** | `.vscode/mcp.json` | Schedule, metadata, and domain ownership. |
-| **Audit Script** | `scripts/audits/audit-theme-consistency.ps1` | The script for the weekly Wednesday audit. |
-| **Audit Report** | `storage/agency/audits/AUDIT_theme-consistency.md` | The standard audit report location. |
-| **Dated Reports** | `storage/agency/audits/audit-theme-consistency-YYYY-MM-DD.md` | Timestamped audit reports. |
-| **Primary Doc** | `storage/docs/DESIGN-SYSTEM.md` | The single source of truth for theme system. |
-| **Images Folder** | `public_html/resources/images/ai/agents/graphviz/` | Generated character images. |
+| **This Profile** | `agents/GraphViz.md` | Technical standards & rules for theme/visual design. |
+| **Image Prompts** | `agents/characters.yaml` (local, gitignored) | AI image generation prompts for this character. |
+| **Character Guide** | `docs/AGENT-GUIDE.md#graphviz---theme--visual-design-manager` | Visual style, personality, and full character details. |
+| **Master Config** | `mcp.json` (copy from `mcp.example.json`) | Schedule, metadata, and domain ownership. |
+| **Audit Script** | `scripts/audit-template.ps1` | Copy and specialize for your Wednesday theme audit. Live site scripts stay in the consuming project. |
+| **Audit Report** | `audits/AUDIT_theme-consistency.md` | Gitignored local report. |
+| **Primary Doc** | project `docs/DESIGN-SYSTEM.md` (or your token SSOT) | Theme system source of truth — path lives in the project override. |
+| **Images Folder** | `resources/images/agents/` | Public portraits (`graphviz-1x1.webp`, `graphviz-16x9.webp`). |
 
 ---
 
@@ -92,7 +91,7 @@ Purple neon from monitor underglow reflects in Pantone swatch books stacked on t
 
 **GraphViz tracks changes to:**
 - Theme CSS files: `theme-variables.css` (includes @font-face + all CSS variables), `all-themes.css`, `*-theme.css`
-- Self-hosted fonts: `public_html/resources/fonts/` (@font-face in theme-variables.css)
+- Self-hosted fonts: project `resources/fonts/` (or equivalent) via `@font-face` in theme-variables.css
 - Theme JS: `theme-toggle.js` (bundled in core.js)
 - Config: project-local breakpoint / MCP config (shared with Vidette — live in project override, not this public profile)
 - All page backgrounds, cards, panels, and surfaces
@@ -536,7 +535,7 @@ Each page theme respects the global light/dark toggle:
 ### Bundle Output
 
 ```
-src/assets/css/ → public_html/resources/css/main.min.css (156.7KB)
+src/assets/css/ → dist/css/main.min.css (project bundle path lives in the override)
 ```
 
 ### Theme File Rules
@@ -773,11 +772,11 @@ a:hover {
 ## Weekly Audit Protocol
 
 **When:** Every Wednesday
-**Script:** `powershell -ExecutionPolicy Bypass -File scripts/audits/audit-theme-consistency.ps1`
-**Audit Results:** `storage/agency/audits/AUDIT_theme-consistency.md` (standard) or `storage/agency/audits/audit-theme-consistency-YYYY-MM-DD.md` (dated)
+**Script:** `powershell -ExecutionPolicy Bypass -File scripts/audit-template.ps1`
+**Audit Results:** `audits/AUDIT_theme-consistency.md` (standard) or `audits/audit-theme-consistency-YYYY-MM-DD.md` (dated)
 **Focus:** Visual consistency, theme compliance, no white backgrounds
 
-### Automated Checks (via audit-theme-consistency.ps1)
+### Automated Checks (specialize `audit-template.ps1`)
 
 The audit script performs these checks automatically:
 
@@ -820,11 +819,9 @@ The audit script performs these checks automatically:
 ### Running the Audit
 
 ```powershell
-# Standard audit
-.\scripts\audits\audit-theme-consistency.ps1
-
-# Verbose output (shows all files, not just issues)
-.\scripts\audits\audit-theme-consistency.ps1 -Verbose
+# Copy scripts/audit-template.ps1 in the consuming project, then:
+.\scripts\audit-template.ps1
+.\scripts\audit-template.ps1 -Verbose
 ```
 
 ### Manual Verification (After Automated Audit)
@@ -876,7 +873,7 @@ GraphViz is the **visual authority** - all agents report to her on color and sty
 │         │    • GameDev pages: Purple/pink gradients                         │
 │         │    • GamerGirl owns page structure; GraphViz owns colors          │
 │         │    • game/*.php hero gradients must match gamedev-theme.css       │
-│         │    • gaming.php uses gaming-theme.css (Steam theme)               │
+│         │    • Game hub page uses gaming-theme.css (Steam-style theme)      │
 │         │    • @GamerGirl.md Thursday audit checks color compliance         │
 │         │                                                                   │
 │         ├──► Vidette (Video Display) - MUST CONSULT                         │
@@ -900,7 +897,7 @@ GraphViz is the **visual authority** - all agents report to her on color and sty
 | Scenario | GraphViz's Role | What to Check |
 |----------|-----------------|---------------|
 | **GamerGirl adds game page** | Approve hero gradient colors | Match gamedev-theme.css, no white backgrounds |
-| **GamerGirl updates gaming.php** | Verify Steam theme colors | `--gaming-*` variables, Steam cyan accents |
+| **GamerGirl updates the game hub** | Verify Steam theme colors | `--gaming-*` variables, Steam cyan accents |
 | **Vidette adds video page** | Verify card colors match theme | `--glass-bg`, `--shadow-sm`, hover lift |
 | **Bloggie adds blog post** | Verify glass-card styling | `glass-card`, no white backgrounds |
 | **Color palette update** | **Lead** - update theme-variables.css | Notify ALL agents to re-verify |
@@ -911,19 +908,19 @@ GraphViz is the **visual authority** - all agents report to her on color and sty
 
 | Agent | Profile | When GraphViz Should Check |
 |-------|---------|---------------------------|
-| **GamerGirl** | [GamerGirl.md](storage/agency/agents/GamerGirl.md) | Game pages, gaming theme, Steam/Twitch colors |
-| **Vidette** | [Vidette.md](storage/agency/agents/Vidette.md) | Video cards, hover effects, media styling |
-| **Bloggie** | [Bloggie.md](storage/agency/agents/Bloggie.md) | Blog containers, tag badges, share buttons |
-| **README** | [README.md](storage/agency/agents/README.md) | Full relationship graph, collaboration matrix |
+| **GamerGirl** | [GamerGirl.md](GamerGirl.md) | Game pages, gaming theme, Steam/Twitch colors |
+| **Vidette** | [Vidette.md](Vidette.md) | Video cards, hover effects, media styling |
+| **Bloggie** | [Bloggie.md](Bloggie.md) | Blog containers, tag badges, share buttons |
+| **README** | [README.md](../README.md) | Full relationship graph, collaboration matrix |
 
 ### Recent Audits
 
 | Audit | Location |
 |-------|----------|
-| **Theme Consistency** | [AUDIT_theme-consistency.md](storage/agency/audits/AUDIT_theme-consistency.md) |
-| **Video Pages** | [AUDIT_video-pages.md](storage/agency/audits/AUDIT_video-pages.md) |
-| **Blog Posts** | [AUDIT_blog-posts.md](storage/agency/audits/AUDIT_blog-posts.md) |
-| **Game Pages** | [AUDIT_game-pages.md](storage/agency/audits/AUDIT_game-pages.md) |
+| **Theme Consistency** | [AUDIT_theme-consistency.md](audits/AUDIT_theme-consistency.md) |
+| **Video Pages** | [AUDIT_video-pages.md](audits/AUDIT_video-pages.md) |
+| **Blog Posts** | [AUDIT_blog-posts.md](audits/AUDIT_blog-posts.md) |
+| **Game Pages** | [AUDIT_game-pages.md](audits/AUDIT_game-pages.md) |
 
 ### Color Coordination with GamerGirl
 
@@ -932,7 +929,7 @@ GamerGirl manages **page structure** for gaming content; GraphViz manages **colo
 | Responsibility | GamerGirl | GraphViz |
 |----------------|-----------|----------|
 | Game page hero sections | Structure, CTAs, tags | Gradient colors |
-| gaming.php layout | Sections, carousels | Steam navy/cyan palette |
+| Game hub layout | Sections, carousels | Steam navy/cyan palette |
 | live.php design | Twitch embeds, chat | Twitch purple colors |
 | gamedev.php portfolio | Game cards, featured | Purple/pink gradients |
 | CSS file ownership | Structure in custom.css | Colors in *-theme.css |
@@ -946,7 +943,7 @@ GamerGirl manages **page structure** for gaming content; GraphViz manages **colo
 
 ## Showcase: theme-demo.php
 
-**GraphViz's Living Reference Page:** `public_html/dev-only/theme-demo.php`
+**GraphViz's Living Reference Page:** project `dev-only/theme-demo.php` (or your token playground)
 
 This is GraphViz's **primary demonstration page** - a living showcase of all visual standards:
 
@@ -996,7 +993,7 @@ http://localhost:[project-port]/dev-only/theme-demo.php
 
 ## Current Audit Status (January 25, 2026)
 
-Run `.\scripts\audits\audit-theme-consistency.ps1` to update these metrics.
+Run `.\scripts\audit-template.ps1` (after copying it to a named theme audit in the consuming project) to update these metrics.
 
 | Metric | Value | Status |
 |--------|-------|--------|
@@ -1009,7 +1006,7 @@ Run `.\scripts\audits\audit-theme-consistency.ps1` to update these metrics.
 | Contrast Ratios AAA | Verified | ✅ |
 | Theme Toggle Working | Verified | ✅ |
 
-**Last Audit:** See `storage/logs/audit-theme-consistency-YYYY-MM-DD.md` for detailed report.
+**Last Audit:** See gitignored `audits/audit-theme-consistency-YYYY-MM-DD.md` (or the consuming project's audit folder).
 
 ---
 
@@ -1081,23 +1078,23 @@ Run `.\scripts\audits\audit-theme-consistency.ps1` to update these metrics.
 ## Contact & Config
 
 **Primary Docs:**
-- `storage/docs/DESIGN-SYSTEM.md` (Source of Truth)
-- `storage/docs/DESIGN-SYSTEM.md` (Architecture)
+- project `docs/DESIGN-SYSTEM.md` (Source of Truth — path in the override)
+- `docs/ART-STYLE.md` (this repo — portrait / loft aesthetic)
 
 **CSS Source:** `src/assets/css/theme-variables.css`
 **JS Source:** `src/assets/js/theme-toggle.js`
-**Audit Script:** `scripts/audits/audit-theme-consistency.ps1`
-**Audit Results:** `storage/agency/audits/AUDIT_theme-consistency.md`
-**Agent Profile:** `storage/agency/agents/GraphViz.md`
+**Audit Script:** `scripts/audit-template.ps1`
+**Audit Results:** `audits/AUDIT_theme-consistency.md`
+**Agent Profile:** `agents/GraphViz.md`
 
 ---
 
 ## Character Image Prompt
 
-> **Full prompt location:** `storage/agency/docs/PROMPTS.md#graphviz---theme--visual-design-manager`
-> **Images folder:** `public_html/resources/images/ai/agents/graphviz/`
+> **Full prompt location:** `docs/PROMPTS.md#graphviz---theme--visual-design-manager`
+> **Images folder:** `resources/images/agents/`
 
-The full AI image generation prompt for this character is maintained in [PROMPTS.md](storage/agency/docs/PROMPTS.md#graphviz---theme--visual-design-manager). This ensures:
+The full AI image generation prompt for this character is maintained in [PROMPTS.md](docs/PROMPTS.md#graphviz---theme--visual-design-manager). This ensures:
 - Single source of truth for all character prompts
 - Consistent base elements across all agents
 - Easy updates without modifying individual agent files

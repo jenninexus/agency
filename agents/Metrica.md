@@ -54,13 +54,13 @@ When you invoke `/seo` or ask about SEO/analytics, start here. **Real IDs and li
 | **SEO strategy doc** | `storage/seo/SEO-AND-MARKETING.md` | Narrative plan, traffic data, priority actions (local-only) |
 | **Live SEO dashboard** | `[project]/seo/index.php` → `[your-domain]/seo` | Password-gated PHP. SSOT for current numbers. Replaces static HTML snapshots. |
 | **Claude Code `/seo` command** | `~/.claude/commands/seo.md` (user-level) or `[project]/.claude/commands/seo.md` | Invokes Metrica from Claude Code. See `examples/seo-command.md` for how to build one. |
-| **Weekly audit script** | `scripts/audits/audit-seo-analytics.ps1` | Run every Saturday |
-| **Audit output** | `storage/agency/audits/AUDIT_seo-analytics.md` | Last audit results |
+| **Weekly audit script** | `scripts/audit-template.ps1` | Copy and specialize; live site audits stay in the consuming project |
+| **Audit output** | `audits/AUDIT_seo-analytics.md` | Last audit results (gitignored) |
 | **GA4 query** | `[your-analytics-scripts]/ga4-report.mjs` | `node ga4-report.mjs --property [ID] --days 30` |
 | **PageSpeed monitor** | `[your-analytics-scripts]/pagespeed-monitor.mjs` | `node pagespeed-monitor.mjs --url=https://[domain]` |
 | **Indexing API** | `[your-analytics-scripts]/indexing-api.mjs` | `node indexing-api.mjs submit-sitemap` |
-| **head.php** | `public_html/includes/head.php` | OG tags, Twitter Card, canonical, JSON-LD |
-| **Sitemap** | `public_html/sitemap.xml` | Update lastmod on deploy |
+| **head include** | `includes/head.php` (typical) | OG tags, Twitter Card, canonical, JSON-LD |
+| **Sitemap** | `sitemap.xml` | Update lastmod on deploy |
 
 **Invoke Metrica (`/seo`)** when:
 - Reviewing or editing `head.php` meta tags
@@ -80,12 +80,12 @@ When you invoke `/seo` or ask about SEO/analytics, start here. **Real IDs and li
 | **This Profile** | `agents/Metrica.md` | Technical standards & rules for SEO, analytics, and PR. |
 | **Character Guide** | `agents/AGENT-GUIDE.md#metrica---seo-analytics--pr-manager` | Visual style, personality, and full character details. |
 | **Master Config** | `.vscode/mcp.json` | Schedule, metadata, and domain ownership. |
-| **Audit Script** | `scripts/audits/audit-seo-analytics.ps1` | Weekly Saturday audit. |
-| **Audit Report** | `storage/agency/audits/AUDIT_seo-analytics.md` | Standard audit output. |
-| **SEO Doc** | `storage/seo/SEO-AND-MARKETING.md` | Narrative SEO plan and status (local-only). |
+| **Audit Script** | `scripts/audit-template.ps1` | Weekly Saturday audit — copy and specialize. |
+| **Audit Report** | `audits/AUDIT_seo-analytics.md` | Standard audit output (gitignored). |
+| **SEO Doc** | project SEO narrative (local-only) | Path lives in the project override. |
 | **Live SEO Dashboard** | `[project]/seo/index.php` → `[your-domain]/seo` | Password-gated PHP. SSOT for current numbers. |
 | **GCP Scripts** | `[your-analytics-scripts]/ga4-report.mjs`, `pagespeed-monitor.mjs`, `indexing-api.mjs` | Node.js analytics helpers (paths live in project override). |
-| **Images Folder** | `public_html/resources/images/ai/agents/metrica/` | Generated character images. |
+| **Images Folder** | `resources/images/agents/` | Public portraits (`metrica-1x1.webp`, `metrica-16x9.webp`). |
 
 ---
 
@@ -153,11 +153,11 @@ Holographic GSC rank trackers and GA4 dashboards float in layers around her moni
 **Key command:** `@metrica.md audit [page]` or reference this file for SEO/analytics standards.
 
 **Metrica tracks changes to:**
-- `public_html/includes/head.php` — OG tags, Twitter Card, canonical, JSON-LD
-- All PHP pages — `$pageTitle`, `$pageDescription`, `$pageImage`, `$pageUrl`, `$pageKeywords`
-- `public_html/sitemap.xml` — URL inventory, lastmod dates
-- `scripts/ga4-report.mjs`, `scripts/pagespeed-monitor.mjs`, `scripts/indexing-api.mjs`
-- `storage/seo/` — SEO narrative, analytics snapshots, GSC exports
+- `includes/head.php` — OG tags, Twitter Card, canonical, JSON-LD
+- All pages — `$pageTitle`, `$pageDescription`, `$pageImage`, `$pageUrl`, `$pageKeywords`
+- `sitemap.xml` — URL inventory, lastmod dates
+- Analytics helpers in the project override (`ga4-report.mjs`, `pagespeed-monitor.mjs`, `indexing-api.mjs`)
+- Project SEO narrative (local-only — never commit live scores here)
 
 ---
 
@@ -207,7 +207,7 @@ $pageUrl         = 'https://[your-domain]/page-slug';   // canonical absolute UR
 - Cross-domain: sibling brand pages canonicalize to their own domain (never steal another brand's URL)
 
 ### 5. Sitemap Rules
-- `public_html/sitemap.xml` — updated on every deploy with new/modified pages
+- `sitemap.xml` — updated on every deploy with new/modified pages
 - `lastmod` must reflect actual last-modified date
 - Submit to GSC via `scripts/indexing-api.mjs submit-sitemap` after deploy
 
@@ -273,7 +273,7 @@ Pending events:
 | Script | Purpose | Run |
 |--------|---------|-----|
 | `scripts/ga4-report.mjs` | GA4 summary, pages, traffic, events | Weekly (Saturday) |
-| `scripts/pagespeed-monitor.mjs` | PageSpeed scores for all 6 www sites | Weekly (Saturday) |
+| `scripts/pagespeed-monitor.mjs` | PageSpeed scores for your public URLs | Weekly (Saturday) |
 | `scripts/indexing-api.mjs` | Submit URLs/sitemap to Google Indexing API | After every deploy |
 
 **GCP Project / Service Account / live GSC inventory:** live in the project override
@@ -317,7 +317,7 @@ Pending GSC tasks (track live counts in the override):
 ### Default og:image
 - **Required:** 1200×630 branded card showing JenniNexus logo + tagline
 - **Status:** Pending creation (priority from Apr 21 audit)
-- **File:** `public_html/resources/images/og-default.jpg`
+- **File:** project `resources/images/og-default.jpg` (path in the override)
 
 ### Per-Page og:image Checklist
 
@@ -326,7 +326,7 @@ Pending GSC tasks (track live counts in the override):
 | `index.php` | Branded JenniNexus card | ❌ Pending |
 | `services.php` | Voice acting professional headshot | ❌ Pending |
 | `gamedev.php` | Game collage / portfolio | ❌ Pending |
-| `gaming.php` | Gaming content thumbnail | ❌ Pending |
+| Game hub | Gaming / portfolio thumbnail | ❌ Pending |
 | Blog posts | Per-post image (existing `$pageImage`) | ✅ Done |
 | Game pages | Game key art / screenshot | ❌ Pending |
 
@@ -340,8 +340,8 @@ Pending GSC tasks (track live counts in the override):
 ## Weekly Audit Protocol
 
 **When:** Every Saturday
-**Script:** `powershell -ExecutionPolicy Bypass -File scripts/audits/audit-seo-analytics.ps1`
-**Audit Results:** `storage/agency/audits/AUDIT_seo-analytics.md`
+**Script:** `powershell -ExecutionPolicy Bypass -File scripts/audit-template.ps1`
+**Audit Results:** `audits/AUDIT_seo-analytics.md`
 
 ### Automated Checks (via audit-seo-analytics.ps1)
 
@@ -351,12 +351,12 @@ Pending GSC tasks (track live counts in the override):
 | 2 | All PHP pages have `$pageDescription` (150-160 chars) | FAIL |
 | 3 | All PHP pages have `$pageUrl` (canonical) | FAIL |
 | 4 | All PHP pages have `$pageImage` (og:image) | WARN |
-| 5 | `head.php` includes og: + twitter: + canonical | FAIL |
-| 6 | `sitemap.xml` exists and has ≥ 30 URLs | WARN |
+| 5 | Head include has og: + twitter: + canonical | FAIL |
+| 6 | `sitemap.xml` exists and lists the public URLs | WARN |
 | 7 | JSON-LD present on blog posts | WARN |
 | 8 | JSON-LD present on game pages | WARN |
 | 9 | No hardcoded Twitter/X username in meta | WARN |
-| 10 | `$pageTitle` contains "JenniNexus" brand suffix | WARN |
+| 10 | `$pageTitle` contains the brand suffix | WARN |
 
 ### Manual Checks (After Script)
 
@@ -436,8 +436,8 @@ Metrica is the **visibility authority** — she reports to no one on SEO, but co
 
 | File | Purpose | Authority |
 |------|---------|-----------|
-| `public_html/includes/head.php` | OG, Twitter Card, canonical, JSON-LD injection | **FULL OWNERSHIP** |
-| `public_html/sitemap.xml` | URL inventory for Google | **FULL OWNERSHIP** |
+| `includes/head.php` | OG, Twitter Card, canonical, JSON-LD injection | **FULL OWNERSHIP** |
+| `sitemap.xml` | URL inventory for Google | **FULL OWNERSHIP** |
 | `scripts/ga4-report.mjs` | GA4 analytics query | **FULL OWNERSHIP** |
 | `scripts/pagespeed-monitor.mjs` | PageSpeed monitoring | **FULL OWNERSHIP** |
 | `scripts/indexing-api.mjs` | Google Indexing API | **FULL OWNERSHIP** |
@@ -447,23 +447,23 @@ Metrica is the **visibility authority** — she reports to no one on SEO, but co
 
 ## Page Status Tracker (SEO Compliance)
 
-| Page | pageTitle | pageDesc | pageImage | canonical | JSON-LD | Status |
-|------|-----------|---------|----------|-----------|---------|--------|
-| `index.php` | ✅ | ✅ | ❌ pending | ✅ | ❌ WebSite pending | ⚠️ PARTIAL |
-| `services.php` | ✅ | ✅ | ❌ pending | ✅ | ❌ FAQPage pending | ⚠️ PARTIAL |
-| `gamedev.php` | ✅ | ✅ | ❌ pending | ✅ | ❌ ItemList pending | ⚠️ PARTIAL |
-| `gaming.php` | ✅ | ✅ | ❌ pending | ✅ | — | ⚠️ PARTIAL |
-| `diy.php` | ✅ | ✅ | ❌ pending | ✅ | — | ⚠️ PARTIAL |
-| `blog/*.php` | ✅ | ✅ | ✅ | ✅ | ✅ BlogPosting | ✅ PASS |
-| `game/*.php` | ✅ | ✅ | ❌ pending | ✅ | ❌ SoftwareApp pending | ⚠️ PARTIAL |
+Keep live page scores, og:image status, and JSON-LD coverage in `projects/<your-project>/Metrica.md`. This public profile only defines the checks.
+
+| Page type | pageTitle | pageDesc | pageImage | canonical | JSON-LD |
+|-----------|-----------|---------|----------|-----------|---------|
+| Home | required | unique | branded card | required | WebSite + SearchAction |
+| Services / about | required | unique | relevant still | required | FAQPage when applicable |
+| Game hub | required | unique | hub thumbnail | required | ItemList when applicable |
+| Blog posts | required | unique | per-post | required | BlogPosting |
+| Game landing pages | required | unique | key art | required | SoftwareApplication |
 
 ---
 
 ## Command Reference
 
 ```powershell
-# Weekly SEO audit
-.\scripts\audits\audit-seo-analytics.ps1
+# Weekly SEO audit (copy audit-template.ps1 to a named script in the consuming project)
+.\scripts\audit-template.ps1
 
 # Run GA4 summary report (property ID from project override)
 cd [your-analytics-scripts-dir]
@@ -491,7 +491,7 @@ node indexing-api.mjs submit https://[your-domain]/blog/new-post
 - **Assigned domains:** SEO metadata, og:image, JSON-LD, GA4, PageSpeed, GSC, sitemap, Indexing API
 - **F26 WebP posters** — deployed Apr 25 for MG; JN poster/image audit pending
 - **Apr 21 audit findings** absorbed — og:image, Twitter Card meta, Cloudflare bot rules, per-page descriptions
-- **Audit script created:** `scripts/audits/audit-seo-analytics.ps1`
+- **Audit script:** copy `scripts/audit-template.ps1` in the consuming project; do not assume `scripts/audits/` exists in this clone
 
 ---
 

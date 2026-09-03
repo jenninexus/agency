@@ -82,14 +82,21 @@ The `agents/` directory includes a fully-built example team from a real producti
 <sub><i>"Investors don't fund white backgrounds."</i></sub>
 </td>
 <td align="center" width="130">
+<img src="resources/images/agents/gamergirl-1x1.webp" width="80" height="80" alt="GamerGirl" onerror="this.style.display='none'"/><br/>
+<b><a href="agents/GamerGirl.md">GamerGirl</a></b><br/>
+<sub>Game Pages &amp; Platform CTAs</sub><br/>
+<sub>📅 Thursday · 🎨 <code>#FF2E88</code></sub><br/>
+<sub><i>"Your game page is your pitch deck."</i></sub>
+</td>
+</tr>
+<tr>
+<td align="center" width="130">
 <img src="resources/images/agents/divinedesign-1x1.webp" width="80" height="80" alt="DivineDesign" onerror="this.style.display='none'"/><br/>
 <b><a href="agents/DivineDesign.md">DivineDesign</a></b><br/>
 <sub>Layout &amp; Architecture</sub><br/>
 <sub>📅 Friday · 🎨 <code>#00D4AA</code></sub><br/>
 <sub><i>"Spacing is not decoration. It's structure."</i></sub>
 </td>
-</tr>
-<tr>
 <td align="center" width="130">
 <img src="resources/images/agents/metrica-1x1.webp" width="80" height="80" alt="Metrica" onerror="this.style.display='none'"/><br/>
 <b><a href="agents/Metrica.md">Metrica</a></b><br/>
@@ -107,7 +114,6 @@ The `agents/` directory includes a fully-built example team from a real producti
 <td align="center" width="130">
 <sub><br/><b>+ Your Agent</b><br/>Copy the template,<br/>define your domain</sub>
 </td>
-<td></td>
 </tr>
 </table>
 
@@ -229,12 +235,13 @@ agency/
 │
 ├── agents/                            # Showcase agent profiles (public examples)
 │   ├── characters.yaml                # AI image generation prompts (gitignored)
-│   ├── Vidette.md                     # Video & Media specialist
-│   ├── Bloggie.md                     # Blog & Content specialist
-│   ├── GraphViz.md                    # Theme & Visual specialist
-│   ├── DivineDesign.md                # Layout & Architecture specialist
-│   ├── Metrica.md                     # SEO, Analytics & Performance specialist
-│   └── Vixel.md                       # VR/Game site specialist (cross-project)
+│   ├── Vidette.md                     # Video & Media specialist (Mon)
+│   ├── Bloggie.md                     # Blog & Content specialist (Tue)
+│   ├── GraphViz.md                    # Theme & Visual specialist (Wed)
+│   ├── GamerGirl.md                   # Game pages & platform CTAs (Thu)
+│   ├── DivineDesign.md                # Layout & Architecture specialist (Fri)
+│   ├── Metrica.md                     # SEO, Analytics & Performance specialist (Sat)
+│   └── Vixel.md                       # VR/Game site specialist (Sun)
 │
 ├── projects/                          # Project-specific agent rosters (local only)
 │   └── README.md                      # How projects/ works — subdirs are gitignored
@@ -243,7 +250,7 @@ agency/
 │   ├── images/
 │   │   ├── banner.jpg                 # README header banner
 │   │   └── agents/                    # Square portraits for README cards (80×80)
-│   │       └── <name>.jpg             # vidette.jpg, bloggie.jpg, etc.
+│   │       └── <name>-1x1.webp        # vidette, bloggie, graphviz, gamergirl, …
 │   └── video/
 │       └── .gitkeep
 │
@@ -259,7 +266,7 @@ agency/
 │
 ├── examples/
 │   ├── StyleGuard.md                  # Full working example agent
-│   └── AgentRoster.md                 # Example team roster doc (JenniNexus studio)
+│   └── AgentRoster.md                 # Example team roster doc (showcase loft)
 │
 ├── scripts/                           # Audit automation + MCP server
 │   ├── mcp-server.js                  # MCP stdio server (zero deps, Node 18+)
@@ -282,7 +289,7 @@ agency/
 | [`docs/OPTIMIZATION-IDEAS.md`](docs/OPTIMIZATION-IDEAS.md) | VS Code, Claude Code & workflow integration strategies |
 | [`templates/AGENT-TEMPLATE.md`](templates/AGENT-TEMPLATE.md) | Full agent profile template (200+ lines) |
 | [`examples/StyleGuard.md`](examples/StyleGuard.md) | Full working example agent with checklists and red flags |
-| [`examples/AgentRoster.md`](examples/AgentRoster.md) | Example team roster doc (JenniNexus 7-agent studio) |
+| [`examples/AgentRoster.md`](examples/AgentRoster.md) | Example team roster doc (showcase 7-desk loft) |
 | [`docs/PUBLIC-LOCAL-SPLIT.md`](docs/PUBLIC-LOCAL-SPLIT.md) | Two-layer pattern: public framework agents vs project-specific overrides in `projects/` |
 
 ### Portrait Generation
@@ -320,7 +327,7 @@ When multiple agents collaborate, use the coordination matrix in local `mcp.json
 {
   "label": "Run GraphViz Audit",
   "type": "shell",
-  "command": "powershell -File scripts/audit-styles.ps1"
+  "command": "pwsh -File scripts/audit-template.ps1"
 }
 ```
 
@@ -334,7 +341,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: ./scripts/audit-video-pages.sh
+      - run: pwsh scripts/audit-template.ps1
 ```
 
 ### MCP Integration (Claude Code, Cursor, Zed, Cline)
@@ -454,7 +461,7 @@ Never edit files inside `storage/agency/` from within a consuming project — th
 | **Docster** | Documentation Manager | Planned |
 | **Testrix** | Testing & QA | Planned |
 
-> Project-specific agents (Cipher, GlassField, MissionControl, Orbiter) live in [`projects/`](projects/) — not in this showcase roster.
+> Extra portraits in `resources/images/agents/` (if present locally) are **not** extra public agents. The public roster is the seven desks above. Other studio crews live in gitignored `projects/` or a consuming site's own agency tree.
 
 ---
 
