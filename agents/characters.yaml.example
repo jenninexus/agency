@@ -1,7 +1,8 @@
 # characters.yaml.example — Agent Portrait Generation Prompts
 #
 # Copy this to agents/characters.yaml (gitignored) and fill in your prompts.
-# Used by: scripts/generate-agent-portrait.ps1 -Agent <Name> -Ratio <square|landscape|portrait_3x4>
+# Generate with Grok Imagine, DALL-E, or Midjourney. This repo does not ship a
+# portrait generator script. See docs/ART-STYLE.md.
 #
 # See docs/ART-STYLE.md for the full aesthetic guide and naming conventions.
 
