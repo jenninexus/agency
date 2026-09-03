@@ -134,3 +134,16 @@ They are complementary:
 - Both share the same color palette vocabulary
 
 See [`../examples/StyleGuard.md`](../examples/StyleGuard.md) for the code-enforcement side.
+
+---
+
+## Optional — Theme Designer (copy hex)
+
+The public [Theme Designer](https://github.com/jenninexus/theme-designer) teaching
+seed has `--brand-accent` in `tokens/brand-tokens.css`. Clone users may copy that
+hex into a desk’s ART-STYLE accent (or a local CSS variable). Never `@import`
+theme-designer or www-theme-kit. This repo stays the portrait SSOT; Theme Designer
+is not a character generator and is not a fourth house token kit.
+
+Discord embed bars are a **copy-hex** side path (`theme-designer/docs/DISCORD-EMBED.md`).
+Do not add a Bot Seed GitHub URL from this page until that repo exists.

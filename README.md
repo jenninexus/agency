@@ -27,8 +27,12 @@ Think of it as staffing a virtual game studio where every agent has a desk in yo
 **Voice Seed is optional.** Agency is the loft-character prose SSOT. Clone
 [Voice Seed](https://github.com/jenninexus/voice-seed) beside this repo only if
 you want a register map so résumé voice, Patreon voice, and loft `chatVoice`
-stay in separate rooms. Do not add it as a git submodule. Full walk:
-[`docs/GETTING-STARTED.md`](docs/GETTING-STARTED.md).
+stay in separate rooms. Do not add it as a git submodule.
+
+**Theme Designer is optional.** Clone
+[Theme Designer](https://github.com/jenninexus/theme-designer) only if you want
+a teaching `--brand-accent` to copy into ART-STYLE / CSS. Never `@import` it
+(or www-theme-kit). Full walk: [`docs/GETTING-STARTED.md`](docs/GETTING-STARTED.md).
 
 ### Why Agent Personas?
 
@@ -133,7 +137,7 @@ See individual agent files in [`agents/`](agents/) for complete profiles, valida
 
 ## Quick Start
 
-Longer clone walk (template → specialty → `projects/` → optional Voice Seed → portraits):
+Longer clone walk (template → specialty → `projects/` → optional Voice Seed / Theme Designer → portraits):
 [`docs/GETTING-STARTED.md`](docs/GETTING-STARTED.md).
 
 ### 1. Clone & Configure
@@ -294,7 +298,7 @@ agency/
 
 | Document | Description |
 |:---------|:------------|
-| [`docs/GETTING-STARTED.md`](docs/GETTING-STARTED.md) | Clone walk: template → specialty → `projects/` → optional Voice Seed |
+| [`docs/GETTING-STARTED.md`](docs/GETTING-STARTED.md) | Clone walk: template → specialty → `projects/` → optional Voice Seed / Theme Designer |
 | [`docs/AGENT-GUIDE.md`](docs/AGENT-GUIDE.md) | Character creation guide with visual design system |
 | [`docs/SCHEDULE.md`](docs/SCHEDULE.md) | Weekly audit schedule and cross-agent coordination |
 | [`docs/OPTIMIZATION-IDEAS.md`](docs/OPTIMIZATION-IDEAS.md) | VS Code, Claude Code & workflow integration strategies |

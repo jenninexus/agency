@@ -31,7 +31,7 @@ Never commit these from your personal machine or a consuming project:
 - `docs/ROADMAP.md` — local next-work (gitignored even though `docs/` is tracked)
 - `Plans/` — `_Active/` + `_Completed/` session checklists (gitignored; never push)
 
-Tracked framework docs are `ART-STYLE.md`, `AGENT-GUIDE.md`, `STUDIO-VOICE.md`, `WORKFLOW.md`, `SCHEDULE.md`, `CHARACTER-DISPLAY.md`, and this file. Planning files are not part of the clone.
+Tracked framework docs are `GETTING-STARTED.md`, `ART-STYLE.md`, `AGENT-GUIDE.md`, `STUDIO-VOICE.md`, `WORKFLOW.md`, `SCHEDULE.md`, `CHARACTER-DISPLAY.md`, and this file. Planning files are not part of the clone.
 
 ## Agent media layers
 
@@ -138,7 +138,7 @@ tracked docs.
 | `jenni-bot` | Discord bot runtime (JN loft consumer) | public README + STYLE-SPEC | `.env`, webhook URLs, `agency-profiles.json` faces |
 | `www-theme-kit` | Brand token kit | **not a public product** | Whole kit is network private infra |
 | `voice-seed` | Writing-register **map** (`agencyAudit` / `agencyDiscordChat`) | optional clone [`jenninexus/voice-seed`](https://github.com/jenninexus/voice-seed) | Never paste vault / Patreon prose here; never a submodule |
-| `theme-designer` | Teaching seed for palettes / `--dash-*` tokens | public Phase 1 — optional | Not a character generator; not www-theme-kit |
+| `theme-designer` | Teaching seed for palettes / `--dash-*` tokens | optional clone [`jenninexus/theme-designer`](https://github.com/jenninexus/theme-designer) | Not a character generator; not www-theme-kit; never `@import` |
 | `bot-seed` | Discord **Gateway** starter (greeter / slash / optional loft JSON) | **no GitHub yet** — optional later clone | Not jenni-bot / martian-bot; not Socials webhooks |
 | `product-design` | Campaign / store board (`/jen:products`) | **no GitHub remote** | Cards in `docs/AGENCY.md` · family map `docs/SEED-FAMILY.md` · registry |
 | www `{site}/storage/agency` | Submodule checkout of agency | bump only | never develop here — see Submodule Rule |
@@ -168,7 +168,7 @@ installed. Those are optional later pairings:
 | Pairing | When | How |
 |---------|------|-----|
 | voice-seed | optional | pointer in STUDIO-VOICE + [`GETTING-STARTED.md`](GETTING-STARTED.md) — agency remains the prose SSOT for loft characters |
-| theme-designer | after it has a desk-accent example | copy-on-update into ART-STYLE tokens — never `@import` |
+| theme-designer | optional | copy `--brand-accent` from the teaching seed into ART-STYLE — never `@import`; not a character generator |
 | bot-seed | after Voice Seed is public **and** that GitHub exists | optional Gateway clone; do not submodule; lore stays here |
 | Discord loft | never required | consuming bot; do not fold jenni-bot into this SKU |
 | JN / MG audit scripts | never | stay in the site repos; this repo ships `audit-template.ps1` only |
