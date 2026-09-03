@@ -44,6 +44,10 @@ docs/ROADMAP.md
 docs/PLANS.md
 docs/NOTES.md
 
+# Session plans (same as socials / pdf-designer local planning). Never push.
+# Use Plans/_Active/ + Plans/_Completed/ + docs/ROADMAP.md instead of a live yaml log.
+Plans/
+
 # Local Foam knowledge graph config
 .foam/
 
