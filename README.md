@@ -268,7 +268,7 @@ agency/
 │       └── .gitkeep
 │
 ├── docs/                              # Framework documentation
-│   ├── GETTING-STARTED.md             # Clone walk + optional Voice Seed
+│   ├── GETTING-STARTED.md             # Clone walk + optional Voice Seed / Theme Designer
 │   ├── ART-STYLE.md                   # Shared aesthetic + per-agent visual identity
 │   ├── STUDIO-VOICE.md                # Shared loft voice
 │   ├── AGENT-GUIDE.md                 # Character creation & design guide
