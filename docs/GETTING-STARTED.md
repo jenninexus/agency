@@ -102,11 +102,28 @@ remote does not have to exist for Agency to work.
 
 ---
 
+## 6. Optional — Theme Designer (copy hex, never import)
+
+Agency portraits already have desk neon in [`ART-STYLE.md`](ART-STYLE.md).
+If you want a teaching CSS starter for the same accent:
+
+```text
+git clone https://github.com/jenninexus/theme-designer.git
+```
+
+Copy `--brand-accent` from `theme-designer/tokens/brand-tokens.css` (or
+`docs/DISCORD-EMBED.md`) into your ART-STYLE / CSS variables. Do **not**
+`@import` theme-designer or www-theme-kit. Do not add a Discord bot GitHub
+URL from this walk — that seed is a separate product and may not exist yet.
+
+---
+
 ## What you never need
 
 | Tool | Why |
 |------|-----|
 | Voice Seed | Optional map only |
+| Theme Designer | Optional copy-hex only — not a character generator |
 | jenni-bot / martian-bot | Live studio Discord apps — not this SKU |
 | www-theme-kit | Private token kit — copy hex into ART-STYLE if you want, never `@import` |
 | Studio network-admin tools | Infra for this studio, not a product dependency |
