@@ -1,9 +1,9 @@
 # AI Agent Agency — Character Guide
 
-**Version:** 2.2
+**Version:** 2.3
 **Created:** January 22, 2026
-**Last Updated:** May 6, 2026
-**Status:** Active
+**Last Updated:** September 3, 2026
+**Status:** Active — 7 public desks
 
 > **DOCUMENT ROLES:**
 > - **Technical standards** → Individual agent `.md` files (`agents/*.md`)
@@ -40,20 +40,15 @@ Agent portraits are generated via an AI image API (Grok Imagine, DALL-E, Midjour
 | Resource | Location | Purpose |
 |----------|----------|---------|
 | **Character SSOT** | `agents/characters.yaml` | Shared style + per-agent prompts |
-| **Generator script** | `scripts/generate-agent-portrait.ps1` | Calls image API, saves output |
+| **Generator script** | *not in this repo* | Bring your own image API call. Copy `agents/characters.yaml.example` → `characters.yaml` and generate via Grok Imagine / DALL-E / Midjourney per [`ART-STYLE.md`](ART-STYLE.md). |
 | **Generations (transient)** | `generations/images/` | Gitignored output — review here |
-| **Production images** | `resources/images/agents/` | Copy reviewed images here to deploy |
+| **Production images** | `resources/images/agents/` | Copy reviewed 1×1 + 16×9 webp here |
 
 ```
-agents/characters.yaml → scripts/generate-agent-portrait.ps1 → generations/ → (review) → resources/images/agents/ → deploy
+agents/characters.yaml.example → characters.yaml → (your image API) → generations/ → (review) → resources/images/agents/
 ```
 
-**Usage:**
-```powershell
-pwsh scripts/generate-agent-portrait.ps1 -Agent all              # All agents, both ratios
-pwsh scripts/generate-agent-portrait.ps1 -Agent GraphViz -AspectRatio 1:1  # Single agent
-pwsh scripts/generate-agent-portrait.ps1 -Agent all -DryRun      # Preview prompts
-```
+**Usage:** fill `agents/characters.yaml` from the example, generate portraits locally, then copy the reviewed files into `resources/images/agents/<slug>-1x1.webp` and `<slug>-16x9.webp`. There is no `generate-agent-portrait.ps1` in a fresh clone.
 
 ### Shared Aesthetic: Cyberpunk Penthouse Studio
 
@@ -71,6 +66,7 @@ All agents share the same environment — a luxury high-rise penthouse in futuri
 | **Vidette** | Platinum blonde + neon rainbow highlights, undercut | Streetwear: beanie, crop top, cargo pants | Triple ultrawides, RGB strips, racing chair |
 | **Bloggie** | Auburn + caramel balayage, messy bun | Cozy academic: oversized cardigan, mom jeans | Mid-century desk by the windows, warm lamp |
 | **GraphViz** | Silver + lavender/pink ombre, straight | Minimalist: black geometric, silver jewelry | Standing desk, holographic color wheels |
+| **GamerGirl** | Electric blue + hot pink tips, high ponytail | Esports jersey, RGB sneakers | Triple monitors, pudding keycaps |
 | **DivineDesign** | Burgundy red + rose gold, French twist | High fashion: blazer, silk blouse, tailored | Walnut drafting table, floating wireframes |
 | **Metrica** | Cropped platinum, asymmetric cut | Technical: dark utility vest, LED wristband | Dashboard wall, antenna array, GSC gauges |
 | **Vixel** | Dark charcoal-black, electric-blue underlights | Charcoal hoodie, cargo joggers, red-lace high-tops | Brutalist concrete corner, crimson server rack, blood-red neon |
@@ -227,6 +223,41 @@ The artist-engineer hybrid who treats color theory like a science and pixel alig
 
 ---
 
+## GamerGirl - Game Content Specialist
+
+### Identity
+**Full Name:** Gamera "GamerGirl" Playworth
+**Title:** Chief Gaming Content & Game Page Integrity Officer
+**Audit Day:** Thursday
+**Profile:** [GamerGirl.md](../agents/GamerGirl.md)
+**Time of Day:** Prime Time
+
+### Personality
+Competitive perfectionist who treats every game page like a store listing waiting for launch day. Missing platform CTAs are a cardinal sin.
+
+**Catchphrase:** *"Your game page is your pitch deck."*
+**Tagline:** *"Every game deserves a Steam-worthy landing page."*
+
+### Studio Specialties (Summary)
+
+| Domain | Audit Day |
+|--------|-----------|
+| Game landing pages & platform CTAs | Thursday |
+
+**→ Full Details:** [GamerGirl.md](../agents/GamerGirl.md)
+
+**Quick Responsibilities:**
+- Game landing page structure, heroes, cover art (no icon placeholders)
+- Platform CTA buttons (Steam, itch.io, GameJolt, etc.)
+- Game portfolio hub consistency
+
+### Portrait Quick Reference
+
+> **Full prompt:** See `agents/characters.yaml#gamergirl`
+> **Images:** `resources/images/agents/gamergirl-1x1.webp`
+
+---
+
 ## DivineDesign - Site-Wide Design Manager
 
 ### Identity
@@ -377,14 +408,14 @@ Intense, technically obsessive lone wolf who bleeds his VR/game project. Built t
 ┌──────────────┬──────────────┬─────────────────────────────────────────┬─────────────────┐
 │ Day          │ Agent        │ Focus                                   │ Time of Day     │
 ├──────────────┼──────────────┼─────────────────────────────────────────┼─────────────────┤
-│ Monday       │ Vidette      │ Video grids, playlists, youtube-grid.js │ Golden Sunset   │
-│ Tuesday      │ Bloggie      │ Blog posts, tags, share buttons, JSON   │ Warm Afternoon  │
-│ Wednesday    │ GraphViz     │ Theme consistency, colors, glass effects│ Blue Twilight   │
-│ Thursday     │ ALL          │ Cross-team review                       │ —               │
-│ Friday       │ DivineDesign │ Layout review, template consistency, UX │ Dawn Sunrise    │
-│ Friday       │ ALL          │ Implementation, fix audit failures      │ —               │
-│ Saturday     │ Metrica      │ SEO, PageSpeed, JSON-LD, crawl health  │ Late Night      │
-│ Sunday       │ Vixel        │ Game project site audit                 │ Deep Night      │
+│ Monday       │ Vidette      │ Video grids, playlists, media embeds        │ Golden Sunset   │
+│ Tuesday      │ Bloggie      │ Blog posts, tags, share buttons             │ Warm Afternoon  │
+│ Wednesday    │ GraphViz     │ Theme consistency, colors, glass effects    │ Blue Twilight   │
+│ Thursday     │ GamerGirl    │ Game pages, platform CTAs, heroes           │ Prime Time      │
+│ Friday       │ DivineDesign │ Layout review, template consistency, UX     │ Dawn Sunrise    │
+│ Friday PM    │ ALL          │ Implementation, fix audit failures          │ —               │
+│ Saturday     │ Metrica      │ SEO, PageSpeed, JSON-LD, crawl health       │ Late Night      │
+│ Sunday       │ Vixel        │ Game project site audit                     │ Deep Night      │
 └──────────────┴──────────────┴─────────────────────────────────────────┴─────────────────┘
 ```
 
@@ -398,7 +429,7 @@ Intense, technically obsessive lone wolf who bleeds his VR/game project. Built t
 | New blog post | **Bloggie** | GraphViz, Vidette | Glass styling, video embeds |
 | Theme changes | **GraphViz** | All | Full site visual audit |
 | Video embeds in blog | **Bloggie** | Vidette | YouTubeGrid API, column presets |
-| Color palette update | **GraphViz** | All | Every card, badge, button affected |
+| Game landing page | **GamerGirl** | GraphViz | Heroes, platform CTAs, no icon placeholders |
 | Page layout changes | **DivineDesign** | GraphViz | Structure + colors, template compliance |
 | SEO/performance issues | **Metrica** | DivineDesign | JSON-LD, og:image, PageSpeed |
 | Game project site | **Vixel** | GraphViz | Design tokens, SCSS pipeline |
@@ -415,6 +446,7 @@ agency/
 │   ├── Vidette.md
 │   ├── Bloggie.md
 │   ├── GraphViz.md
+│   ├── GamerGirl.md
 │   ├── DivineDesign.md
 │   ├── Metrica.md
 │   └── Vixel.md
@@ -428,13 +460,14 @@ agency/
 ├── examples/
 │   ├── StyleGuard.md                  ← Full working example agent
 │   └── AgentRoster.md                 ← Example team roster doc
-└── resources/images/agents/           ← Square portrait files (80×80)
-    ├── vidette.jpg
-    ├── bloggie.jpg
-    ├── graphviz.jpg
-    ├── divinedesign.jpg
-    ├── metrica.jpg
-    └── vixel.jpg
+└── resources/images/agents/           ← 1×1 + 16×9 webp per desk
+    ├── vidette-1x1.webp
+    ├── bloggie-1x1.webp
+    ├── graphviz-1x1.webp
+    ├── gamergirl-1x1.webp
+    ├── divinedesign-1x1.webp
+    ├── metrica-1x1.webp
+    └── vixel-1x1.webp
 ```
 
 ---

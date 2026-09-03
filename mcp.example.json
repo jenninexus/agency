@@ -1,5 +1,5 @@
 {
-  "_comment": "Public sanitized agency registry template. Copy to mcp.json and populate locally for your project. Do not commit populated personal/project configs. VS Code users: also copy .vscode/mcp.example.json to .vscode/mcp.json for the server entry.",
+  "_comment": "Public sanitized agency registry template. Copy to mcp.json and populate locally. profile paths here exist in a fresh clone. audit_script is this repo's template — copy it per desk; live site audits stay in the consuming project. VS Code: also copy .vscode/mcp.example.json to .vscode/mcp.json.",
 
   "server": {
     "type": "stdio",
@@ -9,60 +9,120 @@
   },
 
   "agents": {
-    "styleguard": {
-      "name": "StyleGuard",
+    "vidette": {
+      "name": "Vidette",
       "project": "your-project-name",
-      "emoji": "🎨",
-      "profile": "agents/StyleGuard.md",
-      "specialty": ["CSS variables", "color palettes", "dark/light themes", "WCAG compliance"],
-      "audit_day": "Wednesday",
-      "audit_script": "scripts/audit-styles.ps1",
-      "ssot_docs": ["docs/DESIGN-SYSTEM.md"],
-      "key_files": ["src/css/theme.css", "src/css/variables.css"],
-      "portrait_dir": "storage/gen-ai/output/agents/styleguard/",
-      "claude_skill": null,
-      "note": "Set claude_skill to the skill filename (no extension) once a /skillname.md is created in ~/.claude/skills/"
-    },
-
-    "layoutarchitect": {
-      "name": "LayoutArchitect",
-      "project": "your-project-name",
-      "emoji": "✨",
-      "profile": "agents/LayoutArchitect.md",
-      "specialty": ["page layout", "UX design", "component architecture", "responsive design"],
-      "audit_day": "Friday",
-      "audit_script": null,
-      "ssot_docs": ["docs/UX-STANDARDS.md"],
-      "key_files": ["src/css/layout.css"],
-      "portrait_dir": "storage/gen-ai/output/agents/layoutarchitect/",
+      "emoji": "🎬",
+      "profile": "agents/Vidette.md",
+      "specialty": ["video grids", "playlists", "aspect ratios", "media embeds"],
+      "audit_day": "Monday",
+      "audit_script": "scripts/audit-template.ps1",
+      "ssot_docs": ["docs/AGENT-GUIDE.md"],
+      "key_files": ["src/js/youtube-grid.js", "src/css/media.css"],
+      "portrait_dir": "resources/images/agents/",
       "claude_skill": null
     },
 
-    "metricsguard": {
-      "name": "MetricsGuard",
+    "bloggie": {
+      "name": "Bloggie",
+      "project": "your-project-name",
+      "emoji": "📝",
+      "profile": "agents/Bloggie.md",
+      "specialty": ["blog structure", "tags", "share buttons", "editorial quality"],
+      "audit_day": "Tuesday",
+      "audit_script": "scripts/audit-template.ps1",
+      "ssot_docs": ["docs/AGENT-GUIDE.md"],
+      "key_files": ["blog/", "includes/share-buttons.php"],
+      "portrait_dir": "resources/images/agents/",
+      "claude_skill": null
+    },
+
+    "graphviz": {
+      "name": "GraphViz",
+      "project": "your-project-name",
+      "emoji": "🎨",
+      "profile": "agents/GraphViz.md",
+      "specialty": ["CSS variables", "color palettes", "dark/light themes", "WCAG compliance"],
+      "audit_day": "Wednesday",
+      "audit_script": "scripts/audit-template.ps1",
+      "ssot_docs": ["docs/ART-STYLE.md"],
+      "key_files": ["src/css/theme-variables.css", "src/css/all-themes.css"],
+      "portrait_dir": "resources/images/agents/",
+      "claude_skill": null,
+      "note": "Set claude_skill to the skill filename (no extension) once a command exists in ~/.claude/commands/"
+    },
+
+    "gamergirl": {
+      "name": "GamerGirl",
+      "project": "your-project-name",
+      "emoji": "🎮",
+      "profile": "agents/GamerGirl.md",
+      "specialty": ["game landing pages", "platform CTAs", "hero sections", "portfolio hubs"],
+      "audit_day": "Thursday",
+      "audit_script": "scripts/audit-template.ps1",
+      "ssot_docs": ["docs/AGENT-GUIDE.md"],
+      "key_files": ["game/", "src/css/gamedev-theme.css"],
+      "portrait_dir": "resources/images/agents/",
+      "claude_skill": null
+    },
+
+    "divinedesign": {
+      "name": "DivineDesign",
+      "project": "your-project-name",
+      "emoji": "✨",
+      "profile": "agents/DivineDesign.md",
+      "specialty": ["page layout", "UX design", "visual hierarchy", "responsive design"],
+      "audit_day": "Friday",
+      "audit_script": "scripts/audit-template.ps1",
+      "ssot_docs": ["docs/AGENT-GUIDE.md"],
+      "key_files": ["src/css/layout.css", "src/css/custom.css"],
+      "portrait_dir": "resources/images/agents/",
+      "claude_skill": null
+    },
+
+    "metrica": {
+      "name": "Metrica",
       "project": "your-project-name",
       "emoji": "📊",
-      "profile": "agents/MetricsGuard.md",
+      "profile": "agents/Metrica.md",
       "specialty": ["SEO metadata", "JSON-LD", "Core Web Vitals", "PageSpeed", "sitemap"],
       "audit_day": "Saturday",
-      "audit_script": "scripts/audit-seo.ps1",
-      "ssot_docs": ["docs/SEO-STANDARDS.md"],
+      "audit_script": "scripts/audit-template.ps1",
+      "ssot_docs": ["examples/seo-command.md"],
       "key_files": ["includes/head.php", "sitemap.xml"],
-      "portrait_dir": "storage/gen-ai/output/agents/metricsguard/",
+      "portrait_dir": "resources/images/agents/",
+      "claude_skill": null
+    },
+
+    "vixel": {
+      "name": "Vixel",
+      "project": "your-project-name",
+      "emoji": "🕹️",
+      "profile": "agents/Vixel.md",
+      "specialty": ["VR/game project site", "design tokens", "devlog pipeline"],
+      "audit_day": "Sunday",
+      "audit_script": "scripts/audit-template.ps1",
+      "ssot_docs": ["docs/AGENT-GUIDE.md"],
+      "key_files": ["src/scss/", "devlog/"],
+      "portrait_dir": "resources/images/agents/",
       "claude_skill": null
     }
   },
 
   "untracked_agents": {
-    "_comment": "Agents without a dedicated Claude skill (/skillname). Add a skill file to ~/.claude/skills/<name>.md to promote them.",
-    "needs_skill": ["styleguard", "layoutarchitect", "metricsguard"],
+    "_comment": "Agents without a dedicated Claude skill. Add a skill file to ~/.claude/commands/<name>.md (or your host's skill dir) to promote them.",
+    "needs_skill": ["vidette", "bloggie", "graphviz", "gamergirl", "divinedesign", "metrica", "vixel"],
     "has_skill": []
   },
 
   "schedule": {
-    "wednesday": { "agent": "styleguard",      "focus": "Color compliance, theme consistency, accessibility" },
-    "friday":    { "agent": "layoutarchitect", "focus": "Layout review, component consistency" },
-    "saturday":  { "agent": "metricsguard",    "focus": "SEO metadata, PageSpeed, og:image, crawl health" }
+    "monday":    { "agent": "vidette",      "focus": "Video grids, playlists, aspect ratios" },
+    "tuesday":   { "agent": "bloggie",      "focus": "Blog structure, tags, share buttons" },
+    "wednesday": { "agent": "graphviz",     "focus": "Color compliance, theme consistency, accessibility" },
+    "thursday":  { "agent": "gamergirl",    "focus": "Game landing pages, platform CTAs, heroes" },
+    "friday":    { "agent": "divinedesign", "focus": "Layout review, component consistency" },
+    "saturday":  { "agent": "metrica",      "focus": "SEO metadata, PageSpeed, og:image, crawl health" },
+    "sunday":    { "agent": "vixel",        "focus": "VR/game project site, tokens, devlog" }
   },
 
   "documentation": {

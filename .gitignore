@@ -104,6 +104,12 @@ projects/*/
 archive/
 _archive/
 
+# Extra studio portraits (not the public 7-desk roster). Bytes may stay on disk.
+resources/images/agents/cypher-*
+resources/images/agents/missioncontrol-*
+resources/images/agents/orbital-pipe-*
+resources/images/agents/graph-viz-mg-*
+
 # ── TRACKED FILES (for reference) ────────────────────────────────────────────
 # README.md, package.json, .env.example, .gitattributes
 # .github/copilot-instructions.md
@@ -115,4 +121,5 @@ _archive/
 # projects/README.md  (concept doc only — project subdirs are local/gitignored)
 # docs/, templates/, examples/, scripts/
 # resources/images/banner.jpg
+# resources/images/agents/{vidette,bloggie,graphviz,gamergirl,divinedesign,metrica,vixel}-*.webp
 # agency.html.example  ← public roster dashboard template (copy → agency.html, customize)
