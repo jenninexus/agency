@@ -84,9 +84,11 @@ Webhook URLs stay in socials `.env` / `storage/docs/DISCORD.md` (gitignored).
 | **Agency audit** | `agents/*.md` | Agent character (site QA) |
 | **Agency Discord chat** | bot `agency-profiles.json` + agent `chatVoice` | Agent character (community) |
 
-**Optional writing-register map:** clone `jenninexus/voice-seed` **after that repo is public**.
-Until then, this file plus `agents/*.md` are the public voice SSOT for loft desks.
-Do not treat Voice Seed, a local `C:\` checkout, or sys-admin as a clone dependency.
+**Optional writing-register map:** [Voice Seed](https://github.com/jenninexus/voice-seed).
+Clone it *beside* this repo if you want an index so résumé voice, Patreon voice, and
+loft `chatVoice` stay in separate rooms. This file plus `agents/*.md` remain the
+**prose SSOT** for loft desks. Do not add Voice Seed as a git submodule. Agency
+works without it. Studio network-admin tools are not a clone dependency.
 
 ---
 
