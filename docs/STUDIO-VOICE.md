@@ -94,7 +94,7 @@ Do not treat Voice Seed, a local `C:\` checkout, or sys-admin as a clone depende
 
 | Project | How agency is used |
 |---------|-------------------|
-| **JenniNexus** | Full 6–7 agent roster; overrides in `projects/jenninexus/` or JN `storage/agency/projects/jenninexus/` |
+| **JenniNexus** | Full 7-desk roster; overrides in `projects/jenninexus/` or the consuming site's gitignored `projects/` |
 | **Martian Games** | Separate MG agency (MissionControl / GlassViz / OrbitalPipe) — not a JN submodule extension |
 | **Jerry VR** | Vixel primary; Jerry-specific rules in `projects/jerry-vr/Vixel.md` |
 | **Socials** | Pipeline/blog drafting may point at Bloggie override under `socials/storage/agency/` (local clone) |

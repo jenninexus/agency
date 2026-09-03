@@ -6,7 +6,7 @@ This repository is public and project-agnostic. Treat tracked files as framework
 
 Commit these when they are generic and reusable:
 
-- `mcp.example.json` - sanitized agent registry template.
+- `mcp.example.json` - sanitized agent registry template. **`profile` (and `audit_script`) paths must exist in a fresh clone** — point at `agents/*.md` and `scripts/audit-template.ps1`, not consuming-site files.
 - `.vscode/mcp.example.json` - minimal VS Code MCP server entry.
 - `agents/*.md` - public-safe showcase or framework agents.
 - `templates/*.md` - reusable agent/profile templates.
@@ -50,6 +50,8 @@ resources/images/agents/*-1x1.webp
 resources/images/agents/*-16x9.webp
 resources/images/banner.jpg
 ```
+
+The public roster is the **seven** desks (Vidette, Bloggie, GraphViz, GamerGirl, DivineDesign, Metrica, Vixel). Extra studio portraits (`cypher-*`, `missioncontrol-*`, `orbital-pipe-*`, `graph-viz-mg-*`) are gitignored — keep bytes locally if you have them; they are not extra public agents.
 
 Private generation dumps stay in the **consuming site** gitignore (never this public tree). Do not commit machine-absolute Favs paths here.
 

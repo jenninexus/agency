@@ -9,7 +9,7 @@ This repo (`agency`) can be used in two ways:
 | **Standalone** | Clone directly and use as-is — edit agent files, run audits, use MCP tools |
 | **Submodule** | Embed inside a parent project repo; parent pins a specific commit |
 
-If used as a submodule, always edit in the **canonical agency clone**, then bump the pointer in the parent repo. Never edit inside the submodule path directly.
+If used as a submodule, always edit in the **canonical agency clone**, then bump the pointer in the parent repo. Never edit inside the submodule path directly — including a consuming site checkout such as `{site}/storage/agency`. Dirty files there are either (a) a framework change that belongs in the canonical clone, or (b) a project override that belongs in `projects/<name>/`.
 
 ---
 
@@ -114,7 +114,8 @@ agents/
 ├── GamerGirl.md
 ├── GraphViz.md
 ├── Metrica.md
-└── Vidette.md
+├── Vidette.md
+└── Vixel.md
 ```
 
 These are tracked public profiles. Keep them generic enough for the public framework. Use `templates/AGENT-TEMPLATE.md` as a starting point.
