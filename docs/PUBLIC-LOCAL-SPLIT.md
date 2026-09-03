@@ -139,7 +139,7 @@ tracked docs.
 | `www-theme-kit` | Brand token kit | **not a public product** | Whole kit is network private infra |
 | `voice-seed` | Writing-register **map** (`agencyAudit` / `agencyDiscordChat`) | optional clone [`jenninexus/voice-seed`](https://github.com/jenninexus/voice-seed) | Never paste vault / Patreon prose here; never a submodule |
 | `theme-designer` | Teaching seed for palettes / `--dash-*` tokens | optional clone [`jenninexus/theme-designer`](https://github.com/jenninexus/theme-designer) | Not a character generator; not www-theme-kit; never `@import` |
-| `bot-seed` | Discord **Gateway** starter (greeter / slash / optional loft JSON) | **no GitHub yet** — optional later clone | Not jenni-bot / martian-bot; not Socials webhooks |
+| `bot-seed` | Discord **Gateway** starter (greeter / slash / optional loft JSON) | optional clone [`jenninexus/bot-seed`](https://github.com/jenninexus/bot-seed) | Not jenni-bot / martian-bot; not Socials webhooks |
 | `product-design` | Campaign / store board (`/jen:products`) | **no GitHub remote** | Cards in `docs/AGENCY.md` · family map `docs/SEED-FAMILY.md` · registry |
 | www `{site}/storage/agency` | Submodule checkout of agency | bump only | never develop here — see Submodule Rule |
 
@@ -169,7 +169,7 @@ installed. Those are optional later pairings:
 |---------|------|-----|
 | voice-seed | optional | pointer in STUDIO-VOICE + [`GETTING-STARTED.md`](GETTING-STARTED.md) — agency remains the prose SSOT for loft characters |
 | theme-designer | optional | copy `--brand-accent` from the teaching seed into ART-STYLE — never `@import`; not a character generator |
-| bot-seed | after Voice Seed is public **and** that GitHub exists | optional Gateway clone; do not submodule; lore stays here |
+| bot-seed | optional | clone [`jenninexus/bot-seed`](https://github.com/jenninexus/bot-seed); do not submodule; lore stays here |
 | Discord loft | never required | consuming bot; do not fold jenni-bot into this SKU |
 | JN / MG audit scripts | never | stay in the site repos; this repo ships `audit-template.ps1` only |
 

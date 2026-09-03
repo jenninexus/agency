@@ -146,4 +146,4 @@ theme-designer or www-theme-kit. This repo stays the portrait SSOT; Theme Design
 is not a character generator and is not a fourth house token kit.
 
 Discord embed bars are a **copy-hex** side path (`theme-designer/docs/DISCORD-EMBED.md`).
-Do not add a Bot Seed GitHub URL from this page until that repo exists.
+Optional Discord runtime: [Bot Seed](https://github.com/jenninexus/bot-seed). Do not submodule it.
