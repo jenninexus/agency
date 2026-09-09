@@ -107,8 +107,8 @@ agents:
 
 Copy [`../agents/characters.yaml.example`](../agents/characters.yaml.example) to
 `agents/characters.yaml` (gitignored), fill the prompts, and generate with
-Grok Imagine / DALL-E / Midjourney. This public repo does not include a
-portrait generator script.
+[jenninexus/gen-ai](https://github.com/jenninexus/gen-ai) (`GROK_API_KEY`) or DALL-E / Midjourney.
+This public repo does not include a portrait generator script.
 
 ---
 
