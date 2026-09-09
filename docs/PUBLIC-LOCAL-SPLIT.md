@@ -159,7 +159,7 @@ A stranger who clones `jenninexus/agency` should be able to:
 
 1. Copy `templates/AGENT-TEMPLATE.md` → `agents/YourAgent.md`
 2. Specialize the desk (metrics, theme, layout, content, media) using the five core audit areas in the README
-3. Copy `agents/characters.yaml.example` → `characters.yaml` and stylize portraits with Grok Imagine / DALL-E / Midjourney per `docs/ART-STYLE.md`
+3. Copy `agents/characters.yaml.example` → `characters.yaml` and stylize portraits with [gen-ai](https://github.com/jenninexus/gen-ai) (`GROK_API_KEY`) or DALL-E / Midjourney per `docs/ART-STYLE.md`
 4. Keep secrets and live site paths in `projects/<their-project>/`
 
 They should **not** need voice-seed, theme-designer, bot-seed, jenni-bot, or www-theme-kit
