@@ -35,12 +35,12 @@ The agent system is self-contained within `agents/` and connects to:
 
 ### Generation Pipeline
 
-Agent portraits are generated via an AI image API (Grok Imagine, DALL-E, Midjourney, etc.). The SSOT for all prompts is `agents/characters.yaml`.
+Agent portraits are generated via an AI image API. Preferred studio path: [jenninexus/gen-ai](https://github.com/jenninexus/gen-ai) + `GROK_API_KEY` (optional `XAI_MGMT_KEY` / `XAI_TEAM_ID` for billing only). DALL-E / Midjourney also work. The prompt SSOT is `agents/characters.yaml`.
 
 | Resource | Location | Purpose |
 |----------|----------|---------|
 | **Character SSOT** | `agents/characters.yaml` | Shared style + per-agent prompts |
-| **Generator script** | *not in this repo* | Bring your own image API call. Copy `agents/characters.yaml.example` → `characters.yaml` and generate via Grok Imagine / DALL-E / Midjourney per [`ART-STYLE.md`](ART-STYLE.md). |
+| **Generator script** | *not in this repo* | Copy `agents/characters.yaml.example` → `characters.yaml`. Studio: `node generate.mjs` in [gen-ai](https://github.com/jenninexus/gen-ai) with `--characters` pointed here. Env names: `GROK_API_KEY`, `XAI_MGMT_KEY`, `XAI_TEAM_ID` (see gen-ai `.env.example`). |
 | **Generations (transient)** | `generations/images/` | Gitignored output — review here |
 | **Production images** | `resources/images/agents/` | Copy reviewed 1×1 + 16×9 webp here |
 

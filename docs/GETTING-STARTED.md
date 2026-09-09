@@ -68,8 +68,9 @@ This repo does **not** ship a portrait generator script.
 1. Copy [`agents/characters.yaml.example`](../agents/characters.yaml.example)
    → `agents/characters.yaml` (gitignored).
 2. Fill prompts using [`ART-STYLE.md`](ART-STYLE.md) (shared penthouse + accent neon).
-3. Generate with **Grok Imagine**, DALL-E, or Midjourney — any image model that
-   accepts the yaml prompts.
+3. Generate with **Grok Imagine** via [`jenninexus/gen-ai`](https://github.com/jenninexus/gen-ai)
+   (`GROK_API_KEY` in that clone’s `.env`; optional `XAI_MGMT_KEY` + `XAI_TEAM_ID` for billing),
+   or any other image API (DALL-E, Midjourney) that accepts the yaml prompts.
 4. Drop an 80×80 (or 1×1 webp) at `resources/images/agents/<name>-1x1.webp`
    for the README cards.
 

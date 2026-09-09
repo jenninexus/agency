@@ -315,9 +315,9 @@ agency/
 
 ### Portrait Generation
 
-Agent portraits are generated via AI image APIs (xAI Grok Imagine, DALL-E, Midjourney). Place 80×80 square portraits at `resources/images/agents/<name>.jpg` to populate the showcase cards above.
+Agent portraits are generated via AI image APIs. Studio default is [jenninexus/gen-ai](https://github.com/jenninexus/gen-ai) (`GROK_API_KEY` in **that** clone’s `.env` — never commit keys here). Place 80×80 square portraits at `resources/images/agents/<name>.jpg` to populate the showcase cards above.
 
-See [`docs/ART-STYLE.md`](docs/ART-STYLE.md) for the shared aesthetic, per-agent accent colors, and prompt conventions. Copy [`agents/characters.yaml.example`](agents/characters.yaml.example) to `agents/characters.yaml` (gitignored) and generate with Grok Imagine / DALL-E / Midjourney. This repo does not ship a portrait generator script.
+See [`docs/ART-STYLE.md`](docs/ART-STYLE.md) for the shared aesthetic, per-agent accent colors, and prompt conventions. Copy [`agents/characters.yaml.example`](agents/characters.yaml.example) to `agents/characters.yaml` (gitignored) and generate with gen-ai / DALL-E / Midjourney. This repo does not ship a portrait generator script.
 
 ---
 
