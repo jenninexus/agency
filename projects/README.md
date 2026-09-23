@@ -68,9 +68,5 @@ repository:
 - Repository: `https://github.com/monofinitystudio/martiangames.com`
 - Workflow: `<mg-repo>/storage/docs/AGENCY.md`
 - Project command: `<mg-repo>/.claude/commands/mg-agency.md`
-- Global route on Jenni's workstation: `/mg-agents`
+- Optional site-specific route: `/mg-agents`
 - Profiles/graph: `mg/storage/agency/agents/` and `mg/storage/agency/AGENT-GRAPH.md`
-
-The former local scratch tree is archived at
-`projects/_archive/martiangames-2026-09-08` and remains gitignored. It is history, not a runtime or
-documentation dependency.
