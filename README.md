@@ -24,6 +24,16 @@ The **AI Agent Agency** is a framework for organizing AI-assisted development ar
 
 Think of it as staffing a virtual game studio where every agent has a desk in your penthouse suite, and they *never* approve white backgrounds.
 
+### Where this framework is used
+
+| Surface | Relationship | Owns the live configuration |
+|:--------|:-------------|:----------------------------|
+| This public repository | Seven showcase desks, reusable templates, MCP example, and an audit template | `agents/`, `templates/`, `mcp.example.json`, `scripts/` |
+| JenniNexus.com | Optional submodule consumer of the seven-desk loft | The site's `scripts/audits/`, page/API, and gitignored `storage/agency/projects/jenninexus/` overrides |
+| MartianGames.com | Independent Agency-inspired roster, **not** a submodule or an eighth public desk | The MG site's `storage/agency/` three officers, `presenters/`, `storage/gen-ai/`, and `scripts/audits/` |
+
+The public Metrica profile describes the JenniNexus showcase role. It does not make Metrica an active MG officer; any MG metrics role needs its own approved profile, data contract, and Atlas/API wiring in the MG repository. See [the public/local boundary](docs/PUBLIC-LOCAL-SPLIT.md).
+
 **Voice Seed is optional.** Agency is the loft-character prose SSOT. Clone
 [Voice Seed](https://github.com/jenninexus/voice-seed) beside this repo only if
 you want a register map so résumé voice, Patreon voice, and loft `chatVoice`
@@ -133,7 +143,7 @@ The `agents/` directory includes a fully-built example team from a real producti
 
 > **Friday PM:** Implementation day — all agents collaborate to fix flagged issues.
 
-> Portrait images go in `resources/images/agents/<name>.jpg` (80×80 square). See [`docs/ART-STYLE.md`](docs/ART-STYLE.md) for generation conventions.
+> Public portrait masters use `resources/images/agents/<name>-1x1.webp` and `<name>-16x9.webp`; the table displays the square variant at 80×80. See [`docs/ART-STYLE.md`](docs/ART-STYLE.md) for generation conventions.
 
 See individual agent files in [`agents/`](agents/) for complete profiles, validation checklists, and red flags.
 
@@ -315,7 +325,7 @@ agency/
 
 ### Portrait Generation
 
-Agent portraits are generated via AI image APIs. Studio default is [jenninexus/gen-ai](https://github.com/jenninexus/gen-ai) (`GROK_API_KEY` in **that** clone’s `.env` — never commit keys here). Place 80×80 square portraits at `resources/images/agents/<name>.jpg` to populate the showcase cards above.
+Agent portraits are generated via AI image APIs. Studio default is [jenninexus/gen-ai](https://github.com/jenninexus/gen-ai) (`GROK_API_KEY` in **that** clone’s `.env` — never commit keys here). Publish square `resources/images/agents/<name>-1x1.webp` and landscape `<name>-16x9.webp` masters; the showcase cards display the square variant at 80×80.
 
 See [`docs/ART-STYLE.md`](docs/ART-STYLE.md) for the shared aesthetic, per-agent accent colors, and prompt conventions. Copy [`agents/characters.yaml.example`](agents/characters.yaml.example) to `agents/characters.yaml` (gitignored) and generate with gen-ai / DALL-E / Midjourney. This repo does not ship a portrait generator script.
 
