@@ -141,11 +141,14 @@ tracked docs.
 | `theme-designer` | Teaching seed for palettes / `--dash-*` tokens | optional clone [`jenninexus/theme-designer`](https://github.com/jenninexus/theme-designer) | Not a character generator; not www-theme-kit; never `@import` |
 | `bot-seed` | Discord **Gateway** starter (greeter / slash / optional loft JSON) | optional clone [`jenninexus/bot-seed`](https://github.com/jenninexus/bot-seed) | Not jenni-bot / martian-bot; not Socials webhooks |
 | `product-design` | Campaign / store board (`/jen:products`) | **no GitHub remote** | Cards in `docs/AGENCY.md` · family map `docs/SEED-FAMILY.md` · registry |
-| www `{site}/storage/agency` | Submodule checkout of agency | bump only | never develop here — see Submodule Rule |
+| JenniNexus `{site}/storage/agency` | Submodule checkout of agency | bump only after preserving local edits | live audits and site pages stay in the JN site — see Submodule Rule |
 
-**Martian Games** runs its own 3-agent roster (MissionControl / GlassViz / OrbitalPipe)
-under the MG site tree. It is **not** a submodule extension of the JN 7-pack. Local
-pointers may live in gitignored `projects/martiangames/`.
+**Martian Games** runs its own 3-officer roster (MissionControl / GlassViz / OrbitalPipe)
+under the MG site tree. It is **not** a submodule extension of the JN 7-pack. MG
+also has a separate supporter-presenter class (Auri / Vyra); presenters are not
+officers. The public Metrica profile is not an MG roster entry. MG-specific metrics
+work belongs in its own site-owned profile and audit/data contract if approved.
+Local history pointers may live in gitignored `projects/martiangames/`.
 
 When editing loft pin / chat: change **jenni-bot** + **socials** drafts. When editing
 character lore: change **agency** `agents/*.md`, then sync `chatVoice` samples in the
