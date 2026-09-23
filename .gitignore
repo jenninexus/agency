@@ -4,9 +4,8 @@
 
 # ── Generated / runtime ──────────────────────────────────────────────────────
 
-# Audit reports (generated locally per run)
-audits/*.md
-audits/*.log
+# Audit reports (generated locally per run, regardless of format)
+audits/*
 !audits/.gitkeep
 
 # Node
@@ -30,8 +29,8 @@ agency.code-workspace
 
 # Environment vars (local paths and secrets)
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 
 # ── Local-only tooling ────────────────────────────────────────────────────────
 
@@ -96,13 +95,14 @@ desktop.ini
 
 # ── Project-specific agent directories (local only) ──────────────────────────
 
-# Individual project dirs live locally — not published to the public repo.
+# Individual project content lives locally — not published to the public repo.
 # Only projects/README.md is tracked. Add your own projects/ subdirs locally.
-projects/*/
+projects/*
+!projects/README.md
 
 # Archive directories (local only — never push)
-archive/
-_archive/
+/archive/
+/_archive/
 
 # Extra studio portraits (not the public 7-desk roster). Bytes may stay on disk.
 resources/images/agents/cypher-*

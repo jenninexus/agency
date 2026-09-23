@@ -21,11 +21,11 @@ Never commit these from your personal machine or a consuming project:
 - `mcp.json`
 - `.vscode/mcp.json`
 - `.config/`
-- `.env`, `.env.local`, `.env.*.local`
-- `projects/<project-name>/`
+- `.env` and `.env.*` (except the tracked, values-free `.env.example`)
+- `projects/<project-name>/` and other project-local entries under `projects/` (except `projects/README.md`)
 - `agents/characters.yaml`
 - `generations/`
-- `audits/*.md`
+- `audits/*` (except `.gitkeep`)
 - `agency.html`
 - `resources/README.local.md` — machine paths to more agent images / videos / Favs
 - `docs/ROADMAP.md` — local next-work (gitignored even though `docs/` is tracked)
@@ -68,7 +68,7 @@ If an agent profile names real project pages, local paths, private audit scripts
 projects/<project-name>/
 ```
 
-That directory is gitignored (`projects/*/`). If a `projects/<name>/README.md` was force-tracked, `git rm --cached` it — project rosters do not belong on origin. Public origin agents in `agents/` should describe reusable responsibilities and audit patterns, not one project's private implementation. The public showcase is the **seven** desks in `agents/*.md` (Vidette, Bloggie, GraphViz, GamerGirl, DivineDesign, Metrica, Vixel). Extra portraits for other studios (if still in `resources/images/agents/`) are not extra public agents.
+That content is gitignored (`projects/*`, with only `projects/README.md` excepted). If a `projects/<name>/README.md` was force-tracked, `git rm --cached` it — project rosters do not belong on origin. Public origin agents in `agents/` should describe reusable responsibilities and audit patterns, not one project's private implementation. The public showcase is the **seven** desks in `agents/*.md` (Vidette, Bloggie, GraphViz, GamerGirl, DivineDesign, Metrica, Vixel). Extra portraits for other studios (if still in `resources/images/agents/`) are not extra public agents.
 
 ## Submodule Rule
 
