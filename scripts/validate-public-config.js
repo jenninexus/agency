@@ -6,9 +6,9 @@ const { execFileSync } = require("child_process");
 const root = path.resolve(__dirname, "..");
 const failures = [];
 
-function trackedFilesUnder(pathspec) {
+function trackedFiles() {
   try {
-    return execFileSync("git", ["ls-files", "--", pathspec], {
+    return execFileSync("git", ["ls-files"], {
       cwd: root,
       encoding: "utf8"
     })
@@ -16,7 +16,7 @@ function trackedFilesUnder(pathspec) {
       .map((entry) => entry.replace(/\\/g, "/"))
       .filter(Boolean);
   } catch (error) {
-    failures.push(`unable to inspect tracked ${pathspec} paths (${error.message})`);
+    failures.push(`unable to inspect tracked files (${error.message})`);
     return [];
   }
 }
@@ -90,8 +90,10 @@ const forbiddenPatterns = [
 ];
 
 const allowedContentPrefixes = ["content/examples/", "content/templates/"];
-for (const rel of trackedFilesUnder("content")) {
-  if (!allowedContentPrefixes.some((prefix) => rel.startsWith(prefix))) {
+for (const rel of trackedFiles()) {
+  const normalizedRel = rel.toLowerCase();
+  if (!normalizedRel.startsWith("content/")) continue;
+  if (!allowedContentPrefixes.some((prefix) => normalizedRel.startsWith(prefix))) {
     failures.push(
       `${rel}: personalized content must stay local; public content is limited to content/examples/ and content/templates/`
     );
