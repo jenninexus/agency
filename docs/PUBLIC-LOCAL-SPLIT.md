@@ -23,6 +23,7 @@ Never commit these from your personal machine or a consuming project:
 - `.config/`
 - `.env` and `.env.*` (except the tracked, values-free `.env.example`)
 - `projects/<project-name>/` and other project-local entries under `projects/` (except `projects/README.md`)
+- `content/**` (except deliberately reusable, anonymized files under `content/examples/` and `content/templates/`)
 - `agents/characters.yaml`
 - `generations/`
 - `audits/*` (except `.gitkeep`)
@@ -32,6 +33,8 @@ Never commit these from your personal machine or a consuming project:
 - `Plans/` — `_Active/` + `_Completed/` session checklists (gitignored; never push)
 
 Tracked framework docs are `GETTING-STARTED.md`, `ART-STYLE.md`, `AGENT-GUIDE.md`, `STUDIO-VOICE.md`, `WORKFLOW.md`, `SCHEDULE.md`, `CHARACTER-DISPLAY.md`, and this file. Planning files are not part of the clone.
+
+JenniNexus and Martian Games drafts, queues, devlogs, publishing records, campaign copy, and other personalized material belong in the private `socials` repository or another local/private owner. Do not copy them into this repository's `content/` tree. The validator rejects force-added `content/` paths unless they are below `content/examples/` or `content/templates/`.
 
 ## Agent media layers
 
