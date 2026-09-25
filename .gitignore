@@ -84,6 +84,14 @@ resources/paths.local.yaml
 # Detailed character prompt YAML — stays local (use .env + local copy)
 agents/characters.yaml
 
+# Studio/personal publishing content stays local. Only deliberately reusable
+# examples and templates may enter this public repository.
+/content/*
+!/content/examples/
+!/content/examples/**
+!/content/templates/
+!/content/templates/**
+
 # ── OS / editor cruft ────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db

@@ -1,9 +1,25 @@
 #!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
+const { execFileSync } = require("child_process");
 
 const root = path.resolve(__dirname, "..");
 const failures = [];
+
+function trackedFilesUnder(pathspec) {
+  try {
+    return execFileSync("git", ["ls-files", "--", pathspec], {
+      cwd: root,
+      encoding: "utf8"
+    })
+      .split(/\r?\n/)
+      .map((entry) => entry.replace(/\\/g, "/"))
+      .filter(Boolean);
+  } catch (error) {
+    failures.push(`unable to inspect tracked ${pathspec} paths (${error.message})`);
+    return [];
+  }
+}
 
 function readJson(rel) {
   const full = path.join(root, rel);
@@ -72,6 +88,15 @@ const forbiddenPatterns = [
   { re: /ssh_host/i, label: "ssh_host" },
   { re: /64\.23\./, label: "droplet IP fragment" }
 ];
+
+const allowedContentPrefixes = ["content/examples/", "content/templates/"];
+for (const rel of trackedFilesUnder("content")) {
+  if (!allowedContentPrefixes.some((prefix) => rel.startsWith(prefix))) {
+    failures.push(
+      `${rel}: personalized content must stay local; public content is limited to content/examples/ and content/templates/`
+    );
+  }
+}
 
 for (const rel of files) {
   if (!fs.existsSync(path.join(root, rel))) {
