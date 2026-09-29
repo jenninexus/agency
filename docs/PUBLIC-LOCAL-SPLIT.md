@@ -146,12 +146,15 @@ tracked docs.
 | `product-design` | Campaign / store board (`/jen:products`) | **no GitHub remote** | Cards in `docs/AGENCY.md` · family map `docs/SEED-FAMILY.md` · registry |
 | JenniNexus `{site}/storage/agency` | Submodule checkout of agency | bump only after preserving local edits | live audits and site pages stay in the JN site — see Submodule Rule |
 
-**Martian Games** runs its own 3-officer roster (MissionControl / GlassViz / OrbitalPipe)
-under the MG site tree. It is **not** a submodule extension of the JN 7-pack. MG
+**Martian Games** runs its own 4-officer roster (MissionControl / GlassViz / OrbitalPipe /
+Metrica) under the MG site tree. It is **not** a submodule extension of the JN 7-pack. MG
 also has a separate supporter-presenter class (Auri / Vyra); presenters are not
-officers. The public Metrica profile is not an MG roster entry. MG-specific metrics
-work belongs in its own site-owned profile and audit/data contract if approved.
+officers. MG's Metrica is a site-owned profile with its own audit/data contract; the
+public Metrica profile here stays the JenniNexus showcase desk.
 Local history pointers may live in gitignored `projects/martiangames/`.
+
+Where lore lives (public agents here, per-project overlays in each consumer): the
+[README § Lore SSOT](../README.md#lore-ssot).
 
 When editing loft pin / chat: change **jenni-bot** + **socials** drafts. When editing
 character lore: change **agency** `agents/*.md`, then sync `chatVoice` samples in the
