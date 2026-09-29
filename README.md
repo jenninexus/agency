@@ -30,9 +30,27 @@ Think of it as staffing a virtual game studio where every agent has a desk in yo
 |:--------|:-------------|:----------------------------|
 | This public repository | Seven showcase desks, reusable templates, MCP example, and an audit template | `agents/`, `templates/`, `mcp.example.json`, `scripts/` |
 | JenniNexus.com | Optional submodule consumer of the seven-desk loft | The site's `scripts/audits/`, page/API, and gitignored `storage/agency/projects/jenninexus/` overrides |
-| MartianGames.com | Independent Agency-inspired roster, **not** a submodule or an eighth public desk | The MG site's `storage/agency/` three officers, `presenters/`, `storage/gen-ai/`, and `scripts/audits/` |
+| MartianGames.com | Independent Agency-inspired roster, **not** a submodule or an eighth public desk | The MG site's `storage/agency/` four officers, `presenters/`, `storage/gen-ai/`, and `scripts/audits/` |
 
-The public Metrica profile describes the JenniNexus showcase role. It does not make Metrica an active MG officer; any MG metrics role needs its own approved profile, data contract, and Atlas/API wiring in the MG repository. See [the public/local boundary](docs/PUBLIC-LOCAL-SPLIT.md).
+The public Metrica profile describes the JenniNexus showcase role. MG runs its own site-owned Metrica officer profile (reusing the public portrait by owner approval); its role, data contract, and Atlas/API wiring live in the MG repository, not here. See [the public/local boundary](docs/PUBLIC-LOCAL-SPLIT.md).
+
+### Lore SSOT
+
+**This README section is the one lore pointer other repos link to.**
+
+- **This public repo holds the default/public agents only:** the seven desks in [`agents/*.md`](agents/)
+  plus the shared loft attributes in [`docs/STUDIO-VOICE.md`](docs/STUDIO-VOICE.md). Personality,
+  role, audit pattern and `### Discord chatVoice` for those seven are edited here and nowhere else.
+- **Project-specific customization lives in each consuming project**, as an overlay under
+  `<project>/storage/agency/` that names the public agent it extends (for example "extends public
+  `agents/Bloggie.md`") and adds only that project's paths, audits, scores and lore. In a submodule
+  checkout the overlay goes in the gitignored `storage/agency/projects/<project>/`.
+- **Never fork a whole copy of the lore.** A consumer that needs a desk's personality links to this
+  repo; it does not paste `agents/*.md` into its own tree. An independent roster (Martian Games'
+  officers, Jerry VR's Vixel director) is that project's own lore, owned there, and never copied back here.
+- Runtime catalogues (Discord faces, `chatVoice` samples in a bot's JSON) are consumers of this lore,
+  not second sources. Writing-register routing is the optional
+  [Voice Seed](https://github.com/jenninexus/voice-seed) `registry.json`.
 
 **Voice Seed is optional.** Agency is the loft-character prose SSOT. Clone
 [Voice Seed](https://github.com/jenninexus/voice-seed) beside this repo only if
