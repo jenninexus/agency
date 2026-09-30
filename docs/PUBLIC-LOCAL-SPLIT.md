@@ -144,14 +144,11 @@ tracked docs.
 | `theme-designer` | Teaching seed for palettes / `--dash-*` tokens | optional clone [`jenninexus/theme-designer`](https://github.com/jenninexus/theme-designer) | Not a character generator; not www-theme-kit; never `@import` |
 | `bot-seed` | Discord **Gateway** starter (greeter / slash / optional loft JSON) | optional clone [`jenninexus/bot-seed`](https://github.com/jenninexus/bot-seed) | Not jenni-bot / martian-bot; not Socials webhooks |
 | `product-design` | Campaign / store board (`/jen:products`) | **no GitHub remote** | Cards in `docs/AGENCY.md` · family map `docs/SEED-FAMILY.md` · registry |
-| JenniNexus `{site}/storage/agency` | Submodule checkout of agency | bump only after preserving local edits | live audits and site pages stay in the JN site — see Submodule Rule |
+| Any consumer `{repo}/storage/agency` | Read-only submodule checkout ([CONSUMERS.md](CONSUMERS.md)) | `consumer.mjs sync` only; overlays in gitignored `projects/<project>/` | live audits and site pages stay in the consumer repo |
 
-**Martian Games** runs its own 4-officer roster (MissionControl / GlassViz / OrbitalPipe /
-Metrica) under the MG site tree. It is **not** a submodule extension of the JN 7-pack. MG
-also has a separate supporter-presenter class (Auri / Vyra); presenters are not
-officers. MG's Metrica is a site-owned profile with its own audit/data contract; the
-public Metrica profile here stays the JenniNexus showcase desk.
-Local history pointers may live in gitignored `projects/martiangames/`.
+**Independent studio rosters** (a sister studio's own officers or presenters) live in that
+studio's private repository, not as an extension of the seven desks. The public Metrica profile
+here stays the showcase desk even where a studio runs its own Metrica.
 
 Where lore lives (public agents here, per-project overlays in each consumer): the
 [README § Lore SSOT](../README.md#lore-ssot).

@@ -16,7 +16,7 @@ See [`docs/PUBLIC-LOCAL-SPLIT.md`](../docs/PUBLIC-LOCAL-SPLIT.md) and [`docs/STU
 | Layer | Location | Tracked? | Contains |
 |-------|----------|----------|----------|
 | **Origin** | `agents/AgentName.md` | ✅ | Personality, generic rules, red flags, Discord chatVoice summary |
-| **Override** | `projects/<project>/AgentName.md` **or** consuming project's `storage/agency/projects/<project>/` | ❌ | Real paths, GA4 IDs, audit history, live scores |
+| **Overlay** | `projects/<project>/AgentName.md` — in a consumer, that is `storage/agency/projects/<project>/` inside its read-only submodule checkout | ❌ | Real paths, GA4 IDs, audit history, live scores |
 
 There is **no** third tracked project-content layer in git. Cross-repository ownership pointers
 belong in this tracked README; local overrides remain ignored.
@@ -37,13 +37,15 @@ projects/
 └── neophi/                   ← gitignored
 ```
 
-Consuming sites that submodule this repo usually keep overrides under:
+Consuming projects that submodule this repo keep overlays under:
 
 ```
-{site}/storage/agency/projects/{project}/AgentName.md
+{consumer}/storage/agency/projects/{project}/AgentName.md
 ```
 
-Edit public origin files in the **canonical** agency clone, push, then bump the submodule.
+That folder is the only writable place in a consumer's checkout. Edit public origin files in the
+agency repo's own checkout, push, then run `node storage/agency/scripts/consumer.mjs sync` in each
+consumer. Contract: [`docs/CONSUMERS.md`](../docs/CONSUMERS.md).
 
 ---
 
@@ -59,14 +61,9 @@ Shared loft culture (all agents): [`docs/STUDIO-VOICE.md`](../docs/STUDIO-VOICE.
 
 ---
 
-## Martian Games pointer (separate owned roster)
+## Independent rosters
 
-Do not create or restore an active `projects/martiangames/` override in this public framework.
-Martian Games owns its independent three-officer roster and all visual continuity in the website
-repository:
+Do not add a studio's own characters here as extra desks or as a tracked `projects/<studio>/`
+folder. A studio with its own roster keeps it in its own private repository, publishes only approved
+marketing fields through its own site or API, and never copies that lore back into this repo.
 
-- Repository: `https://github.com/monofinitystudio/martiangames.com`
-- Workflow: `<mg-repo>/storage/docs/AGENCY.md`
-- Project command: `<mg-repo>/.claude/commands/mg-agency.md`
-- Optional site-specific route: `/mg-agents`
-- Profiles/graph: `mg/storage/agency/agents/` and `mg/storage/agency/AGENT-GRAPH.md`

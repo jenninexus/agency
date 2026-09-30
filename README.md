@@ -26,13 +26,10 @@ Think of it as staffing a virtual game studio where every agent has a desk in yo
 
 ### Where this framework is used
 
-| Surface | Relationship | Owns the live configuration |
-|:--------|:-------------|:----------------------------|
-| This public repository | Seven showcase desks, reusable templates, MCP example, and an audit template | `agents/`, `templates/`, `mcp.example.json`, `scripts/` |
-| JenniNexus.com | Optional submodule consumer of the seven-desk loft | The site's `scripts/audits/`, page/API, and gitignored `storage/agency/projects/jenninexus/` overrides |
-| MartianGames.com | Independent Agency-inspired roster, **not** a submodule or an eighth public desk | The MG site's `storage/agency/` four officers, `presenters/`, `storage/gen-ai/`, and `scripts/audits/` |
-
-The public Metrica profile describes the JenniNexus showcase role. MG runs its own site-owned Metrica officer profile (reusing the public portrait by owner approval); its role, data contract, and Atlas/API wiring live in the MG repository, not here. See [the public/local boundary](docs/PUBLIC-LOCAL-SPLIT.md).
+Clone it to build your own team, or carry it inside a project as a **read-only submodule** with that
+project's customizations kept beside it. The seven desks in [`agents/`](agents/) are the showcase team
+from JenniNexus Studio. Studios with their own characters keep that roster in their own private repo
+instead of adding desks here. Contract: [`docs/CONSUMERS.md`](docs/CONSUMERS.md).
 
 ### Lore SSOT
 
@@ -40,14 +37,15 @@ The public Metrica profile describes the JenniNexus showcase role. MG runs its o
 
 - **This public repo holds the default/public agents only:** the seven desks in [`agents/*.md`](agents/)
   plus the shared loft attributes in [`docs/STUDIO-VOICE.md`](docs/STUDIO-VOICE.md). Personality,
-  role, audit pattern and `### Discord chatVoice` for those seven are edited here and nowhere else.
-- **Project-specific customization lives in each consuming project**, as an overlay under
-  `<project>/storage/agency/` that names the public agent it extends (for example "extends public
-  `agents/Bloggie.md`") and adds only that project's paths, audits, scores and lore. In a submodule
-  checkout the overlay goes in the gitignored `storage/agency/projects/<project>/`.
-- **Never fork a whole copy of the lore.** A consumer that needs a desk's personality links to this
-  repo; it does not paste `agents/*.md` into its own tree. An independent roster (Martian Games'
-  officers, Jerry VR's Vixel director) is that project's own lore, owned there, and never copied back here.
+  role, audit pattern and `### Discord chatVoice (community register)` for those seven are edited
+  here and nowhere else.
+- **Consumers are read-only.** A project that carries this repo as a submodule never edits or pushes
+  inside it. It customizes in the gitignored overlay folder `projects/<project>/` of its checkout and
+  moves its pin with [`scripts/consumer.mjs`](scripts/consumer.mjs) `sync`. An overlay names the
+  public agent it extends (for example "extends public `agents/Bloggie.md`") and adds only that
+  project's paths, audits, scores and lore.
+- **Never fork a whole copy of the lore.** An independent roster is that studio's own lore, owned in
+  its own repository, and never copied back here.
 - Runtime catalogues (Discord faces, `chatVoice` samples in a bot's JSON) are consumers of this lore,
   not second sources. Writing-register routing is the optional
   [Voice Seed](https://github.com/jenninexus/voice-seed) `registry.json`.
@@ -318,7 +316,8 @@ agency/
 ├── scripts/                           # Audit automation + MCP server
 │   ├── mcp-server.js                  # MCP stdio server (zero deps, Node 18+)
 │   ├── _audit-common.ps1              # Shared audit utilities
-│   └── audit-template.ps1             # Audit script template
+│   ├── audit-template.ps1             # Audit script template
+│   └── consumer.mjs                   # Submodule consumer: status · check · sync · protect
 │
 └── audits/                            # Generated audit reports (gitignored)
     └── .gitkeep
@@ -339,6 +338,7 @@ agency/
 | [`examples/AgentRoster.md`](examples/AgentRoster.md) | Example team roster doc (showcase 7-desk loft) |
 | [`docs/ART-STYLE.md`](docs/ART-STYLE.md) | Shared studio aesthetic, per-agent colors, portrait generation conventions |
 | [`docs/STUDIO-VOICE.md`](docs/STUDIO-VOICE.md) | Shared loft voice; optional Voice Seed map pointer |
+| [`docs/CONSUMERS.md`](docs/CONSUMERS.md) | Read-only submodule contract, overlays, sync and guard |
 | [`docs/PUBLIC-LOCAL-SPLIT.md`](docs/PUBLIC-LOCAL-SPLIT.md) | Two-layer pattern: public framework agents vs project-specific overrides in `projects/` |
 
 ### Portrait Generation
@@ -457,46 +457,42 @@ The audit scripts use these paths automatically via `_audit-common.ps1`.
 
 ## Using as a Submodule
 
-This repo can be embedded in any project as a git submodule — giving you the full agent framework while keeping project-specific customizations local and gitignored.
+Embed the framework in any project as a **read-only** git submodule. Customizations stay in the
+project's gitignored overlay folder; changes to the desks themselves are made in this repo's own
+checkout and pulled in with one command. Full contract: [`docs/CONSUMERS.md`](docs/CONSUMERS.md).
 
 ### Initial Setup
 
 ```bash
-# Add the submodule (once per consuming project)
-git submodule add https://github.com/jenninexus/agency storage/agency
-git submodule update --init --recursive
+git submodule add https://github.com/jenninexus/agency.git storage/agency
+node storage/agency/scripts/consumer.mjs protect   # no push URL, refusing pre-push, pre-commit guard
 ```
 
-### Two-Layer Override Pattern
+### Overlay Pattern
 
 ```
-storage/agency/agents/GraphViz.md       ← public template (tracked, read-only)
-storage/agency/projects/yourproject/    ← your local overrides (gitignored)
-  GraphViz.md                           ← project-specific paths, secrets, scripts
-  landscape.webp                        ← canonical agent portrait (landscape)
-  square.webp                           ← canonical agent portrait (square)
-  gen-ai/                               ← raw generation output (local only)
+storage/agency/agents/GraphViz.md       ← public desk (read-only here)
+storage/agency/projects/yourproject/    ← your overlays (gitignored by this repo)
+  GraphViz.md                           ← "Extends public agents/GraphViz.md" + project paths, scripts
+  generations/                          ← raw portrait output (local only)
 ```
 
-See [`projects/README.md`](projects/README.md) for full per-project setup and [`docs/PUBLIC-LOCAL-SPLIT.md`](docs/PUBLIC-LOCAL-SPLIT.md) for the design rationale.
+See [`projects/README.md`](projects/README.md) and [`docs/PUBLIC-LOCAL-SPLIT.md`](docs/PUBLIC-LOCAL-SPLIT.md).
 
 ### Updating the Submodule
 
-Always edit in the **canonical clone** (your fork of this repo), then propagate:
-
 ```bash
-# 1. Edit in canonical clone
+# 1. Edit in the agency checkout (never inside a consumer)
 cd /path/to/agency
-git add <files> && git commit -m "[AGENT] description" && git push
+git add <files> && git commit -m "docs(Bloggie): ..." && git push
 
-# 2. Bump the pointer in each consuming project
-cd path/to/consuming-project
-git submodule update --remote storage/agency
-git add storage/agency
-git commit -m "chore: bump agency submodule"
+# 2. In each consuming project
+node storage/agency/scripts/consumer.mjs status          # pin vs origin/main, edits, overlays
+node storage/agency/scripts/consumer.mjs sync --commit   # fetch, move the pin, commit the gitlink only
 ```
 
-Never edit files inside `storage/agency/` from within a consuming project — those changes won't propagate back to the submodule origin.
+The pre-commit guard refuses a consumer commit while the submodule has edits or pins a commit that
+is not on `origin/main`.
 
 ---
 
