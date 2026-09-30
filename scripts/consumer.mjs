@@ -4,8 +4,13 @@
 //   node storage/agency/scripts/consumer.mjs status    pinned commit vs origin/main, dirt, overlays, protection
 //   node storage/agency/scripts/consumer.mjs check     exit 1 if the submodule was edited or pins an unpublished commit
 //   node storage/agency/scripts/consumer.mjs sync      fetch origin/main, move the pin, stage the gitlink (add --commit to commit it)
-//   node storage/agency/scripts/consumer.mjs protect   make the checkout read-only for git: no push URL, refusing pre-push
-//                                                     hook inside the submodule, pre-commit guard in the consumer
+//   node storage/agency/scripts/consumer.mjs protect   make the checkout read-only: no push URL, refusing pre-push hook
+//                                                     inside the submodule, pre-commit guard in the consumer, and the
+//                                                     read-only file attribute on every tracked file (any editor or agent)
+//   node storage/agency/scripts/consumer.mjs overlay <Agent>   start projects/<project>/<Agent>.md from the overlay template
+//   node storage/agency/scripts/consumer.mjs help      this list
+//
+// In a plain clone of agency (no submodule) only `overlay` applies: node scripts/consumer.mjs overlay Bloggie --project mysite
 //
 // Options: --path <submodule path> (default: the .gitmodules entry whose URL ends in /agency(.git), else storage/agency)
 //          --project <name>        overlay folder under projects/ (default: consumer folder name)
@@ -16,17 +21,22 @@
 // inside the checkout is the gitignored projects/<project>/ overlay folder.
 
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from 'node:fs';
-import { join, basename, resolve } from 'node:path';
+import { existsSync, readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, chmodSync } from 'node:fs';
+import { join, basename, resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const HOOK_MARK = 'agency-consumer-guard';
+const VALUED = new Set(['--path', '--project']);
 const args = process.argv.slice(2);
-const cmd = args.find((a) => !a.startsWith('--')) || 'status';
+const positional = args.filter((a, i) => !a.startsWith('--') && !VALUED.has(args[i - 1]));
+const cmd = positional[0] || 'status';
 const opt = (name) => {
   const i = args.indexOf(`--${name}`);
   return i >= 0 ? args[i + 1] : undefined;
 };
 const flag = (name) => args.includes(`--${name}`);
+// The agency checkout this script belongs to — the submodule in a consumer, or the repo itself in a clone.
+const agencyDir = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
 // Git exports GIT_DIR / GIT_INDEX_FILE to hooks. They describe the consumer, so strip them for any
 // command aimed at the submodule; keep them for the consumer so `check` reads the index being committed.
@@ -68,7 +78,8 @@ function findSubPath() {
 
 const subPath = findSubPath();
 const sub = resolve(root, subPath);
-const project = opt('project') || basename(root).replace(/\.(com|net|org|us)$/i, '').toLowerCase();
+const cloneMode = resolve(root) === agencyDir;
+const project = opt('project') || (cloneMode ? null : basename(root).replace(/\.(com|net|org|us)$/i, '').toLowerCase());
 
 function fail(msg) {
   console.error(`agency-consumer: ${msg}`);
@@ -98,6 +109,24 @@ function pinned() {
 function onOrigin(sha) {
   if (!sha) return false;
   return tryGit(sub, 'merge-base', '--is-ancestor', sha, 'origin/main') !== null;
+}
+
+// Read-only file attribute on every tracked file: the guard any editor, IDE or agent hits first.
+// Ignored slots (projects/<project>/, audits/, .config/, generations/) stay writable.
+function trackedFiles() {
+  return git(sub, 'ls-files', '-z').split('\0').filter(Boolean).map((f) => join(sub, f)).filter((f) => existsSync(f));
+}
+function setLocked(locked) {
+  let n = 0;
+  for (const f of trackedFiles()) {
+    try { chmodSync(f, locked ? 0o444 : 0o644); n++; } catch { /* a file git could not write either */ }
+  }
+  return n;
+}
+function lockState() {
+  const files = trackedFiles();
+  const ro = files.filter((f) => (statSync(f).mode & 0o200) === 0).length;
+  return { ro, total: files.length };
 }
 
 function overlays() {
@@ -131,8 +160,10 @@ function status() {
   console.log(`  vs origin/main   behind ${behind} · ahead ${ahead}${onOrigin(pin) ? '' : '   ⚠ pin is NOT on origin/main'}`);
   console.log(`  edits            ${d.length ? `${d.length} ⚠ (the submodule must stay clean)` : 'none ✓'}`);
   console.log(`  overlay          projects/${project}/ — ${o.files.length} file(s)${o.files.length ? ': ' + o.files.slice(0, 8).join(', ') : ''}`);
-  console.log(`  protection       push URL ${p.pushUrl === 'no_push' ? 'blocked ✓' : 'OPEN ⚠'} · submodule pre-push ${p.subHook ? '✓' : '⚠'} · consumer pre-commit ${p.parentHook ? '✓' : '⚠'}`);
-  if (!p.subHook || !p.parentHook || p.pushUrl !== 'no_push') console.log(`  → run: node ${subPath}/scripts/consumer.mjs protect`);
+  const l = lockState();
+  const locked = l.ro === l.total;
+  console.log(`  protection       push URL ${p.pushUrl === 'no_push' ? 'blocked ✓' : 'OPEN ⚠'} · submodule pre-push ${p.subHook ? '✓' : '⚠'} · consumer pre-commit ${p.parentHook ? '✓' : '⚠'} · read-only files ${locked ? '✓' : `${l.ro}/${l.total} ⚠`}`);
+  if (!p.subHook || !p.parentHook || p.pushUrl !== 'no_push' || !locked) console.log(`  → run: node ${subPath}/scripts/consumer.mjs protect`);
   if (Number(behind) > 0) console.log(`  → run: node ${subPath}/scripts/consumer.mjs sync`);
 }
 
@@ -161,7 +192,13 @@ function sync() {
   if (d.length) fail(`${subPath} has local edits; move them to the agency checkout first:\n  ${d.join('\n  ')}`);
   git(sub, 'fetch', 'origin', '--prune');
   const before = git(sub, 'rev-parse', 'HEAD');
-  git(sub, 'checkout', '--quiet', '--detach', 'origin/main');
+  const wasLocked = lockState().ro > 0;
+  setLocked(false); // git cannot replace read-only files on Windows
+  try {
+    git(sub, 'checkout', '--quiet', '--detach', 'origin/main');
+  } finally {
+    if (wasLocked) setLocked(true);
+  }
   const after = git(sub, 'rev-parse', 'HEAD');
   if (before === after && pinned() === after) {
     console.log(`agency already at origin/main (${after.slice(0, 7)}).`);
@@ -198,9 +235,38 @@ function protect() {
   const r1 = writeHook(subHook, `#!/bin/sh\n# ${HOOK_MARK}: pushing from a consumer checkout is not allowed.\necho "agency: this is a read-only consumer checkout. Edit and push from the agency repo's own checkout." >&2\nexit 1\n`);
   const p = protectionState();
   const r2 = writeHook(p.parentHookPath, `#!/bin/sh\n# ${HOOK_MARK}: refuse commits while the agency submodule is edited or pins an unpublished commit.\nif [ -f "${subPath}/scripts/consumer.mjs" ]; then\n  node "${subPath}/scripts/consumer.mjs" check --path "${subPath}" || exit 1\nfi\n`);
-  console.log(`push URL: no_push · submodule pre-push: ${r1} · consumer pre-commit: ${r2}`);
+  const n = setLocked(true);
+  console.log(`push URL: no_push · submodule pre-push: ${r1} · consumer pre-commit: ${r2} · read-only files: ${n}`);
 }
 
-const commands = { status, check, sync, protect };
-if (!commands[cmd]) fail(`unknown command "${cmd}" (status | check | sync | protect)`);
+// Start a project overlay for one public desk. Never copies the public profile — it links to it and
+// leaves sections for the project's delta, so updates to the public desk keep flowing in.
+function overlay() {
+  const wanted = positional[1];
+  const agentsDir = join(agencyDir, 'agents');
+  const names = readdirSync(agentsDir).filter((f) => f.endsWith('.md')).map((f) => f.slice(0, -3));
+  if (!wanted) fail(`name a desk to extend: ${names.join(' | ')}  (a brand-new character: copy templates/AGENT-TEMPLATE.md instead)`);
+  const agent = names.find((n) => n.toLowerCase() === wanted.toLowerCase());
+  if (!agent) fail(`no public desk "${wanted}". Desks: ${names.join(', ')}. For a new character copy templates/AGENT-TEMPLATE.md into projects/<project>/.`);
+  if (!project) fail('pass --project <name> (the overlay folder under projects/)');
+  const dir = join(agencyDir, 'projects', project);
+  const target = join(dir, `${agent}.md`);
+  if (existsSync(target)) fail(`${target} already exists — edit it directly.`);
+  const tpl = readFileSync(join(agencyDir, 'templates', 'OVERLAY-TEMPLATE.md'), 'utf8');
+  const body = tpl
+    .replaceAll('{{AGENT}}', agent)
+    .replaceAll('{{PROJECT}}', project)
+    .replaceAll('{{DATE}}', new Date().toISOString().slice(0, 10));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(target, body);
+  console.log(`created ${target}\nFill in only what differs from agents/${agent}.md — the public desk stays the base.`);
+}
+
+function help() {
+  console.log(readFileSync(fileURLToPath(import.meta.url), 'utf8').split('\n').filter((l) => l.startsWith('//')).slice(0, 22).map((l) => l.slice(3)).join('\n'));
+}
+
+const commands = { status, check, sync, protect, overlay, help };
+if (!commands[cmd]) fail(`unknown command "${cmd}" (status | check | sync | protect | overlay | help)`);
+if (cloneMode && !['overlay', 'help'].includes(cmd)) fail(`this is the agency repo itself, not a consumer. Here only "overlay" and "help" apply.`);
 commands[cmd]();
