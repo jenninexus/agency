@@ -51,6 +51,9 @@ Working example: [`examples/StyleGuard.md`](../examples/StyleGuard.md).
 
 ## 3. Keep secrets in `projects/<name>/`
 
+Fastest start: `node scripts/consumer.mjs overlay <Agent> --project <name>` writes an overlay that
+extends a public desk (see [CONSUMERS.md § Customizing a desk](CONSUMERS.md#customizing-a-desk-overlays)).
+
 ```text
 agents/YourAgent.md              ← public template (safe to commit)
 projects/your-project/YourAgent.md   ← live paths, scores, slang (gitignored)

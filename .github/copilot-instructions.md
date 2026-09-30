@@ -4,6 +4,8 @@ This project uses the **AI Agent Agency** framework: a team of specialized AI ag
 
 > **This is a PUBLIC TEMPLATE.** Replace the example agents below with your own team defined in local `mcp.json` copied from `mcp.example.json`.
 
+> **Inside a consumer's `storage/agency/` submodule?** It is read-only — see [`AGENTS.md`](../AGENTS.md) and [`docs/CONSUMERS.md`](../docs/CONSUMERS.md). Only `projects/<project>/` is writable.
+
 > **Boundary rule — DO NOT push project-specific content here.** This repo contains only generic, project-agnostic agent profiles. Project-specific customizations (page names, CSS filenames, audit findings, project-only agents, private MCP paths) belong in your consuming project's `projects/<project-name>/` directory (gitignored by the framework's `.gitignore`) or in local `mcp.json`. Agents that only exist in one project are NOT added to `agents/` here.
 
 ---

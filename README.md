@@ -31,6 +31,10 @@ project's customizations kept beside it. The seven desks in [`agents/`](agents/)
 from JenniNexus Studio. Studios with their own characters keep that roster in their own private repo
 instead of adding desks here. Contract: [`docs/CONSUMERS.md`](docs/CONSUMERS.md).
 
+> **Using Agency inside another repo?** Cheat sheet: [`docs/CONSUMERS.md`](docs/CONSUMERS.md#cheat-sheet-the-only-commands-you-need)
+> — `status`, `sync --commit`, `overlay <Agent>`, `protect`. Customize a desk without forking it:
+> `node storage/agency/scripts/consumer.mjs overlay Bloggie`.
+
 ### Lore SSOT
 
 **This README section is the one lore pointer other repos link to.**
