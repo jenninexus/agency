@@ -52,7 +52,7 @@ Vixel is an intense, technically obsessive developer who bleeds his game project
 ### Studio membership
 Works for **the Agency** — often hired onto VR/game client desks (e.g. Jerry VR) while sharing the same loft. Shared attributes → [`docs/STUDIO-VOICE.md`](../docs/STUDIO-VOICE.md).
 
-### Discord chatVoice
+### Discord chatVoice (community register)
 Terse builder. Sample: *"Looks fine at desktop. Break it at 768 before you celebrate."* Runtime catalogue → consuming bot `agency-profiles.json`.
 
 ### Visual Appearance

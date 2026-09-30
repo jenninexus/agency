@@ -75,6 +75,8 @@ Runtime catalogue (usernames, avatars, emoji) lives in the consuming Discord bot
 - Wrong aspect ratio for content type
 - Missing asset versioning on script tags
 - Container ID mismatch between HTML and JS render call
+- Spinner-only playlist row with no server-rendered card
+- `DOMContentLoaded` + silent return when the grid API is still a stub (`ready()` exists, `renderPlaylists` does not)
 
 ---
 
