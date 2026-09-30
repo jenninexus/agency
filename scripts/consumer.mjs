@@ -28,9 +28,15 @@ const opt = (name) => {
 };
 const flag = (name) => args.includes(`--${name}`);
 
+// Git exports GIT_DIR / GIT_INDEX_FILE to hooks. They describe the consumer, so strip them for any
+// command aimed at the submodule; keep them for the consumer so `check` reads the index being committed.
+const cleanEnv = Object.fromEntries(Object.entries(process.env).filter(([k]) => !k.startsWith('GIT_')));
+let consumerRoot = null;
+
 function git(cwd, ...a) {
+  const env = consumerRoot && resolve(cwd) === consumerRoot ? process.env : cleanEnv;
   try {
-    return execFileSync('git', ['-C', cwd, ...a], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+    return execFileSync('git', ['-C', cwd, ...a], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], env }).trim();
   } catch (e) {
     const err = new Error((e.stderr || e.message || '').toString().trim());
     err.code = e.status;
@@ -43,6 +49,7 @@ const tryGit = (cwd, ...a) => {
 
 const root = tryGit(process.cwd(), 'rev-parse', '--show-superproject-working-tree') || tryGit(process.cwd(), 'rev-parse', '--show-toplevel');
 if (!root) fail('Run this from inside a git repository that carries the agency submodule.');
+consumerRoot = resolve(root);
 
 function findSubPath() {
   if (opt('path')) return opt('path').replace(/\\/g, '/');
