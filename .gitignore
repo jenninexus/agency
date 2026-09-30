@@ -81,6 +81,12 @@ resources/paths.local.yaml
 
 # ── Private / personal content (local only) ──────────────────────────────────
 
+# Personal notes, agent memory and private scratch never enter the public framework.
+.memory/
+private/
+storage/
+*.local.*
+
 # Detailed character prompt YAML — stays local (use .env + local copy)
 agents/characters.yaml
 
