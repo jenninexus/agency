@@ -97,9 +97,9 @@ works without it. Studio network-admin tools are not a clone dependency.
 | Project | How agency is used |
 |---------|-------------------|
 | **JenniNexus** | Full 7-desk roster; overrides in `projects/jenninexus/` or the consuming site's gitignored `projects/` |
-| **Martian Games** | Separate MG agency (MissionControl / GlassViz / OrbitalPipe) — not a JN submodule extension |
+| **Sister studios** | Their own roster in their own repo — not an extension of the seven desks |
 | **Jerry VR** | Vixel primary; Jerry-specific rules in `projects/jerry-vr/Vixel.md` |
-| **Socials** | Pipeline/blog drafting may point at Bloggie override under `socials/storage/agency/` (local clone) |
+| **Socials** | Read-only submodule; Bloggie overlay in its gitignored `projects/socials/` |
 | **Neophi** | Optional Cypher / future agents via `projects/neophi/` |
 
 ---

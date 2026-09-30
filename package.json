@@ -5,7 +5,8 @@
   "main": "scripts/mcp-server.js",
   "scripts": {
     "mcp": "node scripts/mcp-server.js",
-    "validate": "node scripts/validate-public-config.js"
+    "validate": "node scripts/validate-public-config.js",
+    "consumer": "node scripts/consumer.mjs"
   },
   "engines": {
     "node": ">=18.0.0"
