@@ -194,4 +194,6 @@ function protect() {
   console.log(`push URL: no_push · submodule pre-push: ${r1} · consumer pre-commit: ${r2}`);
 }
 
-({ status, check, sync, protect })[cmd]?.() ?? fail(`unknown command "${cmd}" (status | check | sync | protect)`);
+const commands = { status, check, sync, protect };
+if (!commands[cmd]) fail(`unknown command "${cmd}" (status | check | sync | protect)`);
+commands[cmd]();
