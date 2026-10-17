@@ -4,9 +4,9 @@ One H.264 `.mp4` per loft desk — Discord plays direct links (embeds cannot hos
 
 | File | Kind | Notes |
 |------|------|-------|
-| `bloggie.mp4` | character | Topics / social holograms (was grok-a4e3…) |
-| `vidette.mp4` | character | Neon beanie landscape (was grok-7bda…) |
-| `graphviz.mp4` | character | Lavender / CSS token HUD (from JN generations) |
+| `bloggie.mp4` | character | Topics / social holograms |
+| `vidette.mp4` | character | Neon beanie landscape |
+| `graphviz.mp4` | character | Lavender / CSS token HUD |
 | `gamergirl.mp4` | kenburns | From `gamergirl-16x9.webp` |
 | `divinedesign.mp4` | kenburns | From `divinedesign-16x9.webp` |
 | `metrica.mp4` | kenburns | From `metrica-16x9.webp` |

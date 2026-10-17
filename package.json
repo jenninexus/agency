@@ -11,6 +11,6 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "keywords": ["mcp", "ai-agents", "claude", "copilot", "cursor", "model-context-protocol"],
+  "keywords": ["mcp", "ai-agents", "agent-framework", "site-audit", "model-context-protocol"],
   "license": "MIT"
 }

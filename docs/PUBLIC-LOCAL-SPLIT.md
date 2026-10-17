@@ -43,8 +43,8 @@ JenniNexus and Martian Games drafts, queues, devlogs, publishing records, campai
 | Framework masters (1×1 + 16×9 webp, loft banner) | `resources/images/` | yes |
 | Path map for humans/agents | `resources/README.md` + `README.local.example.md` | yes |
 | Your machine paths | `resources/README.local.md` | **no** |
-| Private generations / !Favs | consuming project e.g. `www/jenninexus/storage/agency/generations/` | **no** (project gitignore) |
-| Hosted Discord/site assets | `jenninexus.com/resources/images/agency/agents/` | deploy from www |
+| Private generations / !Favs | consuming project, e.g. `<consumer>/storage/agency/projects/<project>/generations/` | **no** (project gitignore) |
+| Hosted Discord/site assets | your site, e.g. `/resources/images/agency/agents/` | deploy from the consuming site |
 
 Canonical public masters (repo-relative):
 

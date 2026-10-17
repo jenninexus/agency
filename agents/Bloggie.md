@@ -10,6 +10,12 @@
 
 ---
 
+## Reading surface (project-agnostic)
+
+- The post **body is a still reading surface**: no hover-lift, tilt, shimmer or cursor-follow light on the article container. Ambient glow, if any, belongs to the page behind it and stays faint.
+- Emit the post wrapper from **one helper or template** (with a small layout registry such as standard / gallery / video / event), so a style change is one edit, not one per post.
+- Motion that helps reading is fine when it is scroll-driven, off under `prefers-reduced-motion`, and never hides content on unsupported browsers: a reading-progress bar, headings and figures easing in.
+
 ## Resources & Quick Links
 
 > **Navigation:** Use this section to quickly access all resources related to this agent.

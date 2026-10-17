@@ -71,9 +71,8 @@ This repo does **not** ship a portrait generator script.
 1. Copy [`agents/characters.yaml.example`](../agents/characters.yaml.example)
    → `agents/characters.yaml` (gitignored).
 2. Fill prompts using [`ART-STYLE.md`](ART-STYLE.md) (shared penthouse + accent neon).
-3. Generate with **Grok Imagine** via [`jenninexus/gen-ai`](https://github.com/jenninexus/gen-ai)
-   (`GROK_API_KEY` in that clone’s `.env`; optional `XAI_MGMT_KEY` + `XAI_TEAM_ID` for billing),
-   or any other image API (DALL-E, Midjourney) that accepts the yaml prompts.
+3. Generate with any image model or API you already use — the yaml prompts are plain text,
+   so any generator that accepts a prompt works. Keep API keys in that tool’s own `.env`.
 4. Drop an 80×80 (or 1×1 webp) at `resources/images/agents/<name>-1x1.webp`
    for the README cards.
 
@@ -130,7 +129,7 @@ a submodule of Agency.
 |------|-----|
 | Voice Seed | Optional map only |
 | Theme Designer | Optional copy-hex only — not a character generator |
-| jenni-bot / martian-bot | Live studio Discord apps — not this SKU |
+| Your Discord bots | Live community apps — not part of this repo |
 | www-theme-kit | Private token kit — copy hex into ART-STYLE if you want, never `@import` |
 | Studio network-admin tools | Infra for this studio, not a product dependency |
 | Node beyond the bundled MCP | The stdio server in `scripts/mcp-server.js` is enough |
