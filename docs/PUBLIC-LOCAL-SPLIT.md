@@ -68,10 +68,12 @@ Discord Visual Profiles (:8777) read hosted URLs from `jenni-bot/resources/agenc
 If an agent profile names real project pages, local paths, private audit scripts, private service names, or project-specific visual lore, it belongs in:
 
 ```text
-projects/<project-name>/
+projects/<project-name>/<Agent>.md      ← overlays, flat (what the MCP server and consumer.mjs read)
+projects/<project-name>/generations/    ← optional non-agent data beside them
 ```
 
-That content is gitignored (`projects/*`, with only `projects/README.md` excepted). If a `projects/<name>/README.md` was force-tracked, `git rm --cached` it — project rosters do not belong on origin. Public origin agents in `agents/` should describe reusable responsibilities and audit patterns, not one project's private implementation. The public showcase is the **seven** desks in `agents/*.md` (Vidette, Bloggie, GraphViz, GamerGirl, DivineDesign, Metrica, Vixel). Extra portraits for other studios (if still in `resources/images/agents/`) are not extra public agents.
+A nested `projects/<project-name>/agents/` folder is never read — keep overlays flat (detail:
+[CONSUMERS.md](CONSUMERS.md) § Customizing a desk). That content is gitignored (`projects/*`, with only `projects/README.md` excepted). If a `projects/<name>/README.md` was force-tracked, `git rm --cached` it — project rosters do not belong on origin. Public origin agents in `agents/` should describe reusable responsibilities and audit patterns, not one project's private implementation. The public showcase is the **seven** desks in `agents/*.md` (Vidette, Bloggie, GraphViz, GamerGirl, DivineDesign, Metrica, Vixel). Extra portraits for other studios (if still in `resources/images/agents/`) are not extra public agents.
 
 ## Submodule Rule
 

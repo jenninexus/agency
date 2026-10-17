@@ -160,6 +160,12 @@ function status() {
   console.log(`  vs origin/main   behind ${behind} · ahead ${ahead}${onOrigin(pin) ? '' : '   ⚠ pin is NOT on origin/main'}`);
   console.log(`  edits            ${d.length ? `${d.length} ⚠ (the submodule must stay clean)` : 'none ✓'}`);
   console.log(`  overlay          projects/${project}/ — ${o.files.length} file(s)${o.files.length ? ': ' + o.files.slice(0, 8).join(', ') : ''}`);
+  // Overlays are read flat (mcp-server.js, overlay command); a nested agents/ folder is ignored.
+  const nested = join(o.dir, 'agents');
+  if (existsSync(nested)) {
+    const n = readdirSync(nested).length;
+    console.log(`  overlay layout   ⚠ projects/${project}/agents/ exists (${n} item(s)) — never read; move <Agent>.md up one level${n ? '' : ' or delete the empty folder'}`);
+  }
   const l = lockState();
   const locked = l.ro === l.total;
   console.log(`  protection       push URL ${p.pushUrl === 'no_push' ? 'blocked ✓' : 'OPEN ⚠'} · submodule pre-push ${p.subHook ? '✓' : '⚠'} · consumer pre-commit ${p.parentHook ? '✓' : '⚠'} · read-only files ${locked ? '✓' : `${l.ro}/${l.total} ⚠`}`);
