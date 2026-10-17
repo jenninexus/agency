@@ -565,14 +565,14 @@ src/assets/css/ → dist/css/main.min.css (project bundle path lives in the over
 | `src/assets/css/all-themes.css` | Theme utilities, social buttons | **FULL OWNERSHIP** |
 | `src/assets/css/*-theme.css` (7 files) | Page-specific color overrides | **FULL OWNERSHIP** |
 | `src/assets/js/theme-toggle.js` | Theme switching logic | **FULL OWNERSHIP** |
-| `[project]/.config/mcp_jenninexus.json` | Project breakpoint cache mirrored to global SSOT (project-local) | Shared (Vidette) |
+| `[project]/.config/mcp_<project>.json` | Project breakpoint cache mirrored to global SSOT (project-local) | Shared (Vidette) |
 
 ### Related Config
 
 | File | Purpose | GraphViz's Use |
 |------|---------|----------------|
 | `[project]/.config/assets-deps.json` | Asset loading order (project-local) | Verify theme-variables.css is first |
-| `[project]/.config/mcp_jenninexus.json` | Project config (project-local) | Brand colors reference |
+| `[project]/.config/mcp_<project>.json` | Project config (project-local) | Brand colors reference |
 
 ---
 

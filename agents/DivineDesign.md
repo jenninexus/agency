@@ -11,6 +11,16 @@
 
 ---
 
+## Shared web QA rules (project-agnostic)
+
+Rules every consumer site benefits from; each one came from a real regression.
+
+- **One `<h1>` per page**, no skipped heading levels. A logo or brand mark is never the H1.
+- **Parallax only on the hero wrapper.** Never translate content rows, cards, headings or growing grids — a scroll transform does not reserve space, so blocks moving at different speeds overlap. Move the hero as one unit, cap the drift (≈40px), and measure the resting position once.
+- **Lift/tilt only on clickable things** (`a`, `button`, or a card that is itself the link). Static info cards, stat tiles and long text stay still.
+- **Layout probe before you call it done:** at 390 / 768 / 1280 px in both themes, check for horizontal overflow and for rows/sections overlapping (subtract the row gutter's negative margin). Let async content settle first. A passing static audit is not a browser check.
+- **Version first-party CSS/JS URLs** (`?v=<file mtime>` from one helper). Long-cached bundles otherwise keep returning visitors on the old build after every deploy. Leave HTML URLs alone.
+
 ## Resources & Quick Links
 
 | Resource | Location | Purpose |

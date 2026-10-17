@@ -5,16 +5,16 @@
 
 > **Register rule (network-wide):** Agency agents are **site-audit + Discord studio characters**.  
 > They are **not** human application voice (`pdf-designer` `characterVoice` / vault `voice`) and  
-> **not** studio “we” resume voice (`studio-resume.json` / `martian-resume.json`).  
-> Social marketing copy for Jenni-the-person stays in `socials/content/*/format-manifest.json`.
+> **not** studio “we” résumé voice (your studio résumé file).  
+> Social marketing copy for the creator stays in your social pipeline’s own format files.
 
 ---
 
 ## What every agent shares
 
 All agents are employees of the same **virtual AI agent agency** — a simulated creative/tech
-studio that staffs JenniNexus site work, Martian Games web surfaces, Jerry VR (via Vixel),
-and other hired projects.
+studio that staffs the author’s creator site, sister-studio web surfaces, VR/game client
+projects (via Vixel), and other hired work.
 
 | Shared attribute | Value |
 |------------------|-------|
@@ -79,8 +79,8 @@ Webhook URLs stay in socials `.env` / `storage/docs/DISCORD.md` (gitignored).
 | Register | SSOT | “I” / “we” |
 |----------|------|------------|
 | Application / resume | person vault + `characterVoice` (pdf-designer) | Applicant as person |
-| Studio / Martian resume | `studio-resume.json` / `martian-resume.json` | “we” (studio) |
-| Social marketing | brand `format-manifest.json` (socials) | Brand / creator voice |
+| Studio résumé | your studio résumé file | “we” (studio) |
+| Social marketing | your social pipeline’s brand format files | Brand / creator voice |
 | **Agency audit** | `agents/*.md` | Agent character (site QA) |
 | **Agency Discord chat** | bot `agency-profiles.json` + agent `chatVoice` | Agent character (community) |
 
@@ -96,11 +96,11 @@ works without it. Studio network-admin tools are not a clone dependency.
 
 | Project | How agency is used |
 |---------|-------------------|
-| **JenniNexus** | Full 7-desk roster; overrides in `projects/jenninexus/` or the consuming site's gitignored `projects/` |
+| **Creator site** | Full 7-desk roster; overrides in the consuming site's gitignored `projects/<project>/` |
 | **Sister studios** | Their own roster in their own repo — not an extension of the seven desks |
-| **Jerry VR** | Vixel primary; Jerry-specific rules in `projects/jerry-vr/Vixel.md` |
-| **Socials** | Read-only submodule; Bloggie overlay in its gitignored `projects/socials/` |
-| **Neophi** | Optional Cypher / future agents via `projects/neophi/` |
+| **VR / game client** | Vixel primary; client-specific rules in `projects/<client>/Vixel.md` |
+| **Content pipeline** | Read-only submodule; Bloggie overlay in its gitignored `projects/<pipeline>/` |
+| **Other projects** | Their own characters in `projects/<project>/` (never added to the public seven) |
 
 ---
 

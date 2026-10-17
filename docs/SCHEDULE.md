@@ -17,7 +17,11 @@
 | **Tuesday** | Bloggie | `audit-blog-posts.ps1` | `AUDIT_blog-posts.md` | PHP headers, tags, share buttons, YAML entries |
 | **Wednesday** | GraphViz | `audit-theme-consistency.ps1` | `AUDIT_theme-consistency.md` | Theme vars, no white backgrounds, glass effects, WCAG |
 | **Thursday** | GamerGirl | `audit-game-pages.ps1` | `AUDIT_game-pages.md` | Game pages, hub pages (gamedev/gaming), CTAs, hero sections |
-| **Friday** | DivineDesign | `audit-layout-consistency.ps1` | `AUDIT_layout-consistency.md` | Hero structure, section spacing, responsive grids, glass panels |
+| **Friday** | DivineDesign | `audit-layout-consistency.ps1` | `AUDIT_layout-consistency.md` | Hero structure, section spacing, responsive grids, glass panels, one H1, hero-only parallax |
+| **Saturday** | Metrica | `audit-seo-analytics.ps1` | `AUDIT_seo-analytics.md` | Titles/descriptions, canonical, JSON-LD, sitemap, analytics tags |
+| **Sunday** | Vixel | `audit-vr-pages.ps1` | `AUDIT_vr-pages.md` | VR/game client pages, builds, store links |
+
+> These script names are the **consumer's** scripts. This repo ships `scripts/audit-template.ps1` — copy it into your project as `audit-<domain>.ps1` and specialize it; the desks describe what each one should check.
 
 ---
 
@@ -161,7 +165,7 @@ pwsh -ExecutionPolicy Bypass -File scripts/audits/audit-layout-consistency.ps1
 **Adding New Rules:** When new layout conventions are established via /frontend-design or team decisions, add checks to `audit-layout-consistency.ps1`. The script auto-discovers all content pages.
 
 **Post-Audit Protocol:**
-1. Fix CRITICAL and HIGH issues from all 5 agents' audits
+1. Fix CRITICAL and HIGH issues from all 7 agents' audits
 2. Re-run affected audit scripts after fixes
 3. Update day file with completed tasks
 4. Prepare for weekend (no deployments)

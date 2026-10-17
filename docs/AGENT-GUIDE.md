@@ -83,7 +83,7 @@ All agents share the same environment — a luxury high-rise penthouse in futuri
 **Full Name:** Vidette Lumina ("Vidette")
 **Title:** Chief Video & Image Display Integrity Officer
 **Audit Day:** Monday
-**Profile:** [Vidette.md](Vidette.md)
+**Profile:** [Vidette.md](../agents/Vidette.md)
 **Time of Day:** Golden Hour Sunset
 
 ### Personality
@@ -98,7 +98,7 @@ Sharp-eyed perfectionist who treats every video thumbnail like it's going on the
 |--------|-----------|
 | Video Display System | Monday |
 
-**→ Full Details:** [Vidette.md](Vidette.md)
+**→ Full Details:** [Vidette.md](../agents/Vidette.md)
 
 **Quick Responsibilities:**
 - youtube-grid.js, video-hover.js, media.css, playlist-constants.php
@@ -131,7 +131,7 @@ Sharp-eyed perfectionist who treats every video thumbnail like it's going on the
 **Full Name:** Blogsworth "Bloggie" Editorial
 **Title:** Chief Blog Page Design & Consistency Officer
 **Audit Day:** Tuesday
-**Profile:** [Bloggie.md](Bloggie.md)
+**Profile:** [Bloggie.md](../agents/Bloggie.md)
 **Time of Day:** Warm Afternoon
 
 ### Personality
@@ -146,7 +146,7 @@ The meticulous editor who reads every blog post three times before approving it.
 |--------|-----------|
 | Blog Page System | Tuesday |
 
-**→ Full Details:** [Bloggie.md](Bloggie.md)
+**→ Full Details:** [Bloggie.md](../agents/Bloggie.md)
 
 **Quick Responsibilities:**
 - blog-post-template.php, share-buttons.php, blog-posts.json
@@ -180,7 +180,7 @@ The meticulous editor who reads every blog post three times before approving it.
 **Full Name:** ThemaGraphViz ("GraphViz")
 **Title:** Chief Visual Harmony & Theme System Architect
 **Audit Day:** Wednesday
-**Profile:** [GraphViz.md](GraphViz.md)
+**Profile:** [GraphViz.md](../agents/GraphViz.md)
 **Time of Day:** Blue Hour Twilight
 
 ### Personality
@@ -195,7 +195,7 @@ The artist-engineer hybrid who treats color theory like a science and pixel alig
 |--------|-----------|
 | Theme & Visual System | Wednesday |
 
-**→ Full Details:** [GraphViz.md](GraphViz.md)
+**→ Full Details:** [GraphViz.md](../agents/GraphViz.md)
 
 **Quick Responsibilities:**
 - theme-variables.css (color authority), all-themes.css (utilities)
@@ -264,7 +264,7 @@ Competitive perfectionist who treats every game page like a store listing waitin
 **Full Name:** Davina "DivineDesign" Artwright
 **Title:** Chief Site-Wide Design & Page Architecture Officer
 **Audit Day:** Friday
-**Profile:** [DivineDesign.md](DivineDesign.md)
+**Profile:** [DivineDesign.md](../agents/DivineDesign.md)
 **Time of Day:** Dawn (Sunrise)
 
 ### Personality
@@ -279,7 +279,7 @@ Elegant perfectionist with an eye for spatial harmony and user flow. DivineDesig
 |--------|-----------|
 | Page Layout & UX | Friday |
 
-**→ Full Details:** [DivineDesign.md](DivineDesign.md)
+**→ Full Details:** [DivineDesign.md](../agents/DivineDesign.md)
 
 **Quick Responsibilities:**
 - Page templates, layout CSS
@@ -314,7 +314,7 @@ Elegant perfectionist with an eye for spatial harmony and user flow. DivineDesig
 **Full Name:** Metrica Voss
 **Title:** Chief SEO, Analytics & Performance Officer
 **Audit Day:** Saturday
-**Profile:** [Metrica.md](Metrica.md)
+**Profile:** [Metrica.md](../agents/Metrica.md)
 **Time of Day:** Late Night (data never sleeps)
 
 ### Personality
@@ -329,7 +329,7 @@ Relentless data scientist who treats PageSpeed scores like personal affronts whe
 |--------|-----------|
 | SEO, Analytics & Performance | Saturday |
 
-**→ Full Details:** [Metrica.md](Metrica.md)
+**→ Full Details:** [Metrica.md](../agents/Metrica.md)
 
 **Quick Responsibilities:**
 - JSON-LD structured data, og:image, sitemap, robots.txt
@@ -361,7 +361,7 @@ Relentless data scientist who treats PageSpeed scores like personal affronts whe
 **Full Name:** Vixel Markov
 **Title:** VR/Game Site Developer & Technical Lead
 **Audit Day:** Sunday
-**Profile:** [Vixel.md](Vixel.md)
+**Profile:** [Vixel.md](../agents/Vixel.md)
 **Time of Day:** Deep Night (builds run overnight)
 
 ### Personality
@@ -376,7 +376,7 @@ Intense, technically obsessive lone wolf who bleeds his VR/game project. Built t
 |--------|-----------|
 | VR/Game Project Site | Sunday |
 
-**→ Full Details:** [Vixel.md](Vixel.md)
+**→ Full Details:** [Vixel.md](../agents/Vixel.md)
 
 **Quick Responsibilities:**
 - Game project website (VR, horror, or otherwise)

@@ -8,6 +8,12 @@
 
 ---
 
+## Acceptance (project-agnostic)
+
+- A video grid passes only when **real feed items render as real video cards**. An empty feed, a failed request and a link-only fallback are three different outcomes — report which one happened.
+- Each container proves its own mount (an island that never mounted is a failure even if the page loads).
+- No permanent spinners: every loading state resolves to cards, a truthful empty state, or a fallback link.
+
 ## Identity
 
 | Attribute | Value |

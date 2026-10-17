@@ -118,11 +118,23 @@ projects/*
 /archive/
 /_archive/
 
-# Extra studio portraits (not the public 7-desk roster). Bytes may stay on disk.
-resources/images/agents/cypher-*
-resources/images/agents/missioncontrol-*
-resources/images/agents/orbital-pipe-*
-resources/images/agents/graph-viz-mg-*
+# Only the seven public desk portraits are tracked; any other studio's portraits stay local.
+resources/images/agents/*
+!resources/images/agents/bloggie-*
+!resources/images/agents/vidette-*
+!resources/images/agents/graphviz-*
+!resources/images/agents/gamergirl-*
+!resources/images/agents/divinedesign-*
+!resources/images/agents/metrica-*
+!resources/images/agents/vixel-*
+
+# Key material and credentials (never commit)
+*.pem
+*.key
+*.p12
+credentials*.json
+snapshots/
+face-crops.json
 
 # ── TRACKED FILES (for reference) ────────────────────────────────────────────
 # README.md, package.json, .env.example, .gitattributes
