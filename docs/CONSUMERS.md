@@ -102,6 +102,11 @@ An overlay file names the public desk it extends and records how it differs:
 > Extends public agents/Bloggie.md — changes: scope, paths · Public display: no (in development)
 ```
 
+- **Overlays sit flat:** `projects/<project>/<Agent>.md`, never `projects/<project>/agents/<Agent>.md`.
+  The MCP server (`scripts/mcp-server.js`, `--project` / `AGENCY_PROJECT`) and `consumer.mjs overlay`
+  read and write exactly that path, so a nested `agents/` folder is silently ignored and the desk falls
+  back to its public profile. Non-agent data may sit beside the overlays in subfolders
+  (`generations/`, `resources/`, `snapshots/`, `characters.yaml`).
 - Put only project facts in an overlay: real paths, audit scripts, scores, private lore.
 - Never copy a whole public profile into an overlay. Link to it and add the delta.
 - `projects/<project>/` exists only on the disk that made it. Back it up by making that folder its own
