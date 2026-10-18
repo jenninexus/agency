@@ -29,7 +29,7 @@ Rules every consumer site benefits from; each one came from a real regression.
 | **Project Override** | `projects/[YOUR-PROJECT]/DivineDesign.md` | Project-specific paths & audit data |
 | **Character Guide** | `docs/AGENT-GUIDE.md` | Visual style, personality, image generation |
 | **MCP Config** | `.vscode/mcp.json` (gitignored) | Agent registry + schedule |
-| **Audit Script** | `scripts/audit-layout-consistency.ps1` | Weekly Friday audit |
+| **Audit Script** | your consumer's audit script (specialize `scripts/audit-template.ps1`) | Weekly Friday audit |
 | **Design Docs** | `[YOUR-PROJECT]/docs/DESIGN-SYSTEM.md` | Visual SSOT (configure in mcp.json) |
 | **Page Docs** | `[YOUR-PROJECT]/docs/PAGES.md` | Page architecture SSOT |
 
@@ -531,7 +531,7 @@ DivineDesign owns **layout and structure**. Your theme/color agent (e.g., StyleG
 +-----------------------------------------------------------------------------+
 ```
 
-> JenniNexus example team: DivineDesign coordinates with GraphViz (theme), Vidette (video), Bloggie (blog), GamerGirl (game pages), Metrica (SEO/analytics), and Vixel (VR/creative). See `agents/*.md` for their profiles.
+> Example team: DivineDesign coordinates with GraphViz (theme), Vidette (video), Bloggie (blog), GamerGirl (game pages), Metrica (SEO/analytics), and Vixel (VR/creative). See `agents/*.md` for their profiles.
 
 ---
 
@@ -603,52 +603,3 @@ Every CSS file must use design token vars — never hardcoded values for shared 
 | Spacing Compliance | — | — |
 | Asset Pipeline | — | — |
 
----
-
-## Changelog
-
-### 2026-05-06 (Generic Refactor)
-- Removed all project-specific references (JenniNexus paths, CSS file names, hero class inventory)
-- Added `[YOUR-PROJECT]` markers throughout for easy customization
-- Added Asset Pipeline & Resource Integrity section (token non-regression, resource root, image path conventions)
-- Added "Using as a template?" note at top
-- Weekly Audit updated: asset pipeline check added
-- Hero System section now generic with customization guidance
-- Introduced explicit Layout vs Theme Agent boundary table
-
-### 2026-01-25 (Initial Creation — JenniNexus showcase)
-- Agent created as site-wide design and page architecture authority
-- Defined core design principles (F-pattern, Z-pattern, spacing system, Gestalt)
-- Established DivineDesign vs GraphViz ownership boundaries
-- Documented page structure standards and hero section standards
-- Created red flags and weekly audit protocol
-
----
-
-## Contact & Config
-
-### Where to Configure (For Your Project)
-
-| What | Where |
-|------|-------|
-| Agent profile path | `.vscode/mcp.json` → `agents.divinedesign.profile` |
-| Audit script path | `.vscode/mcp.json` → `agents.divinedesign.audit_script` |
-| Audit report output | `audits/AUDIT_layout.md` (gitignored) |
-| Project-specific override | `projects/[YOUR-PROJECT]/DivineDesign.md` |
-| Character image prompts | `docs/AGENT-GUIDE.md` → DivineDesign section |
-| Character images | `agents/images/divinedesign/` (gitignored) |
-
-### Character Image Quick Reference
-
-| Attribute | Value |
-|:---|:---|
-| **Time of Day** | Dawn (Sunrise) |
-| **Hair** | Burgundy red + rose gold, French twist |
-| **Style** | High fashion: blazer, silk blouse, tailored trousers |
-| **Workstation** | Drafting table + digital wireframes + design books |
-| **Easter Eggs** | Golden ratio spiral, 8px spacing ruler, F/Z pattern diagrams, Bootstrap grid |
-
----
-
-*"Every pixel has purpose. Every layout tells a story."*
-*Last Updated: May 6, 2026 — Generic framework version*

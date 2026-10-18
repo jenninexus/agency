@@ -209,7 +209,7 @@ $pageUrl         = 'https://[your-domain]/page-slug';   // canonical absolute UR
 ### 5. Sitemap Rules
 - `sitemap.xml` — updated on every deploy with new/modified pages
 - `lastmod` must reflect actual last-modified date
-- Submit to GSC via `scripts/indexing-api.mjs submit-sitemap` after deploy
+- Submit to GSC via your consumer's `indexing-api.mjs submit-sitemap` after deploy
 
 ---
 
@@ -272,9 +272,9 @@ Pending events:
 
 | Script | Purpose | Run |
 |--------|---------|-----|
-| `scripts/ga4-report.mjs` | GA4 summary, pages, traffic, events | Weekly (Saturday) |
-| `scripts/pagespeed-monitor.mjs` | PageSpeed scores for your public URLs | Weekly (Saturday) |
-| `scripts/indexing-api.mjs` | Submit URLs/sitemap to Google Indexing API | After every deploy |
+| `ga4-report.mjs` (consumer-owned) | GA4 summary, pages, traffic, events | Weekly (Saturday) |
+| `pagespeed-monitor.mjs` (consumer-owned) | PageSpeed scores for your public URLs | Weekly (Saturday) |
+| `indexing-api.mjs` (consumer-owned) | Submit URLs/sitemap to Google Indexing API | After every deploy |
 
 **GCP Project / Service Account / live GSC inventory:** live in the project override
 (`projects/[your-project]/Metrica.md`) — never commit real cloud IDs here.
@@ -315,16 +315,16 @@ Pending GSC tasks (track live counts in the override):
 ## PR & Social Card Strategy
 
 ### Default og:image
-- **Required:** 1200×630 branded card showing JenniNexus logo + tagline
-- **Status:** Pending creation (priority from Apr 21 audit)
+- **Required:** 1200×630 branded card showing the site logo + tagline
+- **Status:** Track in the project override
 - **File:** project `resources/images/og-default.jpg` (path in the override)
 
 ### Per-Page og:image Checklist
 
 | Page | og:image | Status |
 |------|---------|--------|
-| `index.php` | Branded JenniNexus card | ❌ Pending |
-| `services.php` | Voice acting professional headshot | ❌ Pending |
+| `index.php` | Branded site card | ❌ Pending |
+| `services.php` | Professional headshot / service imagery | ❌ Pending |
 | `gamedev.php` | Game collage / portfolio | ❌ Pending |
 | Game hub | Gaming / portfolio thumbnail | ❌ Pending |
 | Blog posts | Per-post image (existing `$pageImage`) | ✅ Done |
@@ -343,7 +343,7 @@ Pending GSC tasks (track live counts in the override):
 **Script:** `powershell -ExecutionPolicy Bypass -File scripts/audit-template.ps1`
 **Audit Results:** `audits/AUDIT_seo-analytics.md`
 
-### Automated Checks (via audit-seo-analytics.ps1)
+### Automated Checks (via your consumer's SEO audit script, specialized from `scripts/audit-template.ps1`)
 
 | # | Check | Severity |
 |---|-------|---------|
@@ -360,18 +360,18 @@ Pending GSC tasks (track live counts in the override):
 
 ### Manual Checks (After Script)
 
-- [ ] PageSpeed: run `node scripts/pagespeed-monitor.mjs` — flag any site < 80 mobile
-- [ ] GA4: run `node scripts/ga4-report.mjs` — flag traffic drops > 20%
+- [ ] PageSpeed: run `node pagespeed-monitor.mjs` — flag any site < 80 mobile
+- [ ] GA4: run `node ga4-report.mjs` — flag traffic drops > 20%
 - [ ] GSC: check Coverage for new crawl errors
 - [ ] Social preview: test og:image renders on Twitter/Discord/LinkedIn
-- [ ] sitemap submitted: `node scripts/indexing-api.mjs submit-sitemap`
+- [ ] sitemap submitted: `node indexing-api.mjs submit-sitemap`
 
 ---
 
 ## Red Flags (Metrica Will Reject)
 
 1. **Missing `$pageDescription`** — every page needs a unique 150-160 char description
-2. **Generic descriptions** — "JenniNexus is a multi-platform creator" on every page is spam
+2. **Generic descriptions** — The same boilerplate sentence on every page is spam
 3. **Missing og:image** — no social card = invisible on Discord, Twitter, LinkedIn
 4. **Relative og:image URL** — must be absolute `https://[your-domain]/...`
 5. **Missing canonical** — no `$pageUrl` set = duplicate content risk
@@ -413,7 +413,7 @@ Metrica is the **visibility authority** — she reports to no one on SEO, but co
 │         │                                                                   │
 │         └──► GraphViz (Visual Design) - COLLABORATION                       │
 │              • og:image design follows brand guidelines (no white bg)       │
-│              • Social card images use JenniNexus color palette              │
+│              • Social card images use the project palette              │
 │              • Page load performance is shared ownership (Metrica=perf,     │
 │                GraphViz=visual quality)                                     │
 │                                                                             │
@@ -438,9 +438,9 @@ Metrica is the **visibility authority** — she reports to no one on SEO, but co
 |------|---------|-----------|
 | `includes/head.php` | OG, Twitter Card, canonical, JSON-LD injection | **FULL OWNERSHIP** |
 | `sitemap.xml` | URL inventory for Google | **FULL OWNERSHIP** |
-| `scripts/ga4-report.mjs` | GA4 analytics query | **FULL OWNERSHIP** |
-| `scripts/pagespeed-monitor.mjs` | PageSpeed monitoring | **FULL OWNERSHIP** |
-| `scripts/indexing-api.mjs` | Google Indexing API | **FULL OWNERSHIP** |
+| `ga4-report.mjs` (consumer-owned) | GA4 analytics query | **FULL OWNERSHIP** |
+| `pagespeed-monitor.mjs` (consumer-owned) | PageSpeed monitoring | **FULL OWNERSHIP** |
+| `indexing-api.mjs` (consumer-owned) | Google Indexing API | **FULL OWNERSHIP** |
 | `storage/seo/SEO-AND-MARKETING.md` | Narrative SEO strategy (local-only) | **FULL OWNERSHIP** |
 
 ---
