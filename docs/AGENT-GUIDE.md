@@ -73,6 +73,14 @@ All agents share the same environment — a luxury high-rise penthouse in futuri
 
 ---
 
+## Customizing a character for your project
+
+Keep the project's specialty, skills, personality, writing-register differences and visual
+references in its [project overlay](../projects/README.md) or independent roster. Keep a separate
+spoken-voice brief there with audition and approval status. Optional
+[Voice Seed](https://github.com/jenninexus/voice-seed) routes writing registers to those owning
+profiles. Approved audio belongs to the project's audio workflow.
+
 ## Agent Character Profiles
 
 ---

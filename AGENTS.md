@@ -25,7 +25,8 @@ Full contract: [`docs/CONSUMERS.md`](docs/CONSUMERS.md).
 - This repository is **public**. Only generic, reusable content goes in `agents/`, `docs/`, `templates/`,
   `examples/`, `scripts/`: no real site paths, audit scores, IDs, tokens, webhook URLs, personal names
   beyond the published credit, or private project lore.
-- Project-specific material belongs in the consumer's `projects/<project>/` overlay, never here.
+- Project-specific desk variants belong in the consumer's `projects/<project>/` overlay. A standalone
+  local overlay is a separate copy. [`projects/README.md`](projects/README.md) explains consumer setup.
 - A studio's own characters (not the seven desks) live in that studio's private repository.
 - Each desk keeps one `### Discord chatVoice (community register)` section; bot runtime catalogues copy
   from it, never the other way round.

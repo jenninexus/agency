@@ -38,6 +38,8 @@ Consumers that have a `package.json` also expose `npm run agency:status` and `np
     └── projects/<project>/          YOUR overlays (gitignored): <Agent>.md, generations/, notes
 ```
 
+For a standalone clone or a project with its own roster, start with the [project integration guide](../projects/README.md).
+
 ## Setup (once per clone)
 
 ```bash
@@ -86,8 +88,9 @@ Start from what exists, then add only your difference:
    `projects/<project>/<Agent>.md` from [`templates/OVERLAY-TEMPLATE.md`](../templates/OVERLAY-TEMPLATE.md):
    a header naming the public desk, a "what changes here" table, project paths, project-only rules,
    an audit log and a promotion checklist. It never copies the public profile.
-3. Fill in only the delta. The public desk keeps supplying personality, rules and `chatVoice`, so
-   `sync` brings every improvement to your overlay's base automatically.
+3. Fill in only the delta. Record project scope, skills, personality and writing-register changes,
+   visual references and any planned spoken-voice brief. Read the overlay alongside its public base.
+   A pin update refreshes the base. Check each runtime consumer separately for overlay support.
 4. A **brand-new character** (not a variant of a desk) starts from
    [`templates/AGENT-TEMPLATE.md`](../templates/AGENT-TEMPLATE.md), copied into `projects/<project>/`.
 5. A finding that would help every project goes back to the public desk: edit it in the agency
@@ -107,7 +110,8 @@ An overlay file names the public desk it extends and records how it differs:
   read and write exactly that path, so a nested `agents/` folder is silently ignored and the desk falls
   back to its public profile. Non-agent data may sit beside the overlays in subfolders
   (`generations/`, `resources/`, `snapshots/`, `characters.yaml`).
-- Put only project facts in an overlay: real paths, audit scripts, scores, private lore.
+- Put project-specific details in the overlay, including skills, personality and media pointers.
+  Record spoken-voice briefs as planned until the project approves audio.
 - Never copy a whole public profile into an overlay. Link to it and add the delta.
 - `projects/<project>/` exists only on the disk that made it. Back it up by making that folder its own
   **private** git repository (a LAN or private remote) — this repo ignores `projects/*`, so a nested
