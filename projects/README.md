@@ -1,69 +1,47 @@
-# Agency Projects
+# Integrate Agency into your project
 
-This directory is intentionally empty of project content in the **public** repo.
+Choose the desks that fit your project. A standalone Agency clone works for evaluation or as a
+reference. Use a pinned submodule if your project wants to consume and update the shared desks.
+An independent studio roster stays in its owning project.
 
-| What | Tracked? |
-|------|----------|
-| `projects/README.md` (this file) | ✅ Yes |
-| `projects/<project-name>/` | ❌ No — gitignored (`projects/*/`) |
+## Set up a consumer
 
-See [`docs/PUBLIC-LOCAL-SPLIT.md`](../docs/PUBLIC-LOCAL-SPLIT.md) and [`docs/STUDIO-VOICE.md`](../docs/STUDIO-VOICE.md).
+Run these from your project root. For an existing submodule, use
+`git submodule update --init storage/agency` in place of `git submodule add`.
 
----
-
-## Two-Layer Pattern (canonical)
-
-| Layer | Location | Tracked? | Contains |
-|-------|----------|----------|----------|
-| **Origin** | `agents/AgentName.md` | ✅ | Personality, generic rules, red flags, Discord chatVoice summary |
-| **Overlay** | `projects/<project>/AgentName.md` — in a consumer, that is `storage/agency/projects/<project>/` inside its read-only submodule checkout | ❌ | Real paths, GA4 IDs, audit history, live scores |
-
-There is **no** third tracked project-content layer in git. Cross-repository ownership pointers
-belong in this tracked README; local overrides remain ignored.
-
-**Critical rule:** Never push server IPs, API keys, absolute machine paths, or live credentials into `agents/*.md`.
-
----
-
-## Local layout (example)
-
-```
-projects/
-├── README.md                 ← tracked (this file)
-├── jenninexus/               ← gitignored
-│   ├── Metrica.md            ← real GA4 / GCP notes
-│   └── …
-├── jerry-vr/                 ← gitignored — Vixel override
-└── neophi/                   ← gitignored
+```sh
+git submodule add https://github.com/jenninexus/agency.git storage/agency
+node storage/agency/scripts/consumer.mjs protect
+node storage/agency/scripts/consumer.mjs overlay Bloggie
+node storage/agency/scripts/consumer.mjs status
 ```
 
-Consuming projects that submodule this repo keep overlays under:
+Review and commit `.gitmodules` and the `storage/agency` gitlink in the parent project on first
+setup. If your project ignores `storage/`, see the [consumer contract](../docs/CONSUMERS.md)
+for the ignore exception. Run `protect` on each fresh clone.
 
-```
-{consumer}/storage/agency/projects/{project}/AgentName.md
-```
+| Change | Where it belongs |
+|---|---|
+| Reusable desk, template, helper or public documentation | Standalone Agency checkout. Land it on Agency main, then run `node storage/agency/scripts/consumer.mjs sync --commit` from each consumer root when ready to update its pin. |
+| A desk's project-specific specialty, skills, personality, writing style, appearance or planned spoken voice | `<consumer>/storage/agency/projects/<project>/<Agent>.md`. Name the desk it extends and record the project differences. Keep agent profiles flat. |
+| A studio's own character with no shared desk | Start with the [agent template](../templates/AGENT-TEMPLATE.md) and keep the character in the project's private overlay or independent roster. |
+| Audits, site configuration, or runtime and display wiring | Owning project. Document which fields each consumer reads and verify those paths directly. |
 
-That folder is the only writable place in a consumer's checkout. Edit public origin files in the
-agency repo's own checkout, push, then run `node storage/agency/scripts/consumer.mjs sync` in each
-consumer. Contract: [`docs/CONSUMERS.md`](../docs/CONSUMERS.md).
+Agency tracks this README. Your `projects/<project>/` folder is ignored by Agency and travels
+separately from the parent gitlink. Back it up in a project-approved private repository. The
+standalone checkout also supports local experiments with
+`node scripts/consumer.mjs overlay Bloggie --project my-project`. An overlay there is a separate
+copy and never syncs into another checkout.
 
----
+## Optional tools
 
-## Which agents for which kind of project?
+- [Voice Seed](https://github.com/jenninexus/voice-seed) routes written registers to the owning profile.
+  Keep planned spoken-voice traits and approval status with the character. Use a separate audio
+  workflow for auditions, recordings and synthesis.
+- [Theme Designer](https://github.com/jenninexus/theme-designer) helps design palettes. Put approved
+  tokens in your project's design system.
+- Keep visual references and prompt continuity with the owning character. A separate character
+  registry can index those sources and approved media.
 
-| Project type | Typical agents |
-|--------------|----------------|
-| Creator / portfolio site | Vidette, Bloggie, GraphViz, DivineDesign, Metrica (+ GamerGirl if games) |
-| VR / game client site | **Vixel** primary (+ GraphViz for tokens) |
-| Separate game studio site | Prefer that studio's own agency roster (e.g. MissionControl / GlassViz / OrbitalPipe) — not a forced JN 7-pack |
-
-Shared loft culture (all agents): [`docs/STUDIO-VOICE.md`](../docs/STUDIO-VOICE.md).
-
----
-
-## Independent rosters
-
-Do not add a studio's own characters here as extra desks or as a tracked `projects/<studio>/`
-folder. A studio with its own roster keeps it in its own private repository, publishes only approved
-marketing fields through its own site or API, and never copies that lore back into this repo.
+See the [consumer contract](../docs/CONSUMERS.md) and [public/local split](../docs/PUBLIC-LOCAL-SPLIT.md).
 

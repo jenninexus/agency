@@ -65,7 +65,10 @@ Discord Visual Profiles (:8777) read hosted URLs from `jenni-bot/resources/agenc
 
 ## Project Override Rule
 
-If an agent profile names real project pages, local paths, private audit scripts, private service names, or project-specific visual lore, it belongs in:
+A project-specific desk profile belongs in the consuming checkout. Keep the role, skills,
+writing register, visual references and planned spoken-voice brief with the project that owns them.
+Standalone overlays are separate local copies. The shared submodule pin does not transfer them.
+See the [integration guide](../projects/README.md) for setup.
 
 ```text
 projects/<project-name>/<Agent>.md      ← overlays, flat (what the MCP server and consumer.mjs read)
@@ -89,9 +92,7 @@ git commit -m "docs: update agency workflow"
 git push
 
 cd /path/to/parent-project
-git submodule update --remote storage/agency
-git add storage/agency
-git commit -m "chore: bump agency submodule"
+node storage/agency/scripts/consumer.mjs sync --commit
 ```
 
 If a future agent sees dirty files inside `storage/agency`, it should stop and classify them:
