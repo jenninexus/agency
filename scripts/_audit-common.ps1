@@ -11,13 +11,16 @@ $envFile = Join-Path (Split-Path $PSScriptRoot -Parent) ".env"
 if (Test-Path $envFile) {
     Get-Content $envFile | ForEach-Object {
         if ($_ -match '^\s*([^#][^=]+)=(.*)$') {
-            [Environment]::SetEnvironmentVariable($matches[1].Trim(), $matches[2].Trim(), "Process")
+            $name = $matches[1].Trim()
+            if (-not [Environment]::GetEnvironmentVariable($name, 'Process')) {
+                [Environment]::SetEnvironmentVariable($name, $matches[2].Trim(), 'Process')
+            }
         }
     }
 }
 
 # Discover project root (parent of scripts/ directory)
-$script:ProjectRoot = if ($env:PROJECT_ROOT) { $env:PROJECT_ROOT } else { Split-Path (Split-Path $PSScriptRoot -Parent) -Parent }
+$script:ProjectRoot = if ($env:PROJECT_ROOT) { $env:PROJECT_ROOT } else { Split-Path $PSScriptRoot -Parent }
 
 # Standard paths (override via .env or env vars)
 $script:AgentConfig = if ($env:AGENT_CONFIG) { $env:AGENT_CONFIG } else { Join-Path $ProjectRoot "mcp.json" }
@@ -108,6 +111,7 @@ function Get-SourceFiles {
         [string[]]$Include = @("*.php", "*.html", "*.css", "*.js"),
         [string[]]$Exclude = @("node_modules", "vendor", ".git", "*.min.*")
     )
+    if (-not (Test-Path -LiteralPath $Path -PathType Container)) { return @() }
     Get-ChildItem -Path $Path -Recurse -Include $Include -File | Where-Object {
         $file = $_
         -not ($Exclude | Where-Object { $file.FullName -like "*$_*" })
@@ -163,12 +167,16 @@ function Save-AuditReport {
         [switch]$AppendHistory
     )
 
+    $directory = Split-Path -Parent $OutputPath
+    if ($directory -and -not (Test-Path -LiteralPath $directory)) {
+        New-Item -ItemType Directory -Path $directory -Force -ErrorAction Stop | Out-Null
+    }
     if ($AppendHistory -and (Test-Path $OutputPath)) {
         $existing = Get-Content $OutputPath -Raw
         $Content = $Content + "`n---`n`n# Previous Run`n`n" + $existing
     }
 
-    Set-Content -Path $OutputPath -Value $Content -Encoding UTF8
+    Set-Content -Path $OutputPath -Value $Content -Encoding UTF8 -ErrorAction Stop
     Write-Host "  Report saved to: $OutputPath" -ForegroundColor DarkGray
 }
 

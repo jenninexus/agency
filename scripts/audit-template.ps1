@@ -61,6 +61,11 @@ Write-AuditHeader -AgentName $AgentName -AgentEmoji $AgentEmoji -AuditTitle $Aud
 Write-Host "  Scanning files..." -ForegroundColor DarkGray
 
 $files = Get-SourceFiles -Path $ScanPaths[0] -Include @("*.css", "*.js")
+if (-not $files) {
+    $totalChecks++
+    $warnings++
+    Write-CheckResult -Item $ScanPaths[0] -Status "WARN" -Message "No source files found; configure the scan path before interpreting results"
+}
 foreach ($file in $files) {
     $totalChecks++
     $relativePath = $file.FullName.Replace($ProjectRoot, "").TrimStart("\")
