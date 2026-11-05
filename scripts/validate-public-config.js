@@ -92,6 +92,11 @@ const forbiddenPatterns = [
 const allowedContentPrefixes = ["content/examples/", "content/templates/"];
 for (const rel of trackedFiles()) {
   const normalizedRel = rel.toLowerCase();
+  if (/^plans\//.test(normalizedRel) ||
+      /^docs\/(roadmap|plans|notes)\.md$/.test(normalizedRel) ||
+      (normalizedRel.startsWith("projects/") && rel !== "projects/README.md")) {
+    failures.push(`${rel}: local plans and project overlays must stay out of the public index`);
+  }
   if (!normalizedRel.startsWith("content/")) continue;
   if (!allowedContentPrefixes.some((prefix) => normalizedRel.startsWith(prefix))) {
     failures.push(
