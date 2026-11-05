@@ -515,10 +515,8 @@ ai-agents/
 ├── audits/                     # Audit reports (gitignored)
 │   └── .gitkeep
 └── .github/
-    ├── ISSUE_TEMPLATE/
-    │   └── new-agent-proposal.md
-    └── workflows/
-        └── audit-schedule.yml   # Automated weekly audits
+    └── ISSUE_TEMPLATE/
+        └── new-agent-proposal.md
 ```
 
 ### 5.2 Scheduled Audits
