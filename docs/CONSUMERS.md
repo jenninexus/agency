@@ -129,6 +129,19 @@ bot), do not keep two overlays that drift apart:
   character repository and add it as a second read-only submodule next to this one, with the same
   `status` / `sync` / `protect` flow. Keep public lore here and private lore there.
 
+## Consumer audits
+
+Run the owning project's audit from its repository root. Keep assertions
+with the project spec they check and update both in the same change. Schedule
+the actual consumer command on a host that has the project checkout and any
+approved private inputs. Keep audit output in ignored project storage.
+
+When a script consumes an overlay input, report which rule was applied and
+show that changing the input or violating the rule changes a result. If the
+overlay is unavailable, report the skipped project checks. The MCP resource
+returns the project overlay when present. Read the shared desk separately
+when the overlay is a delta.
+
 ## Runtime catalogues
 
 A bot or site that renders the desks (webhook names, avatars, `chatVoice` sample replies) keeps its

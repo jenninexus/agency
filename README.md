@@ -384,18 +384,11 @@ When multiple agents collaborate, use the coordination matrix in local `mcp.json
 }
 ```
 
-### GitHub Actions
-```yaml
-on:
-  schedule:
-    - cron: '0 9 * * 1'  # Monday 9am - Vidette's audit day
-jobs:
-  audit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: pwsh scripts/audit-template.ps1
-```
+### Scheduled audits
+
+Use your operating system's scheduler to run the consuming project's audit
+from its repository root. Keep generated reports in the project's ignored
+audit directory. See the [consumer audit contract](docs/CONSUMERS.md#consumer-audits).
 
 ### MCP Integration (Claude Code, Cursor, Zed, Cline)
 

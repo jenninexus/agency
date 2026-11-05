@@ -11,7 +11,7 @@ The AI Agent Agency framework provides a structured approach to AI-assisted deve
 - Optimization ideas for VSCode/Claude Code integration
 - Synchronization strategies across agents
 - Advanced automation patterns
-- GitHub Actions workflows
+- Host-scheduled audit scripts
 
 Use these strategies to make your agents work more cohesively.
 
@@ -521,40 +521,10 @@ ai-agents/
         └── audit-schedule.yml   # Automated weekly audits
 ```
 
-### 5.2 GitHub Actions for Automated Audits
+### 5.2 Scheduled Audits
 
-```yaml
-# .github/workflows/audit-schedule.yml
-name: Weekly Agent Audits
-
-on:
-  schedule:
-    - cron: '0 9 * * 1'  # Monday 9am - AssetManager
-    - cron: '0 9 * * 2'  # Tuesday 9am - ContentEditor
-    - cron: '0 9 * * 3'  # Wednesday 9am - StyleGuard
-
-jobs:
-  audit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Determine Audit
-        id: audit
-        run: |
-          DAY=$(date +%u)
-          case $DAY in
-            1) echo "script=audit-assets.sh" >> $GITHUB_OUTPUT ;;
-            2) echo "script=audit-content.sh" >> $GITHUB_OUTPUT ;;
-            3) echo "script=audit-styles.sh" >> $GITHUB_OUTPUT ;;
-          esac
-      - name: Run Audit
-        run: ./scripts/${{ steps.audit.outputs.script }}
-      - name: Upload Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: audit-report-${{ github.run_number }}
-          path: audits/*.md
-```
+Schedule the consuming project's audit on the host that has the checkout and
+its private inputs. See the [consumer audit contract](CONSUMERS.md#consumer-audits).
 
 ---
 
@@ -621,7 +591,7 @@ jobs:
 5. **Create sync-check script** to validate consistency
 6. **Add agent state tracking** for workflow visibility
 7. **Establish conflict resolution protocol** for overlapping domains
-8. **Set up GitHub Actions** for automated weekly audits
+8. **Schedule the project audit** on its designated host
 9. **Create agent invocation shortcuts** for Claude Code
 10. **Document dependency graph** for clear agent relationships
 
