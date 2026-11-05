@@ -38,6 +38,16 @@ copy and never syncs into another checkout.
 - [Voice Seed](https://github.com/jenninexus/voice-seed) routes written registers to the owning profile.
   Keep planned spoken-voice traits and approval status with the character. Use a separate audio
   workflow for auditions, recordings and synthesis.
+- A character-design registry can index an agent's visual references, prompts, portraits and
+  approved media alongside the profile and voice pointers. It is optional: keep original character
+  material in its owning project, distinguish project casts from working agents, and do not assume
+  a registry installs a runtime integration. If a registry is private, link to it only from private
+  project documentation.
+- To combine the tools, select the Agency base and project overlay or independent profile first;
+  use Voice Seed to select the writing register, then the character registry to locate visual
+  sources. Record where each layer is owned and which reader consumes it. A writing sample, a
+  planned spoken brief and approved audio are separate deliverables. Clone optional tools beside
+  the project as needed; they are not required submodules of Agency.
 - [Theme Designer](https://github.com/jenninexus/theme-designer) helps design palettes. Put approved
   tokens in your project's design system.
 - Keep visual references and prompt continuity with the owning character. A separate character

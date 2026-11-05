@@ -155,3 +155,12 @@ A studio with its own characters (not the seven desks) should not submodule this
 them. Keep that roster in the studio's own private repository, publish only approved marketing fields
 through the studio's own API, and let its tools read the private files directly. See
 [`PUBLIC-LOCAL-SPLIT.md`](PUBLIC-LOCAL-SPLIT.md) for what may enter this public repository.
+
+## Optional character and voice tools
+
+Agency supplies desk profiles and project overlays. An independent character registry may index
+the owning profile, visual references, prompts and approved media; it does not replace those sources.
+[Voice Seed](https://github.com/jenninexus/voice-seed) can route a desk's writing register to its
+owner. Spoken voice design and audio approval are separate from written voice. Keep private rosters,
+registers and their paths in the project's private documentation, and verify each actual reader before
+calling any optional tool a runtime dependency. See [integration options](../projects/README.md#optional-tools).
