@@ -33,6 +33,11 @@ standalone checkout also supports local experiments with
 `node scripts/consumer.mjs overlay Bloggie --project my-project`. An overlay there is a separate
 copy and never syncs into another checkout.
 
+A private consumer can track the overlay source in its own parent repository and generate the
+ignored copy from it. Verify the copy before loading it and preserve local edits when refreshing.
+Keep machine-specific consumer pointers in ignored `projects/<project>/README.md` files in the
+standalone checkout.
+
 ## Optional tools
 
 - [Voice Seed](https://github.com/jenninexus/voice-seed) routes written registers to the owning profile.
