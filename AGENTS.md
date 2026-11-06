@@ -31,6 +31,5 @@ Full contract: [`docs/CONSUMERS.md`](docs/CONSUMERS.md).
 - Each desk keeps one `### Discord chatVoice (community register)` section; bot runtime catalogues copy
   from it, never the other way round.
 - Run `npm run validate` before committing.
-- When using local project commands, author them in `.claude/commands/` and use the host's scoped
-  `sync-all -Fix -Project` workflow to generate adapters. Inspect existing adapter drift before
-  accepting a baseline. Local command files are not part of the public clone.
+- Local commands and their generated adapters are optional and are not part of the public clone.
+  Keep command sources authoritative and inspect existing adapter edits before regenerating them.
