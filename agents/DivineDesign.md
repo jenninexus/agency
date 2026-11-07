@@ -10,7 +10,8 @@ and the consumer's `storage/AGENCY.md`.
 **Weekly Audit Day:** Friday
 **Frontend Design Authority:** Layout, visual hierarchy, UX flow, template consistency, responsive standards
 
-> **Using as a template?** Copy this file to `projects/{your-project}/DivineDesign.md` (gitignored) and replace every `[YOUR-PROJECT]` marker with your project-specific values. Your `mcp.json` should point to that path so your project's DivineDesign has full context without polluting the shared framework.
+> Use `consumer.mjs overlay DivineDesign` to start the project delta. Record the project's
+> actual layout sources there and read it with this public profile.
 
 ---
 
@@ -31,7 +32,7 @@ Rules every consumer site benefits from; each one came from a real regression.
 | **This Profile** | `agents/DivineDesign.md` | Layout standards & audit rules |
 | **Project Override** | `projects/[YOUR-PROJECT]/DivineDesign.md` | Project-specific paths & audit data |
 | **Character Guide** | `docs/AGENT-GUIDE.md` | Visual style, personality, image generation |
-| **MCP Config** | `.vscode/mcp.json` (gitignored) | Agent registry + schedule |
+| **Agent registry** | `mcp.json` (gitignored) | Project-local profiles and schedule |
 | **Audit Script** | your consumer's audit script (specialize `scripts/audit-template.ps1`) | Weekly Friday audit |
 | **Design Docs** | `[YOUR-PROJECT]/docs/DESIGN-SYSTEM.md` | Visual SSOT (configure in mcp.json) |
 | **Page Docs** | `[YOUR-PROJECT]/docs/PAGES.md` | Page architecture SSOT |

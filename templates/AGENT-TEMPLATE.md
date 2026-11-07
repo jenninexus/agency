@@ -20,7 +20,7 @@ holds registry entries; `.vscode/mcp.json` holds only the MCP server configurati
 | **This Profile** | `agents/[AgentName].md` | Technical standards & rules for [domain] |
 | **Character Prompts** | `agents/characters.yaml#[agentname]` | AI image generation prompts |
 | **Character Guide** | `docs/AGENT-GUIDE.md#[agentname]` | Visual style, personality, full character details |
-| **Master Config** | `.vscode/mcp.json` | Schedule, metadata, domain ownership |
+| **Agent registry** | `mcp.json` | Project-local profiles and schedule |
 | **Audit Script** | `scripts/audit-[domain].ps1` | Weekly [Day] audit script |
 | **Audit Report** | `audits/AUDIT_[domain].md` | Audit output location |
 | **Primary Doc** | `[path/to/DOMAIN-DOC.md]` | Single source of truth for [domain] |
