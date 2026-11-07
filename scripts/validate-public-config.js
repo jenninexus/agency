@@ -6,13 +6,13 @@ const { execFileSync } = require("child_process");
 const root = path.resolve(__dirname, "..");
 const failures = [];
 
-function trackedFiles() {
+function indexFiles(...options) {
   try {
-    return execFileSync("git", ["ls-files"], {
+    return execFileSync("git", ["ls-files", "-z", ...options], {
       cwd: root,
       encoding: "utf8"
     })
-      .split(/\r?\n/)
+      .split("\0")
       .map((entry) => entry.replace(/\\/g, "/"))
       .filter(Boolean);
   } catch (error) {
@@ -63,6 +63,7 @@ const publicFiles = [
   "docs/STUDIO-VOICE.md",
   "agency.html.example",
   "projects/README.md",
+  ...indexFiles().filter((file) => /(?:^|\.)example(?:\.|$)/i.test(path.basename(file))),
   ...walkMd("agents"),
   ...walkMd("docs"),
   ...walkMd("examples"),
@@ -90,7 +91,12 @@ const forbiddenPatterns = [
 ];
 
 const allowedContentPrefixes = ["content/examples/", "content/templates/"];
-for (const rel of trackedFiles()) {
+const privatePaths = new Set(indexFiles("-ci", "--exclude-per-directory=.gitignore"));
+for (const rel of privatePaths) {
+  failures.push(`${rel}: ignored by the repository and must stay out of the public index`);
+}
+for (const rel of indexFiles()) {
+  if (privatePaths.has(rel)) continue;
   const normalizedRel = rel.toLowerCase();
   if (/^plans\//.test(normalizedRel) ||
       /^docs\/(roadmap|plans|notes)\.md$/.test(normalizedRel) ||
@@ -111,6 +117,9 @@ for (const rel of files) {
     continue;
   }
   const text = readText(rel);
+  if (path.basename(rel) === ".env.example" && /^\s*[A-Za-z_][A-Za-z0-9_]*\s*=[^\S\r\n]*\S/m.test(text.replace(/\r\n/g, "\n"))) {
+    failures.push(`${rel}: example environment assignments must have blank values`);
+  }
   for (const { re, label } of forbiddenPatterns) {
     if (re.test(text)) {
       failures.push(`${rel}: contains forbidden public-template pattern (${label})`);

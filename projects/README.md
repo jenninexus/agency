@@ -4,6 +4,10 @@ Choose the desks that fit your project. A standalone Agency clone works for eval
 reference. Use a pinned submodule if your project wants to consume and update the shared desks.
 An independent studio roster stays in its owning project.
 
+Use `storage/AGENCY.md` to route to the project-owned guide and
+[session source check](../docs/CONSUMERS.md#session-source-check). The guide names the desk
+readers, governing specs, applicable theme profile, and audits.
+
 ## Set up a consumer
 
 Run these from your project root. For an existing submodule, use

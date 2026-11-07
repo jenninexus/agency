@@ -131,6 +131,36 @@ bot), do not keep two overlays that drift apart:
 
 ## Consumer audits
 
+### Session source check
+
+Start at the consumer's `storage/AGENCY.md`. Keep it as a pointer to
+`storage/agency/projects/<project>/README.md`, which names the project's actual profiles,
+governing docs (`docs/`, `storage/docs/`, or their established equivalent), private
+configuration, theme-kit profile when used, and owning audit commands. A local-reference
+or independent project can use the same pointer layout and link to its existing roster.
+An index does not move a profile or change which file its audit reads.
+
+Before doing desk work, run the read-only source review from the consumer root.
+Use the pinned script for submodule consumers and the standalone Agency script for local
+or independent projects:
+
+```text
+node storage/agency/scripts/consumer.mjs review --since <last-reviewed-ref> --profile <current-theme-profile>
+node <agency-checkout>/scripts/consumer.mjs review --project <project> --profile <current-theme-profile>
+```
+
+Use the recorded source ref when available. Without it the review shows the last commit and
+current working changes. Pass `--config <file>` for the project settings named in the guide.
+Compare the profile and config hashes with the last review, including for ignored inputs,
+and read the governing rules. The command prints paths and hashes only.
+
+Each desk reads its governing sources before running the audit. If a session changes theme
+preferences, config, or the kit profile, update the affected consumer assertions in the same
+work batch. Read structured values from their owner when possible. Run the actual audit
+against the new inputs and check that an intentional mismatch produces the expected finding.
+At wrap, update or remove stale pointers and record the source ref, profile hash, audit result,
+and any missing inputs in the owning project plan.
+
 Run the owning project's audit from its repository root. Keep assertions
 with the project spec they check and update both in the same change. Schedule
 the actual consumer command on a host that has the project checkout and any

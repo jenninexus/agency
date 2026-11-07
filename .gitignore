@@ -20,9 +20,21 @@ logs/
 
 # Agent + MCP config — copy from mcp.example.json → mcp.json.
 # Keep personal paths, private server names, local MCP env, and project-specific rosters out of Git.
-mcp.json
-.vscode/mcp.json
+mcp*.json
+mcp*.yaml
+mcp*.yml
+!mcp*.example.json
+!mcp*.example.yaml
+!mcp*.example.yml
+.mcp.json
 .config/
+port-map.txt
+ports.json
+ports.yaml
+ports.yml
+!ports.example.json
+!ports.example.yaml
+!ports.example.yml
 
 # Workspace — copy from agency.example.code-workspace
 agency.code-workspace
@@ -93,6 +105,7 @@ resources/paths.local.yaml
 private/
 storage/
 *.local.*
+!resources/README.local.example.md
 
 # Detailed character prompt YAML — stays local (use .env + local copy)
 agents/characters.yaml

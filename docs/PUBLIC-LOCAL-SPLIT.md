@@ -8,6 +8,7 @@ Commit these when they are generic and reusable:
 
 - `mcp.example.json` - sanitized agent registry template. **`profile` (and `audit_script`) paths must exist in a fresh clone** — point at `agents/*.md` and `scripts/audit-template.ps1`, not consuming-site files.
 - `.vscode/mcp.example.json` - minimal VS Code MCP server entry.
+- `.env.example` and other sanitized `.example` configs - documented variable names and placeholders.
 - `agents/*.md` - public-safe showcase or framework agents.
 - `templates/*.md` - reusable agent/profile templates.
 - `docs/*.md` - framework documentation (`ROADMAP.md` is the exception — gitignored).
@@ -20,6 +21,7 @@ Never commit these from your personal machine or a consuming project:
 
 - `mcp.json`
 - `.vscode/mcp.json`
+- `.mcp.json`, populated MCP variants, and real port maps or assignments
 - `.config/`
 - `.env` and `.env.*` (except the tracked, values-free `.env.example`)
 - `projects/<project-name>/` and other project-local entries under `projects/` (except `projects/README.md`)
@@ -31,6 +33,10 @@ Never commit these from your personal machine or a consuming project:
 - `resources/README.local.md` — machine paths to more agent images / videos / Favs
 - `docs/ROADMAP.md` — local next-work (gitignored even though `docs/` is tracked)
 - `Plans/` — `_Active/` + `_Completed/` session checklists (gitignored; never push)
+
+`npm run validate` checks the public examples and rejects tracked paths covered by the repository's
+ignore rules, including paths force-added to the index. Resolve assigned ports from the owning
+host's port authority and keep credentials in the host environment or credential store.
 
 Tracked framework docs are `GETTING-STARTED.md`, `ART-STYLE.md`, `AGENT-GUIDE.md`, `STUDIO-VOICE.md`, `WORKFLOW.md`, `SCHEDULE.md`, `CHARACTER-DISPLAY.md`, and this file. Planning files are not part of the clone.
 

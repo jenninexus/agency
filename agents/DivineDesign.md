@@ -1,5 +1,8 @@
 # DivineDesign — Layout & Page Architecture Agent
 
+Before project work, follow the [session source check](../docs/CONSUMERS.md#session-source-check)
+and the consumer's `storage/AGENCY.md`.
+
 **Role:** Chief Layout & Page Architecture Officer
 **Created:** January 25, 2026
 **Last Updated:** May 6, 2026

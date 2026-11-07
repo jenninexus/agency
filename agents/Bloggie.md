@@ -1,5 +1,8 @@
 # Bloggie - Blog Page Design Manager Agent
 
+Before project work, follow the [session source check](../docs/CONSUMERS.md#session-source-check)
+and the consumer's `storage/AGENCY.md`.
+
 **Role:** Chief Blog Page Design & Consistency Officer
 **Status:** Active
 **Weekly Audit Day:** Tuesday

@@ -19,6 +19,7 @@ git rev-parse --show-superproject-working-tree
 - **Prints nothing** → you are in the **agency repo itself** (the canonical checkout). Edit here, then push.
 
 Full contract: [`docs/CONSUMERS.md`](docs/CONSUMERS.md).
+Before a desk session, follow its [source check](docs/CONSUMERS.md#session-source-check).
 
 ## Rules in the canonical checkout
 
@@ -30,6 +31,7 @@ Full contract: [`docs/CONSUMERS.md`](docs/CONSUMERS.md).
 - A studio's own characters (not the seven desks) live in that studio's private repository.
 - Each desk keeps one `### Discord chatVoice (community register)` section; bot runtime catalogues copy
   from it, never the other way round.
-- Run `npm run validate` before committing.
+- Run `npm run validate` on the staged index before committing. Share sanitized examples and
+  keep populated environment, MCP and port configuration local.
 - Local commands and their generated adapters are optional and are not part of the public clone.
   Keep command sources authoritative and inspect existing adapter edits before regenerating them.

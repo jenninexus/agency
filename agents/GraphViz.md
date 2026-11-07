@@ -1,5 +1,8 @@
 # GraphViz - Theme & Visual Design Manager Agent
 
+Before project work, follow the [session source check](../docs/CONSUMERS.md#session-source-check)
+and the consumer's `storage/AGENCY.md`.
+
 **Role:** Chief Visual Harmony & Theme System Architect
 **Status:** Active
 **Weekly Audit Day:** Wednesday

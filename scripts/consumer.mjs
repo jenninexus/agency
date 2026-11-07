@@ -8,9 +8,10 @@
 //                                                     inside the submodule, pre-commit guard in the consumer, and the
 //                                                     read-only file attribute on every tracked file (any editor or agent)
 //   node storage/agency/scripts/consumer.mjs overlay <Agent>   start projects/<project>/<Agent>.md from the overlay template
+//   node storage/agency/scripts/consumer.mjs review [--profile <file>] [--config <file>] [--since <ref>]   verify pointers and list changed audit inputs
 //   node storage/agency/scripts/consumer.mjs help      this list
 //
-// In a plain clone of agency (no submodule) only `overlay` applies: node scripts/consumer.mjs overlay Bloggie --project mysite
+// For local-reference or independent projects, run review from their root using the standalone Agency script.
 //
 // Options: --path <submodule path> (default: the .gitmodules entry whose URL ends in /agency(.git), else storage/agency)
 //          --project <name>        overlay folder under projects/ (default: consumer folder name)
@@ -21,12 +22,13 @@
 // inside the checkout is the gitignored projects/<project>/ overlay folder.
 
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, chmodSync } from 'node:fs';
 import { join, basename, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const HOOK_MARK = 'agency-consumer-guard';
-const VALUED = new Set(['--path', '--project']);
+const VALUED = new Set(['--path', '--project', '--profile', '--config', '--since']);
 const args = process.argv.slice(2);
 const positional = args.filter((a, i) => !a.startsWith('--') && !VALUED.has(args[i - 1]));
 const cmd = positional[0] || 'status';
@@ -268,11 +270,49 @@ function overlay() {
   console.log(`created ${target}\nFill in only what differs from agents/${agent}.md — the public desk stays the base.`);
 }
 
+function review() {
+  if (!project || !/^[a-z0-9][a-z0-9._-]*$/i.test(project)) fail('Pass a valid --project slug.');
+  const storage = dirname(subPath);
+  const pointer = join(storage, 'AGENCY.md');
+  const projectGuide = `projects/${project}/README.md`;
+  const guide = join(subPath, projectGuide);
+  const guideLink = `${basename(subPath)}/${projectGuide}`;
+  if (!existsSync(join(root, pointer))) fail(`Missing project entry point: ${pointer}`);
+  if (!readFileSync(join(root, pointer), 'utf8').includes(`(${guideLink})`)) {
+    fail(`${pointer} must link to ${guideLink}.`);
+  }
+  if (!existsSync(join(root, guide))) fail(`Missing project Agency guide: ${guide}`);
+
+  const since = opt('since');
+  const base = since
+    ? tryGit(root, 'rev-parse', '--verify', '--end-of-options', `${since}^{commit}`)
+    : tryGit(root, 'rev-parse', 'HEAD^') || git(root, 'rev-parse', 'HEAD');
+  if (!base) fail(`Cannot resolve review base: ${since}`);
+
+  const paths = [pointer, guide, 'docs', join(storage, 'docs'), '.config', 'config', 'profiles', 'scripts'];
+  console.log(`Read first: ${pointer} → ${guide}`);
+  console.log(`Committed changes since ${base.slice(0, 12)}:`);
+  console.log(git(root, 'diff', '--name-status', base, 'HEAD', '--', ...paths) || '  none');
+  console.log('Working changes:');
+  console.log(git(root, 'status', '--short', '--untracked-files=all', '--', ...paths) || '  none');
+
+  for (const [option, label] of [['profile', 'Theme profile'], ['config', 'Project config']]) {
+    if (!args.includes(`--${option}`)) continue;
+    const input = opt(option);
+    if (!input || input.startsWith('--')) fail(`Pass a file with --${option}.`);
+    const file = resolve(root, input);
+    if (!existsSync(file) || !statSync(file).isFile()) fail(`${label} missing: ${file}`);
+    const hash = createHash('sha256').update(readFileSync(file)).digest('hex');
+    console.log(`${label}: ${file} (SHA-256 ${hash})`);
+  }
+  console.log('Read the governing docs and the project config named in the guide. Compare the applicable profile with the prior receipt and update affected audit assertions with the source change.');
+}
+
 function help() {
   console.log(readFileSync(fileURLToPath(import.meta.url), 'utf8').split('\n').filter((l) => l.startsWith('//')).slice(0, 22).map((l) => l.slice(3)).join('\n'));
 }
 
-const commands = { status, check, sync, protect, overlay, help };
-if (!commands[cmd]) fail(`unknown command "${cmd}" (status | check | sync | protect | overlay | help)`);
+const commands = { status, check, sync, protect, overlay, review, help };
+if (!commands[cmd]) fail(`unknown command "${cmd}" (status | check | sync | protect | overlay | review | help)`);
 if (cloneMode && !['overlay', 'help'].includes(cmd)) fail(`this is the agency repo itself, not a consumer. Here only "overlay" and "help" apply.`);
 commands[cmd]();

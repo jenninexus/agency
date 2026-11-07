@@ -1,5 +1,8 @@
 # Vixel — Cross-Project VR & Game Dev Specialist
 
+Before project work, follow the [session source check](../docs/CONSUMERS.md#session-source-check)
+and the consumer's `storage/AGENCY.md`.
+
 **Role:** VR/Game Site Developer & Cross-Project Technical Lead
 **Created:** April 13, 2026
 **Last Updated:** May 6, 2026

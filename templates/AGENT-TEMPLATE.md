@@ -6,7 +6,10 @@
 **Status:** Active
 **Weekly Audit Day:** [Day]
 
-> **Using as a project override?** Copy this file to `projects/{your-project}/[AgentName].md` (gitignored) and add project-specific paths, file names, and audit results. Keep personality/framework rules in `agents/[AgentName].md` (tracked). Update `.vscode/mcp.json` → `agents.[agentname].profile` to point to the override.
+For an existing public desk, use the overlay template. Start each session at the project's
+`storage/AGENCY.md` and follow the Agency consumer contract's session source check.
+Project profiles and audit results belong in the owning project. The populated `mcp.json`
+holds registry entries; `.vscode/mcp.json` holds only the MCP server configuration.
 
 ---
 
