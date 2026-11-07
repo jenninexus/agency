@@ -53,8 +53,15 @@ Plans/
 # Local Foam workspace notes (agent graph visualization)
 foam/
 
-# Claude Code session data
+# Claude Code session data — the whole .claude/ tree stays local (command source included;
+# AGENTS.md: local commands "are not part of the public clone").
 .claude/
+
+# Generated command adapters — written by jen/scripts/sync-all.ps1 -Project from
+# .claude/commands. Never tracked: committing only one of the two trees is the
+# half-and-half bug (a clone works in Codex but not Cursor, or vice versa).
+.codex/
+.agents/
 
 # Local SQLite / personal agent DBs (never ship — public framework)
 userdata.db
